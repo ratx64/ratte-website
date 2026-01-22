@@ -271,7 +271,7 @@ const App: React.FC = () => {
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
-            { label: "RatteCS Links" },
+            { label: "Ratte Links" },
           ]}
         />
         <main id="main-content" role="main">

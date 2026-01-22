@@ -199,7 +199,7 @@ const LinkList: React.FC = () => {
 
         <div className="text-center max-w-2xl flex flex-col items-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-black dark:text-white mb-2 sm:mb-3">
-            RatteCS
+            Ratte
           </h1>
           <div className="mb-3 sm:mb-4">
             <SocialIcons />
