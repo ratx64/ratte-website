@@ -38,20 +38,23 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex gap-4">
             <a
-              href="#"
+              href="#about"
               className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
+              aria-label="About RatteCS"
             >
-              Terms
+              About
             </a>
             <a
-              href="#"
+              href="#faq"
               className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
+              aria-label="Frequently Asked Questions"
             >
-              Privacy
+              FAQ
             </a>
             <a
-              href="#"
+              href="mailto:biz@ratte.xyz?subject=Affiliate%20Inquiry"
               className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
+              aria-label="Contact for affiliate inquiries"
             >
               Affiliates
             </a>

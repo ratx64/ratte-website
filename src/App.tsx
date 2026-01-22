@@ -3,7 +3,9 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import LinkList from "./components/LinkList";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
-import SocialIcons from "./components/SocialIcons";
+import About from "./components/About";
+import Breadcrumbs from "./components/Breadcrumbs";
+import HowToSchema from "./components/HowToSchema";
 import Favicon from "./assets/favicon.ico";
 
 /**
@@ -33,15 +35,23 @@ const App: React.FC = () => {
   }, []);
 
   const siteData = {
-    title: "Ratte - Links",
+    title: "RatteCS - CS2 Streamer Links, Affiliate Codes & Gaming Gear Discounts",
     description:
-      "Official links and affiliate codes for RatteCS. Find all social media profiles, CS2 settings, and exclusive discount codes in one place.",
+      "RatteCS official link hub: CS2 streamer social profiles, exclusive gaming gear discount codes, CS2 settings, and verified affiliate links. Support content creation while saving on Gamerbulk, Acezone, SkinVault, and more.",
     url: "https://ratte.xyz/",
-    image: "./assets/og-image.png",
+    image: "https://ratte.xyz/assets/og-image.png",
   };
 
   return (
     <HelmetProvider>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-md focus:shadow-lg"
+        aria-label="Skip to main content"
+      >
+        Skip to main content
+      </a>
       <Helmet>
         {/* Font Optimization */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -82,6 +92,7 @@ const App: React.FC = () => {
         />
         <meta name="author" content="RatteCS" />
         <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
@@ -94,6 +105,11 @@ const App: React.FC = () => {
         <meta property="og:title" content={siteData.title} />
         <meta property="og:description" content={siteData.description} />
         <meta property="og:image" content={siteData.image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="RatteCS - CS2 Streamer Links and Affiliate Codes" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="RatteCS" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -101,44 +117,83 @@ const App: React.FC = () => {
         <meta property="twitter:title" content={siteData.title} />
         <meta property="twitter:description" content={siteData.description} />
         <meta property="twitter:image" content={siteData.image} />
+        <meta property="twitter:creator" content="@rattecs" />
+        <meta property="twitter:site" content="@rattecs" />
 
-        {/* Structured Data */}
+        {/* Structured Data - WebSite */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: siteData.title,
+            name: "RatteCS",
             description: siteData.description,
             url: siteData.url,
             image: siteData.image,
             author: {
               "@type": "Person",
-              name: "Ratte",
-              url: "https://ratte.xyz/",
+              "@id": "https://ratte.xyz/#person",
             },
             publisher: {
               "@type": "Organization",
               name: "RatteCS",
+              url: "https://ratte.xyz/",
               logo: {
                 "@type": "ImageObject",
-                url: "https://ratte.xyz/logo.png",
+                url: "https://ratte.xyz/assets/pfp.png",
+                width: 512,
+                height: 512,
               },
             },
-            offers: {
-              "@type": "AggregateOffer",
-              priceCurrency: "USD",
-              availability: "https://schema.org/InStock",
-              seller: {
-                "@type": "Organization",
-                name: "RatteCS",
-                url: "https://ratte.xyz/",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate: "https://ratte.xyz/?q={search_term_string}",
               },
+              "query-input": "required name=search_term_string",
             },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.8",
-              reviewCount: "1000",
-            },
+          })}
+        </script>
+
+        {/* Structured Data - Person (EEAT) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "@id": "https://ratte.xyz/#person",
+            name: "Ratte",
+            alternateName: "RatteCS",
+            url: "https://ratte.xyz/",
+            image: "https://ratte.xyz/assets/pfp.png",
+            jobTitle: "CS2 Content Creator & Streamer | Competitive Gamer | Social Media & Content Strategist",
+            knowsAbout: [
+              "Counter-Strike 2",
+              "Competitive Gaming",
+              "Content Creation",
+              "Gaming Peripherals",
+              "Streaming",
+              "Gaming Content Creation",
+              "CS2 Settings Configuration",
+              "Social Media Strategy",
+              "Esports",
+              "Fitness & Nutrition",
+              "PC Building",
+            ],
+            award: [
+              "Faceit Level 10+ (Counter-Strike)",
+              "Grandmaster (Overwatch)",
+              "Immortal (Valorant)",
+              "Apex Predator (Apex Legends)",
+            ],
+            sameAs: [
+              "https://discord.gg/gc2epPGDKP",
+              "https://instagram.com/cs_ratte",
+              "https://www.youtube.com/@rattecs",
+              "https://www.tiktok.com/@rattecs",
+              "https://kick.com/rattecs",
+              "https://twitch.tv/rattecs",
+            ],
+            description: "CS2 content creator and streamer sharing gaming content, settings, and exclusive discount codes for gaming gear.",
           })}
         </script>
 
@@ -209,9 +264,19 @@ const App: React.FC = () => {
         </script>
       </Helmet>
 
+      {/* HowTo Schema for AEO - Outside Helmet to avoid nesting */}
+      <HowToSchema />
+
       <div className="min-h-screen bg-white dark:bg-background text-black dark:text-white transition-colors duration-300">
-        <main>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "RatteCS Links" },
+          ]}
+        />
+        <main id="main-content" role="main">
           <LinkList />
+          <About />
           <FAQ />
         </main>
         <Footer />

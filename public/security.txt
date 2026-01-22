@@ -1,0 +1,4 @@
+Contact: mailto:biz@ratte.xyz
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://ratte.xyz/.well-known/security.txt

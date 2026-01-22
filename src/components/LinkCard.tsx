@@ -323,7 +323,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
       <a
         href={url}
         target="_blank"
-        rel="noopener noreferrer"
+        rel={`noopener noreferrer${category === "affiliate" || category === "partner" ? " sponsored" : ""}`}
         className="block mb-3 group"
         data-analytics-id={analyticsId}
         aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
@@ -363,8 +363,11 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                   >
                     <img
                       src={iconMap[icon]}
-                      alt={`${title} icon`}
+                      alt={`${title} ${category === 'affiliate' ? 'affiliate link' : 'link'} icon`}
                       className="w-full h-full object-cover"
+                      width={32}
+                      height={32}
+                      loading="lazy"
                     />
                   </div>
                 ) : (
@@ -480,8 +483,9 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                             e.preventDefault();
                             handleCopyCode(couponCode);
                           }}
-                          className="p-1 rounded-md hover:bg-white/10 dark:hover:bg-background/50 transition-colors"
-                          aria-label="Copy code"
+                          className="p-1 rounded-md hover:bg-white/10 dark:hover:bg-background/50 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                          aria-label={`Copy code ${couponCode}`}
+                          aria-pressed={isCopied}
                         >
                           {isCopied ? (
                             <svg

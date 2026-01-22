@@ -1,0 +1,5 @@
+- Always use TypeScript strict mode.
+- Prefer functional components with React Hook Form for forms.
+- Use Tailwind for styling; no inline styles unless necessary.
+- Enforce accessibility (ARIA labels) and performance (lazy loading).
+- Update README.md and project-docs when progress is made

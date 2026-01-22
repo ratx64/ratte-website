@@ -9,7 +9,7 @@ const pageDescription =
   "Your central hub for RatteCS social media profiles (Twitch, Discord, YouTube, etc.), affiliate links (Gamerbulk, AceZone, SkinVault), coupon codes, and CS2 config.";
 const pageKeywords =
   "rattecs, counter-strike, cs2, twitch, discord, youtube, kick, steam, csfloat, skinport, eliteklan, gamerbulk, acezone, skinvault, affiliate, coupon, code, settings, peripherals";
-const canonicalUrl = "https://ratte-website.pages.dev/";
+const canonicalUrl = "https://ratte.xyz/";
 
 export default defineConfig({
   plugins: [pluginReact()],
