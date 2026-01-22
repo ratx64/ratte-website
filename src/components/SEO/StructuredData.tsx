@@ -11,7 +11,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
   title,
   description,
   url,
-  image = "../../assets/og-image.png",
+  image = "../../assets/og-image.webp",
 }) => {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -30,7 +30,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
       name: "RatteCS",
       logo: {
         "@type": "ImageObject",
-        url: "../../assets/pfp.png",
+        url: "../../assets/pfp.webp",
       },
     },
   };

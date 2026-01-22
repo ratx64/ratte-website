@@ -13,14 +13,14 @@ import AffiliateBadge from "./AffiliateBadge";
 import GamificationBadge from "./GamificationBadge";
 
 // Import all images
-import gearzggIcon from "../assets/gearzgg.jpg";
-import skinportIcon from "../assets/skinport.jpg";
-import csfloatIcon from "../assets/csfloat.jpg";
-import eliteklanIcon from "../assets/eliteklan.jpg";
-import acezoneIcon from "../assets/acezone.png";
-import gamerbulkIcon from "../assets/gamerbulk.jpg";
-import skinvaultIcon from "../assets/skinvault.png";
-import pfpIcon from "../assets/pfp.png";
+import gearzggIcon from "../assets/gearzgg.webp";
+import skinportIcon from "../assets/skinport.webp";
+import csfloatIcon from "../assets/csfloat.webp";
+import eliteklanIcon from "../assets/eliteklan.webp";
+import acezoneIcon from "../assets/acezone.webp";
+import gamerbulkIcon from "../assets/gamerbulk.webp";
+import skinvaultIcon from "../assets/skinvault.webp";
+import pfpIcon from "../assets/pfp.webp";
 
 // Create a mapping of icon identifiers to actual images
 const iconMap: Record<string, string> = {
@@ -329,7 +329,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
         aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
       >
         <div
-          className={`relative overflow-hidden rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 ${
+          className={`relative overflow-hidden rounded-lg sm:rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 ${
             isHovered ? "scale-[1.02]" : ""
           } ${isClicked ? "scale-[0.98]" : ""} ${
             priority === 1 ? "ring-2 ring-primary dark:ring-glow" : ""
@@ -351,13 +351,13 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             }`}
           ></div>
 
-          <div className="relative p-4">
-            <div className="flex items-start gap-4">
+          <div className="relative p-3 sm:p-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               {/* Icon with enhanced hover effect */}
               <div className="flex-shrink-0">
                 {icon && iconMap[icon] ? (
                   <div
-                    className={`w-8 h-8 rounded-full overflow-hidden transition-all duration-300 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden transition-all duration-300 ${
                       isHovered ? "ring-2 ring-primary dark:ring-glow" : ""
                     }`}
                   >
@@ -368,11 +368,12 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                       width={32}
                       height={32}
                       loading="lazy"
+                      sizes="32px"
                     />
                   </div>
                 ) : (
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                       isHovered ? "bg-primary/10 dark:bg-glow/10" : ""
                     }`}
                   >
@@ -384,7 +385,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
                   <div className="min-w-0 flex-1">
-                    <h3 className="text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-glow transition-colors truncate">
+                    <h3 className="text-sm sm:text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-glow transition-colors truncate">
                       {title}
                       {isVerified && (
                         <span
@@ -407,7 +408,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                       )}
                     </h3>
                     {description && (
-                      <p className="text-sm text-black/60 dark:text-white/60 mt-1 line-clamp-2">
+                      <p className="text-xs sm:text-sm text-black/60 dark:text-white/60 mt-1 line-clamp-2">
                         {description}
                       </p>
                     )}

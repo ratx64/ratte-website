@@ -3,7 +3,7 @@ import LinkCard from "./LinkCard"; // Import the card component
 import TwitchEmbed from "./TwitchEmbed";
 import { LinkData } from "../types"; // Import the shared type
 import { allLinks } from "../data/links"; // Import the actual link data
-import pfpImage from "../assets/pfp2.png";
+import pfpImage from "../assets/pfp2.webp";
 import SocialIcons from "./SocialIcons";
 
 /**
@@ -191,7 +191,7 @@ const LinkList: React.FC = () => {
               width={128}
               height={128}
               loading="eager"
-              fetchpriority="high"
+              {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
             />
           </div>
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 blur-xl -z-10" />

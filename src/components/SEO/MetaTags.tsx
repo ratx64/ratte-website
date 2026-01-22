@@ -12,7 +12,7 @@ export const MetaTags: React.FC<MetaTagsProps> = ({
   title,
   description,
   url,
-  image = "../../assets/og-image.png",
+  image = "../../assets/og-image.webp",
   type = "website",
 }) => {
   return (

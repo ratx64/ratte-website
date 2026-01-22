@@ -42,30 +42,30 @@ const FAQ: React.FC = () => {
   return (
     <section 
       id="faq"
-      className="max-w-3xl mx-auto px-4 sm:px-6 py-12"
+      className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12"
       aria-labelledby="faq-heading"
     >
-      <h2 id="faq-heading" className="text-2xl font-bold text-black dark:text-white mb-8">
+      <h2 id="faq-heading" className="text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-white mb-6 sm:mb-8 text-center sm:text-left">
         Frequently Asked Questions
       </h2>
       <div className="space-y-6" role="list">
         {faqs.map((faq, index) => (
           <article
             key={index}
-            className="bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 p-6"
+            className="bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 p-4 sm:p-6"
             itemScope
             itemType="https://schema.org/Question"
             role="listitem"
           >
             <h3 
-              className="text-lg font-medium text-black dark:text-white mb-2"
+              className="text-base sm:text-lg font-medium text-black dark:text-white mb-2 text-center sm:text-left"
               itemProp="name"
             >
               {faq.question}
             </h3>
             <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
               <p 
-                className="text-black/70 dark:text-white/70"
+                className="text-sm sm:text-base text-black/70 dark:text-white/70 text-center sm:text-left"
                 itemProp="text"
               >
                 {faq.answer}

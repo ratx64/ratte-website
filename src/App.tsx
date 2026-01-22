@@ -4,8 +4,8 @@ import LinkList from "./components/LinkList";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import About from "./components/About";
-import Breadcrumbs from "./components/Breadcrumbs";
 import HowToSchema from "./components/HowToSchema";
+import { initAnalytics } from "./utils/analytics";
 import Favicon from "./assets/favicon.ico";
 
 /**
@@ -13,6 +13,9 @@ import Favicon from "./assets/favicon.ico";
  */
 const App: React.FC = () => {
   useEffect(() => {
+    // Initialize analytics
+    initAnalytics();
+
     // Check if dark mode is preferred
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.documentElement.classList.add("dark");
@@ -35,11 +38,11 @@ const App: React.FC = () => {
   }, []);
 
   const siteData = {
-    title: "RatteCS - CS2 Streamer Links, Affiliate Codes & Gaming Gear Discounts",
+    title: "RatteCS - CS2 Streamer Links & Gaming Gear Discounts",
     description:
-      "RatteCS official link hub: CS2 streamer social profiles, exclusive gaming gear discount codes, CS2 settings, and verified affiliate links. Support content creation while saving on Gamerbulk, Acezone, SkinVault, and more.",
+      "RatteCS link hub: CS2 streamer social profiles, gaming gear discount codes, CS2 settings, and affiliate links. Save on Gamerbulk, Acezone, SkinVault, and more.",
     url: "https://ratte.xyz/",
-    image: "https://ratte.xyz/assets/og-image.png",
+    image: "https://ratte.xyz/assets/og-image.webp",
   };
 
   return (
@@ -53,13 +56,14 @@ const App: React.FC = () => {
         Skip to main content
       </a>
       <Helmet>
-        {/* Font Optimization */}
+        {/* Font Optimization - Non-blocking */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Non-blocking font loading */}
         <link
           rel="preload"
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -68,19 +72,12 @@ const App: React.FC = () => {
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
+          media="print"
+          onLoad="this.media='all'"
         />
-        <style>
-          {`
-            @font-face {
-              font-family: 'Inter';
-              font-style: normal;
-              font-weight: 400;
-              font-display: swap;
-              src: url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2) format('woff2');
-              unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-            }
-          `}
-        </style>
+        <noscript>
+          {`<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />`}
+        </noscript>
 
         {/* Primary Meta Tags */}
         <title>{siteData.title}</title>
@@ -139,7 +136,7 @@ const App: React.FC = () => {
               url: "https://ratte.xyz/",
               logo: {
                 "@type": "ImageObject",
-                url: "https://ratte.xyz/assets/pfp.png",
+                url: "https://ratte.xyz/assets/pfp.webp",
                 width: 512,
                 height: 512,
               },
@@ -164,7 +161,7 @@ const App: React.FC = () => {
             name: "Ratte",
             alternateName: "RatteCS",
             url: "https://ratte.xyz/",
-            image: "https://ratte.xyz/assets/pfp.png",
+                image: "https://ratte.xyz/assets/pfp.webp",
             jobTitle: "CS2 Content Creator & Streamer | Competitive Gamer | Social Media & Content Strategist",
             knowsAbout: [
               "Counter-Strike 2",
@@ -268,12 +265,6 @@ const App: React.FC = () => {
       <HowToSchema />
 
       <div className="min-h-screen bg-white dark:bg-background text-black dark:text-white transition-colors duration-300">
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Ratte Links" },
-          ]}
-        />
         <main id="main-content" role="main">
           <LinkList />
           <About />

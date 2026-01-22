@@ -111,6 +111,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
       script.src = "https://player.twitch.tv/js/embed/v1.js";
       script.async = true;
       script.defer = true;
+      script.crossOrigin = "anonymous";
       
       script.addEventListener("load", initPlayer);
       script.addEventListener("error", () => {
@@ -140,15 +141,15 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
   }, [channel, parent]);
 
   return (
-    <section 
-      className="group relative overflow-hidden rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 mb-12"
-      aria-label="Twitch Live Stream"
-    >
-      {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-accent/5 dark:from-primary/0 dark:via-primary/10 dark:to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <section
+        className="group relative overflow-hidden rounded-lg sm:rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 mb-8 sm:mb-12 mx-2 sm:mx-0"
+        aria-label="Twitch Live Stream"
+      >
+        {/* Gradient overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-accent/5 dark:from-primary/0 dark:via-primary/10 dark:to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      {/* Twitch embed container */}
-      <div className="relative pt-[56.25%] min-h-[300px] min-w-[400px] rounded-xl overflow-hidden">
+        {/* Twitch embed container */}
+        <div className="relative pt-[56.25%] min-h-[200px] sm:min-h-[300px] min-w-0 sm:min-w-[400px] rounded-lg sm:rounded-xl overflow-hidden">
         {isLoading && !hasError && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/20 dark:bg-white/5">
             <div className="text-center">

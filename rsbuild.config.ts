@@ -17,6 +17,11 @@ export default defineConfig({
     entry: {
       index: "./src/index.tsx",
     },
+    // Define environment variables for client-side code
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.REACT_APP_GA_MEASUREMENT_ID': JSON.stringify(process.env.REACT_APP_GA_MEASUREMENT_ID || ''),
+    },
   },
   output: {
     distPath: {
@@ -26,11 +31,29 @@ export default defineConfig({
       image: "static/image",
       media: "static/media",
     },
+    // Optimize assets
+    assetPrefix: "",
+    filename: {
+      js: "[name].[contenthash:8].js",
+      css: "[name].[contenthash:8].css",
+    },
+  },
+  performance: {
+    chunkSplit: {
+      strategy: "split-by-size",
+      minSize: 20000,
+      maxSize: 244000,
+    },
   },
   tools: {
     postcss: {
       postcssOptions: {
         plugins: [require("tailwindcss"), require("autoprefixer")],
+      },
+    },
+    rspack: {
+      optimization: {
+        minimize: true,
       },
     },
   },
@@ -41,7 +64,7 @@ export default defineConfig({
       { tag: "meta", attrs: { name: "description", content: pageDescription } },
       { tag: "meta", attrs: { name: "keywords", content: pageKeywords } },
       { tag: "meta", attrs: { name: "author", content: "RatteCS" } },
-      { tag: "link", attrs: { rel: "canonical", href: canonicalUrl } },
+      // Canonical URL handled by react-helmet-async in App.tsx
       { tag: "meta", attrs: { property: "og:title", content: pageTitle } },
       {
         tag: "meta",
@@ -74,13 +97,7 @@ export default defineConfig({
           crossorigin: "",
         },
       },
-      {
-        tag: "link",
-        attrs: {
-          href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
-          rel: "stylesheet",
-        },
-      },
+      // Font stylesheet loaded non-blocking via App.tsx
     ],
   },
   // Rsbuild usually detects Tailwind automatically.
