@@ -7,7 +7,7 @@ const SocialIcons: React.FC = () => {
     {
       name: "X (Twitter)",
       icon: FaXTwitter,
-      url: "https://twitter.com/rattecs",
+      url: "https://x.com/rattecs",
       color: "text-[#000000] dark:text-white",
       size: "w-[18px] h-[18px]",
     },

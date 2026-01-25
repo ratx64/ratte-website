@@ -4,7 +4,7 @@ import { pluginReact } from "@rsbuild/plugin-react";
 // const tailwindcss = require('tailwindcss');
 // const autoprefixer = require('autoprefixer');
 
-const pageTitle = "Ratte - Links";
+const pageTitle = "RatteCS - Links & Codes";
 const pageDescription =
   "Your central hub for RatteCS social media profiles (Twitch, Discord, YouTube, etc.), affiliate links (Gamerbulk, AceZone, SkinVault), coupon codes, and CS2 config.";
 const pageKeywords =
@@ -74,7 +74,7 @@ export default defineConfig({
       { tag: "meta", attrs: { property: "og:url", content: canonicalUrl } },
       {
         tag: "meta",
-        attrs: { property: "og:site_name", content: "RatteCS Link Tree" },
+        attrs: { property: "og:site_name", content: "RatteCS" },
       },
       { tag: "meta", attrs: { name: "twitter:card", content: "summary" } },
       { tag: "meta", attrs: { name: "twitter:title", content: pageTitle } },

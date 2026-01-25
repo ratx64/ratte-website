@@ -263,7 +263,7 @@ const LinkList: React.FC = () => {
       <div className="aspect-video w-full mb-8 sm:mb-12">
         {" "}
         {/* Responsive wrapper for embed */}
-        <TwitchEmbed channel="rattecs" parent={["ratte.seweraim.com"]} />
+        <TwitchEmbed channel="rattecs" parent={["ratte.xyz", "localhost"]} />
       </div>
 
       {/* Link Sections with enhanced descriptions */}

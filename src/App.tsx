@@ -38,7 +38,7 @@ const App: React.FC = () => {
   }, []);
 
   const siteData = {
-    title: "RatteCS - CS2 Streamer Links & Gaming Gear Discounts",
+    title: "RatteCS - Links & Codes",
     description:
       "RatteCS link hub: CS2 streamer social profiles, gaming gear discount codes, CS2 settings, and affiliate links. Save on Gamerbulk, Acezone, SkinVault, and more.",
     url: "https://ratte.xyz/",

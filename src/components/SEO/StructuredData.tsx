@@ -23,7 +23,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
     author: {
       "@type": "Person",
       name: "Ratte",
-      url: "https://ratte.seweraim.com",
+      url: "https://ratte.xyz/",
     },
     publisher: {
       "@type": "Organization",
