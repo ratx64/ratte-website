@@ -1,4 +1,4 @@
-/// <reference path="./images.d.ts" />
+/// <reference path="./types/global.d.ts" />
 import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import LinkList from "./components/LinkList";
