@@ -44,13 +44,6 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
-              href="#about"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
-              aria-label="About RatteCS"
-            >
-              About
-            </a>
-            <a
               href="#faq"
               className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
               aria-label="Frequently Asked Questions"
@@ -60,14 +53,14 @@ const Footer: React.FC = () => {
             <a
               href="#"
               className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
-              aria-label="Contact for affiliate inquiries"
+              aria-label="Contact for partner inquiries"
               onClick={(e) => {
                 e.preventDefault();
                 const email = 'biz' + '@' + 'ratte.xyz';
-                window.location.href = 'mailto:' + email + '?subject=Affiliate%20Inquiry';
+                window.location.href = 'mailto:' + email + '?subject=Partner%20Inquiry';
               }}
             >
-              Affiliates
+              Partners
             </a>
           </div>
         </div>

@@ -286,7 +286,7 @@ const LinkList: React.FC = () => {
         activeCategory === null ||
         activeCategory === "affiliate") &&
         renderSection(
-          "Affiliate Links & Codes",
+          "Partners",
           organizedLinks.affiliate,
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +300,7 @@ const LinkList: React.FC = () => {
               clipRule="evenodd"
             />
           </svg>,
-          "Discount codes and affiliate links"
+          "Partner links"
         )}
 
       {(!isMobile || activeCategory === null || activeCategory === "steam") &&

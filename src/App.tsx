@@ -1,9 +1,9 @@
+/// <reference path="./images.d.ts" />
 import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import LinkList from "./components/LinkList";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
-import About from "./components/About";
 import HowToSchema from "./components/HowToSchema";
 import { initAnalytics } from "./utils/analytics";
 import Favicon from "./assets/favicon.ico";
@@ -38,9 +38,9 @@ const App: React.FC = () => {
   }, []);
 
   const siteData = {
-    title: "RatteCS - Links & Codes",
+    title: "RatteCS - Links",
     description:
-      "RatteCS link hub: CS2 streamer social profiles, gaming gear discount codes, CS2 settings, and affiliate links. Save on Gamerbulk, Acezone, SkinVault, and more.",
+      "RatteCS link hub: CS2 streamer social profiles, CS2 settings, partner links, and all my links in one place.",
     url: "https://ratte.xyz/",
     image: "https://ratte.xyz/assets/og-image.webp",
   };
@@ -73,7 +73,9 @@ const App: React.FC = () => {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
           media="print"
-          onLoad="this.media='all'"
+          onLoad={(e) => {
+            (e.target as HTMLLinkElement).media = "all";
+          }}
         />
         <noscript>
           {`<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />`}
@@ -85,7 +87,7 @@ const App: React.FC = () => {
         <meta name="description" content={siteData.description} />
         <meta
           name="keywords"
-          content="rattecs, cs2, counter-strike, gaming, streamer, content creator, affiliate codes, discount codes"
+          content="rattecs, cs2, counter-strike, gaming, streamer, content creator, links"
         />
         <meta name="author" content="RatteCS" />
         <meta name="robots" content="index, follow" />
@@ -104,7 +106,7 @@ const App: React.FC = () => {
         <meta property="og:image" content={siteData.image} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="RatteCS - CS2 Streamer Links and Affiliate Codes" />
+        <meta property="og:image:alt" content="RatteCS - CS2 Streamer Links" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="RatteCS" />
 
@@ -190,11 +192,11 @@ const App: React.FC = () => {
               "https://kick.com/rattecs",
               "https://twitch.tv/rattecs",
             ],
-            description: "CS2 content creator and streamer sharing gaming content, settings, and exclusive discount codes for gaming gear.",
+            description: "CS2 content creator and streamer sharing gaming content, settings, and partner links.",
           })}
         </script>
 
-        {/* FAQ Schema */}
+        {/* FAQ Schema - must match visible FAQ content for rich results */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -202,58 +204,50 @@ const App: React.FC = () => {
             mainEntity: [
               {
                 "@type": "Question",
-                name: "What are affiliate links and how do they work?",
+                name: "What's on this website?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Affiliate links are special URLs that track when visitors make purchases. When you click an affiliate link and make a purchase, we may receive a small commission at no extra cost to you. This helps support our content creation.",
+                  text: "Links to all my socials (Twitch, YouTube, TikTok, Kick, Discord), my CS2 settings, Steam trading links, and partner links like CSFloat. All my links in one place.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How do I use the discount codes?",
+                name: "Do I pay more when using your links?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Simply click on the affiliate link, add items to your cart, and enter the provided discount code at checkout. The discount will be automatically applied to your order.",
+                  text: "No. Using my partner links doesn't increase the price you pay. I may get a small commission; you pay the same. Win-win.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Are the discount codes always valid?",
+                name: "How can I support you?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Most discount codes have a long validity period, but some may expire. We try to keep all codes up to date. If you encounter an expired code, please let us know.",
+                  text: "Use my partner links when you buy stuff (e.g. CSFloat for skins). Following on Twitch, YouTube, or Discord and sharing the stream also helps.",
                 },
               },
               {
                 "@type": "Question",
-                name: "Do I pay more when using affiliate links?",
+                name: "Where can I find you?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "No, using our affiliate links does not increase the price you pay. In fact, you often get exclusive discounts not available elsewhere.",
+                  text: "Twitch and Kick for live streams, YouTube for longer videos, TikTok for clips, Discord to chat, and X (Twitter) for updates. All links are on this page.",
                 },
               },
               {
                 "@type": "Question",
-                name: "How do I know if a link is an affiliate link?",
+                name: "How do I know if a link is a partner link?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "All affiliate links on our site are clearly marked with a 'Redirect' label and may include discount codes. We believe in transparency with our community.",
+                  text: "Partner links are marked with a 'Redirect' label. I keep it transparent so you know when you're using one.",
                 },
               },
               {
                 "@type": "Question",
-                name: "What are the benefits of using your affiliate links?",
+                name: "How can I contact you?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Using our affiliate links not only supports our content creation but also gives you access to exclusive discounts, verified deals, and special promotions that aren't available elsewhere.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How do I track my savings and rewards?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "You can track your savings and rewards through our gamification system. Each purchase earns you points, and you can see your streak, rank, and next reward on the link cards.",
+                  text: "Email biz@ratte.xyz for business, partnerships, or questions. I reply when I can; response may be slower when I'm streaming or busy.",
                 },
               },
             ],
@@ -267,7 +261,6 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-white dark:bg-background text-black dark:text-white transition-colors duration-300">
         <main id="main-content" role="main">
           <LinkList />
-          <About />
           <FAQ />
         </main>
         <Footer />

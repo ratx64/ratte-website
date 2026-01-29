@@ -3,39 +3,34 @@ import React from "react";
 const FAQ: React.FC = () => {
   const faqs = [
     {
-      question: "Who is Ratte?",
-      answer:
-        "I'm a CS2 streamer and content creator. I share my settings, stream gameplay, and test gaming gear. Been playing competitive games for 15+ years.",
-    },
-    {
       question: "What's on this website?",
       answer:
-        "Links to all my socials (Twitch, YouTube, TikTok, Discord), discount codes for gaming gear, my CS2 settings, Steam trading links, and affiliate links to gaming stores.",
+        "Links to all my socials (Twitch, YouTube, TikTok, Kick, Discord), my CS2 settings, Steam trading links, and partner links like CSFloat. All my links in one place.",
+    },
+    {
+      question: "Do I pay more when using your links?",
+      answer:
+        "No. Using my partner links doesn't increase the price you pay. I may get a small commission; you pay the same. Win-win.",
     },
     {
       question: "How can I support you?",
       answer:
-        "Use my affiliate links or discount codes when you're buying gaming gear. The code 'ratte' works at Gamerbulk, Acezone, SkinVault, and a few other places. You get a discount, I get a small commission. Win-win.",
+        "Use my partner links when you buy stuff (e.g. CSFloat for skins). Following on Twitch, YouTube, or Discord and sharing the stream also helps.",
     },
     {
       question: "Where can I find you?",
       answer:
-        "Twitch for live streams, YouTube for longer videos, TikTok for clips, Discord to chat with the community, and X (Twitter) for random posts. All the links are on this site.",
+        "Twitch and Kick for live streams, YouTube for longer videos, TikTok for clips, Discord to chat, and X (Twitter) for updates. All links are on this page.",
     },
     {
-      question: "What gaming gear do you recommend?",
+      question: "How do I know if a link is a partner link?",
       answer:
-        "I've tested most of the gear I link to. Mice, keyboards, headsets, the usual stuff. Check the peripherals section for what I'm actually using. Everything there has discount codes if I have them.",
-    },
-    {
-      question: "How do I use your discount codes?",
-      answer:
-        'Just enter "ratte" at checkout on Gamerbulk, Acezone, SkinVault, or wherever I have codes. The discount applies automatically if the code is still valid.',
+        "Partner links are marked with a 'Redirect' label. I keep it transparent so you know when you're using one.",
     },
     {
       question: "How can I contact you?",
       answer:
-        "Email me at biz@ratte.xyz for business stuff, partnerships, or questions. I try to respond, but it might take a bit if I'm streaming or busy.",
+        "Email biz@ratte.xyz for business, partnerships, or questions. I reply when I can; response may be slower when I'm streaming or busy.",
     },
   ];
 

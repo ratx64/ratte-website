@@ -11,4 +11,9 @@ declare module '*.png' {
 declare module '*.webp' {
   const content: string;
   export default content;
+}
+
+declare module '*.ico' {
+  const content: string;
+  export default content;
 } 
