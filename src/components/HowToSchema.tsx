@@ -31,7 +31,7 @@ const HowToSchema: React.FC = () => {
         name: "Open RatteCS Links",
         text: "Go to ratte.xyz and scroll to the Partners section.",
         image: "https://ratte.xyz/assets/og-image.webp",
-        url: "https://ratte.xyz/#affiliate",
+        url: "https://ratte.xyz/#partners",
       },
       {
         "@type": "HowToStep",

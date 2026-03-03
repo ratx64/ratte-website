@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             <p>
               <a
                 href="#"
-                className="hover:underline text-deep dark:text-glow transition-colors hover:text-primary dark:hover:text-accent-pink hover-lift inline-block"
+                className="hover:underline text-deep dark:text-glow transition-colors hover:text-primary dark:hover:text-accent-pink hover-lift inline-flex items-center min-h-[44px] px-2"
                 onClick={(e) => {
                   e.preventDefault();
                   const email = 'biz' + '@' + 'ratte.xyz';
@@ -45,14 +45,14 @@ const Footer: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
               href="#faq"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
+              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors inline-flex items-center min-h-[44px] px-2"
               aria-label="Frequently Asked Questions"
             >
               FAQ
             </a>
             <a
               href="#"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors"
+              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors inline-flex items-center min-h-[44px] px-2"
               aria-label="Contact for partner inquiries"
               onClick={(e) => {
                 e.preventDefault();

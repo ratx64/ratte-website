@@ -16,7 +16,7 @@ const GamificationBadge: React.FC<GamificationBadgeProps> = ({
   rank
 }) => {
   return (
-    <div className="flex flex-wrap gap-2 mt-2">
+    <div className="hidden sm:flex flex-wrap items-center justify-end gap-1.5 mt-2">
       {/* Streak Badge */}
       {streakCount && streakCount > 0 && (
         <div className="px-2 py-1 rounded-full bg-indigo-500/10 text-indigo-500 text-xs font-medium flex items-center gap-1">

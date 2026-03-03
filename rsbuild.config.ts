@@ -4,13 +4,6 @@ import { pluginReact } from "@rsbuild/plugin-react";
 // const tailwindcss = require('tailwindcss');
 // const autoprefixer = require('autoprefixer');
 
-const pageTitle = "RatteCS - Links";
-const pageDescription =
-  "Your central hub for RatteCS social media profiles (Twitch, Discord, YouTube, etc.), partner links, and CS2 config.";
-const pageKeywords =
-  "rattecs, counter-strike, cs2, twitch, discord, youtube, kick, steam, csfloat, settings, peripherals";
-const canonicalUrl = "https://ratte.xyz/";
-
 export default defineConfig({
   plugins: [pluginReact()],
   source: {
@@ -59,46 +52,6 @@ export default defineConfig({
   },
   html: {
     template: "./public/index.html",
-    title: pageTitle,
-    tags: [
-      { tag: "meta", attrs: { name: "description", content: pageDescription } },
-      { tag: "meta", attrs: { name: "keywords", content: pageKeywords } },
-      { tag: "meta", attrs: { name: "author", content: "RatteCS" } },
-      // Canonical URL handled by react-helmet-async in App.tsx
-      { tag: "meta", attrs: { property: "og:title", content: pageTitle } },
-      {
-        tag: "meta",
-        attrs: { property: "og:description", content: pageDescription },
-      },
-      { tag: "meta", attrs: { property: "og:type", content: "website" } },
-      { tag: "meta", attrs: { property: "og:url", content: canonicalUrl } },
-      {
-        tag: "meta",
-        attrs: { property: "og:site_name", content: "RatteCS" },
-      },
-      { tag: "meta", attrs: { name: "twitter:card", content: "summary" } },
-      { tag: "meta", attrs: { name: "twitter:title", content: pageTitle } },
-      {
-        tag: "meta",
-        attrs: { name: "twitter:description", content: pageDescription },
-      },
-      {
-        tag: "link",
-        attrs: {
-          rel: "preconnect",
-          href: "https://fonts.googleapis.com",
-        },
-      },
-      {
-        tag: "link",
-        attrs: {
-          rel: "preconnect",
-          href: "https://fonts.gstatic.com",
-          crossorigin: "",
-        },
-      },
-      // Font stylesheet loaded non-blocking via App.tsx
-    ],
   },
   // Rsbuild usually detects Tailwind automatically.
   // If not, we might need to add tools.tailwindcss: {}

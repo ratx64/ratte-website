@@ -42,7 +42,7 @@ const SocialIcons: React.FC = () => {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${social.color} opacity-90 hover:opacity-100 transition-opacity duration-200 flex items-center`}
+          className={`${social.color} opacity-90 hover:opacity-100 transition-opacity duration-200 inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full`}
           aria-label={`Visit ${social.name}`}
         >
           <social.icon className={social.size} />

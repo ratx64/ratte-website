@@ -351,8 +351,8 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             }`}
           ></div>
 
-          <div className="relative p-3 sm:p-4">
-            <div className="flex items-start gap-3 sm:gap-4">
+          <div className="relative p-3 max-[360px]:p-2.5 sm:p-4">
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start sm:gap-4">
               {/* Icon with enhanced hover effect */}
               <div className="flex-shrink-0">
                 {icon && iconMap[icon] ? (
@@ -382,19 +382,19 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                 )}
               </div>
 
-              <div className="min-w-0 flex-1">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-sm sm:text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-glow transition-colors truncate">
+              <div className="min-w-0 w-full flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0 flex-1 text-center sm:text-left">
+                    <h3 className="text-sm sm:text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-glow transition-colors line-clamp-2 sm:line-clamp-1 break-words">
                       {title}
                       {isVerified && (
                         <span
-                          className="ml-1.5 inline-block"
+                          className="ml-1.5 inline-flex items-center align-middle leading-none"
                           title="Verified Link"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 text-primary"
+                            className="h-4 w-4 text-primary block"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                           >
@@ -413,7 +413,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                       </p>
                     )}
                     {productDetails?.aggregateRating && (
-                      <div className="mt-1 flex items-center gap-1">
+                      <div className="mt-1 flex items-center justify-center sm:justify-start gap-1">
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <svg
@@ -445,7 +445,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                   </div>
 
                   {/* Badges container */}
-                  <div className="flex flex-col items-end gap-1 shrink-0">
+                  <div className="w-full sm:w-auto shrink-0">
                     {/* Affiliate Badges */}
                     <AffiliateBadge
                       discountPercentage={discountPercentage}
@@ -469,14 +469,14 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                 </div>
 
                 {/* URL and actions */}
-                <div className="mt-2 flex items-center gap-2">
-                  <p className="text-xs text-black/40 dark:text-white/40 truncate min-w-0 flex-1 group-hover:text-primary/50 dark:group-hover:text-glow/50 transition-colors">
+                <div className="mt-2 flex flex-col items-center gap-2 sm:flex-row sm:items-center">
+                  <p className="text-xs text-black/40 dark:text-white/40 min-w-0 max-w-full break-all text-center sm:text-left sm:truncate sm:flex-1 group-hover:text-primary/50 dark:group-hover:text-glow/50 transition-colors">
                     {url}
                   </p>
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-auto sm:justify-end shrink-0">
                     {couponCode && (
                       <div className="flex items-center gap-2">
-                        <div className="px-2 py-1 rounded-md bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow text-sm font-medium">
+                        <div className="max-w-[170px] max-[360px]:max-w-[120px] truncate px-2 py-1 rounded-md bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow text-xs sm:text-sm font-medium">
                           Code: {couponCode}
                         </div>
                         <button
@@ -515,7 +515,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                         </button>
                       </div>
                     )}
-                    <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded-full bg-white/5 dark:bg-background border border-accent-gray/10 dark:border-accent-gray/20 text-black/40 dark:text-white/40 group-hover:text-primary/60 dark:group-hover:text-glow/60 group-hover:border-primary/20 dark:group-hover:border-primary/30 transition-colors inline-flex items-center justify-center min-w-[70px] h-[22px]">
+                    <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded-full bg-white/5 dark:bg-background border border-accent-gray/10 dark:border-accent-gray/20 text-black/40 dark:text-white/40 group-hover:text-primary/60 dark:group-hover:text-glow/60 group-hover:border-primary/20 dark:group-hover:border-primary/30 transition-colors inline-flex items-center justify-center h-[22px]">
                       Redirect
                     </span>
                   </div>

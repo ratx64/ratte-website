@@ -28,10 +28,9 @@ const LinkList: React.FC = () => {
     const categories = {
       featured: allLinks.filter((link) => link.priority === 1),
       social: allLinks.filter((link) => link.category === "social"),
-      affiliate: allLinks.filter((link) => link.category === "affiliate"),
-      config: allLinks.filter((link) => link.category === "config"),
       steam: allLinks.filter((link) => link.category === "steam"),
       partner: allLinks.filter((link) => link.category === "partner"),
+      config: allLinks.filter((link) => link.category === "config"),
     };
 
     // Sort each category by priority (descending) and then by clickCount (descending)
@@ -49,6 +48,7 @@ const LinkList: React.FC = () => {
 
   // Section render helper with enhanced SEO and visual hierarchy
   const renderSection = (
+    sectionId: string,
     title: string,
     links: LinkData[],
     icon: React.ReactNode,
@@ -58,16 +58,17 @@ const LinkList: React.FC = () => {
 
     return (
       <section
+        id={sectionId}
         className="mb-8 sm:mb-12"
         itemScope
         itemType="https://schema.org/ItemList"
       >
         <meta itemProp="numberOfItems" content={links.length.toString()} />
-        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+        <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6 text-center sm:text-left">
           <div className="p-1 sm:p-2 rounded-lg sm:rounded-xl bg-white/5 dark:bg-background border border-accent-gray/10 dark:border-accent-gray/20">
             {icon}
           </div>
-          <div>
+          <div className="min-w-0">
             <h2
               className="text-xl sm:text-2xl font-bold text-black dark:text-white"
               itemProp="name"
@@ -117,42 +118,38 @@ const LinkList: React.FC = () => {
 
     return (
       <div className="sticky top-0 z-20 bg-white/5 dark:bg-background backdrop-blur-sm border-b border-accent-gray/10 dark:border-accent-gray/20 mb-6 sm:mb-8">
-        <div className="container mx-auto px-2 sm:px-4 py-1 sm:py-2">
-          <div className="flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto">
-            <div className="flex gap-1 sm:gap-2 pb-1 sm:pb-2 -mb-1 sm:-mb-2 flex-1 min-w-0">
-              {Object.entries(organizedLinks).map(([category, links]) => {
-                if (links.length === 0) return null;
-                return (
-                  <button
-                    key={category}
-                    onClick={() =>
-                      setActiveCategory(
-                        activeCategory === category ? null : category
-                      )
-                    }
-                    className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0 min-h-[48px] min-w-[48px] ${
-                      activeCategory === category
-                        ? "bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow"
-                        : "bg-white/5 dark:bg-background text-black/60 dark:text-white/60 hover:bg-white/10 dark:hover:bg-background/50"
-                    }`}
-                    aria-label={`${category} links`}
-                    aria-pressed={activeCategory === category}
-                    aria-expanded={activeCategory === category}
-                  >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                    {links.length > 0 && (
-                      <span className="ml-1 text-[10px] sm:text-xs bg-white/10 dark:bg-background/50 rounded-full px-1 py-0.5 sm:px-1.5 sm:py-0.5">
-                        {links.length}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+        <div className="container mx-auto px-2 sm:px-4 py-2">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {Object.entries(organizedLinks).map(([category, links]) => {
+              if (links.length === 0) return null;
+              return (
+                <button
+                  key={category}
+                  onClick={() =>
+                    setActiveCategory(activeCategory === category ? null : category)
+                  }
+                  className={`px-2.5 max-[360px]:px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] max-[360px]:text-[10px] sm:text-sm font-medium whitespace-nowrap transition-colors ${
+                    activeCategory === category
+                      ? "bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow"
+                      : "bg-white/5 dark:bg-background text-black/60 dark:text-white/60 hover:bg-white/10 dark:hover:bg-background/50"
+                  }`}
+                  aria-label={`${category} links`}
+                  aria-pressed={activeCategory === category}
+                  aria-expanded={activeCategory === category}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                  {links.length > 0 && (
+                    <span className="ml-1 inline-flex items-center rounded-full bg-white/10 dark:bg-background/50 px-1.5 py-0.5 text-[10px] sm:text-xs">
+                      {links.length}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
             {activeCategory && (
               <button
                 onClick={() => setActiveCategory(null)}
-                className="p-1 sm:p-2 rounded-full bg-white/5 dark:bg-background hover:bg-white/10 dark:hover:bg-background/50 transition-colors flex-shrink-0 min-h-[48px] min-w-[48px] flex items-center justify-center"
+                className="p-2 rounded-full bg-white/5 dark:bg-background hover:bg-white/10 dark:hover:bg-background/50 transition-colors flex items-center justify-center"
                 aria-label="Clear filter"
               >
                 <svg
@@ -176,7 +173,7 @@ const LinkList: React.FC = () => {
   };
 
   return (
-    <div className="min-w-[320px] max-w-3xl mx-auto px-2 sm:px-4 md:px-6 py-4 sm:py-8">
+    <div className="w-full max-w-3xl mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 py-4 sm:py-8">
       {/* Mobile Navigation */}
       {renderMobileNav()}
 
@@ -213,7 +210,7 @@ const LinkList: React.FC = () => {
       {/* Featured Section with enhanced visual appeal */}
       {organizedLinks.featured.length > 0 && (
         <section className="mb-8 sm:mb-12">
-          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+          <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6 text-center sm:text-left">
             <div className="p-1 sm:p-2 rounded-lg sm:rounded-xl bg-primary/10 dark:bg-glow/10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -228,7 +225,7 @@ const LinkList: React.FC = () => {
                 />
               </svg>
             </div>
-            <div>
+            <div className="min-w-0">
               <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-white">
                 Featured Links
               </h2>
@@ -269,6 +266,7 @@ const LinkList: React.FC = () => {
       {/* Link Sections with enhanced descriptions */}
       {(!isMobile || activeCategory === null || activeCategory === "social") &&
         renderSection(
+          "social",
           "Social Profiles",
           organizedLinks.social,
           <svg
@@ -282,29 +280,9 @@ const LinkList: React.FC = () => {
           "Where to find me online"
         )}
 
-      {(!isMobile ||
-        activeCategory === null ||
-        activeCategory === "affiliate") &&
-        renderSection(
-          "Partners",
-          organizedLinks.affiliate,
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 sm:h-6 sm:w-6 text-accent dark:text-accent"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm4.707 3.707a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L8.414 9H10a3 3 0 013 3v1a1 1 0 102 0v-1a5 5 0 00-5-5H8.414l1.293-1.293z"
-              clipRule="evenodd"
-            />
-          </svg>,
-          "Partner links"
-        )}
-
       {(!isMobile || activeCategory === null || activeCategory === "steam") &&
         renderSection(
+          "steam",
           "Steam",
           organizedLinks.steam,
           <svg
@@ -324,6 +302,7 @@ const LinkList: React.FC = () => {
 
       {(!isMobile || activeCategory === null || activeCategory === "partner") &&
         renderSection(
+          "partners",
           "Partners",
           organizedLinks.partner,
           <svg
@@ -334,11 +313,12 @@ const LinkList: React.FC = () => {
           >
             <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
           </svg>,
-          "Partners I work with"
+          "Partner links"
         )}
 
       {(!isMobile || activeCategory === null || activeCategory === "config") &&
         renderSection(
+          "config",
           "Config & Settings",
           organizedLinks.config,
           <svg

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "rsbuild dev",
+    "prebuild": "node scripts/update-sitemap.js",
     "build": "rsbuild build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
