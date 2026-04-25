@@ -15,72 +15,76 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         
-        // New color scheme
-        dark: '#0D0D0D',
+        // Palette sampled from src/assets/pfp2.webp
+        dark: '#0C0C0C',
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#FCFCFC',
+          100: '#FCFCE4',
+          200: '#FCE4E4',
+          300: '#3C6CB4',
+          400: '#3C54B4',
+          500: '#243C6C',
+          600: '#242454',
+          700: '#0C2454',
+          800: '#0C0C3C',
+          900: '#0C0C24',
+          DEFAULT: '#243C6C',
         },
         secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#FCFCFC',
+          100: '#F8F8E8',
+          200: '#FCE4E4',
+          300: '#FCCCCC',
+          400: '#FCCCB4',
+          500: '#FCE4CC',
+          600: '#3C3C54',
+          700: '#24243C',
+          800: '#0C0C24',
+          900: '#0C0C0C',
         },
         accent: {
-          50: '#fdf4ff',
-          100: '#fae8ff',
-          200: '#f5d0fe',
-          300: '#f0abfc',
-          400: '#e879f9',
-          500: '#d946ef',
-          600: '#c026d3',
-          700: '#a21caf',
-          800: '#86198f',
-          900: '#701a75',
+          50: '#FCE4E4',
+          100: '#FCCCCC',
+          200: '#FCB4B4',
+          300: '#FCB49C',
+          400: '#FC0C3C',
+          500: '#FC0C3C',
+          600: '#6C0C0C',
+          700: '#540C0C',
+          800: '#3C0C0C',
+          900: '#240C0C',
+          DEFAULT: '#FC0C3C',
         },
-        glow: '#4AC3F7',
-        steel: '#A3A3A3',
-        deep: '#1A1E50',
-        light: '#F1F1F1',
+        glow: '#FCE4E4',
+        steel: '#FCCCCC',
+        deep: '#0C2454',
+        light: '#FCFCFC',
         
         // Semantic color variants
         background: '#0D0D0D',
-        text: '#F1F1F1',
-        highlight: '#5F4AB3',
-        'accent-pink': '#E33BE3',
-        'accent-blue': '#4AC3F7',
-        'accent-gray': '#A3A3A3',
-        'accent-deep': '#1A1E50',
+        text: '#FCFCFC',
+        highlight: '#242454',
+        'accent-pink': '#FC0C3C',
+        'accent-blue': '#243C6C',
+        'accent-gray': '#FCE4E4',
+        'accent-deep': '#0C2454',
         ratteBlack: '#000000',
-        ratteDarkGray: '#121212',
-        ratteGray: '#2a2a2a',
-        ratteLightGray: '#3a3a3a',
+        ratteDarkGray: '#0C0C0C',
+        ratteGray: '#242424',
+        ratteLightGray: '#3C3C54',
         ratteBlue: {
-          light: '#8a9eff',
-          DEFAULT: '#6979D8',
-          dark: '#4E5EB9'
+          light: '#3C6CB4',
+          DEFAULT: '#243C6C',
+          dark: '#0C2454'
         },
         rattePurple: {
-          light: '#B088F9',
-          DEFAULT: '#7B5CD6',
-          dark: '#5E45A1'
+          light: '#3C54B4',
+          DEFAULT: '#242454',
+          dark: '#0C0C3C'
         },
-        ratteAccent: '#8a9eff'
+        ratteAccent: '#FC0C3C',
+        ratteCream: '#FCFCE4',
+        ratteBlush: '#FCE4E4'
       },
       fontFamily: {
         // Set Inter as the default sans-serif font
@@ -91,7 +95,13 @@ module.exports = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       boxShadow: {
-        'neon': '0 0 5px #4AC3F7, 0 0 20px #E33BE3',
+        'neon': '0 0 5px #FCE4E4, 0 0 20px #FC0C3C',
+      },
+      transitionDuration: {
+        DEFAULT: '220ms',
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
       fontSize: {
         'xs': ['0.75rem', { lineHeight: '1rem' }],
@@ -151,10 +161,10 @@ module.exports = {
       handler({ addUtilities }) {
         addUtilities({
           '.text-shadow-neon': {
-            textShadow: '0 0 5px #4AC3F7, 0 0 10px #E33BE3',
+            textShadow: '0 0 5px #FCE4E4, 0 0 10px #FC0C3C',
           },
         });
       },
     },
   ],
-} 
+}

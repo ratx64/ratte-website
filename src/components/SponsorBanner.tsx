@@ -1,33 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { allLinks } from "../data/links";
+import csfloatIcon from "../assets/csfloat.webp";
+import wallhackIcon from "../assets/wallhack.webp";
+
+const iconMap: Record<string, string> = {
+  csfloat: csfloatIcon,
+  wallhack: wallhackIcon,
+};
+
+const FEATURED_PARTNER_ID = "12";
+const featuredPartner = allLinks.find((link) => link.id === FEATURED_PARTNER_ID);
 
 /**
  * Current main sponsor / partner config.
  *
- * To swap the partner: edit the object below.
+ * To swap the partner: update FEATURED_PARTNER_ID to another partner link id.
  * To disable entirely: set `enabled: false`.
  */
 export const sponsor = {
   enabled: true,
-  name: "CSFloat",
-  tagline: "Buy & sell CS2 skins",
-  code: "RATTECS",
-  url: "https://csfloat.com/ref/rattecs",
-  iconKey: "csfloat" as const,
-  disclosure: "Affiliate / Partner link — I may earn a commission at no extra cost to you.",
+  link: featuredPartner,
+  disclosure: "Affiliate / Partner link - I may earn a commission at no extra cost to you.",
 };
-
-import csfloatIcon from "../assets/csfloat.webp";
-const iconMap: Record<string, string> = { csfloat: csfloatIcon };
 
 // Storage key shared with TopBar so the two banners never both render at once.
 export const SPONSOR_STICKY_STORAGE_KEY = "rattecs:sponsor-sticky-dismissed";
 
 /**
- * Returns true if the sticky sponsor banner is currently visible — i.e. the
+ * Returns true if the sticky sponsor banner is currently visible, i.e. the
  * sponsor is enabled and the user hasn't dismissed it.
  */
 export function isStickySponsorVisible(): boolean {
-  if (!sponsor.enabled) return false;
+  if (!sponsor.enabled || !sponsor.link) return false;
   try {
     return localStorage.getItem(SPONSOR_STICKY_STORAGE_KEY) !== "1";
   } catch {
@@ -48,12 +52,16 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
     try {
       setDismissed(localStorage.getItem(SPONSOR_STICKY_STORAGE_KEY) === "1");
     } catch {
-      // localStorage may be blocked — treat as not dismissed.
+      // localStorage may be blocked; treat as not dismissed.
     }
     setHydrated(true);
   }, [variant]);
 
-  if (!sponsor.enabled) return null;
+  const partner = sponsor.link;
+  if (!sponsor.enabled || !partner) return null;
+  const sponsorCode = partner.couponCode || partner.affiliateCode;
+  const sponsorTagline = partner.description || "";
+  const sponsorAnalyticsId = partner.analyticsId || partner.title.toLowerCase();
 
   const handleDismiss = () => {
     setDismissed(true);
@@ -65,7 +73,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
     window.dispatchEvent(new CustomEvent("rattecs:sponsor-dismissed"));
   };
 
-  // ── Sticky pill (top of page) ───────────────────────────────────────────
+  // Sticky pill (top of page)
   if (variant === "sticky") {
     if (!hydrated || dismissed) return null;
 
@@ -84,27 +92,27 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
           </span>
           <p className="text-xs sm:text-sm text-black/80 dark:text-white/85 truncate flex-1 min-w-0">
             <span className="font-semibold text-black dark:text-white">
-              {sponsor.name}
+              {partner.title}
             </span>
             <span className="hidden sm:inline">
               {" "}
-              — {sponsor.tagline}
+              - {sponsorTagline}
             </span>
-            {sponsor.code && (
+            {sponsorCode && (
               <span className="ml-2 inline-flex items-center gap-1 align-middle">
                 <span className="opacity-60">code</span>
-                <code className="px-1.5 py-0.5 rounded bg-primary/10 dark:bg-glow/15 text-primary dark:text-glow font-mono text-[11px] sm:text-xs">
-                  {sponsor.code}
+                <code className="px-1.5 py-0.5 rounded bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink font-mono text-[11px] sm:text-xs">
+                  {sponsorCode}
                 </code>
               </span>
             )}
           </p>
           <a
-            href={sponsor.url}
+            href={partner.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            data-analytics-id={`sponsor-sticky-${sponsor.name.toLowerCase()}`}
-            className="shrink-0 inline-flex items-center justify-center min-h-[36px] px-3 py-1.5 rounded-full bg-primary text-white dark:bg-glow dark:text-black text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition"
+            data-analytics-id={`sponsor-sticky-${sponsorAnalyticsId}`}
+            className="shrink-0 inline-flex items-center justify-center min-h-[36px] px-3 py-1.5 rounded-full bg-primary text-white dark:bg-accent-pink dark:text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             Open
             <svg
@@ -121,7 +129,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             type="button"
             onClick={handleDismiss}
             aria-label="Dismiss partner banner"
-            className="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-white/10 transition"
+            className="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-white/10 transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path
@@ -136,29 +144,29 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
     );
   }
 
-  // ── Inline Featured Partner card ────────────────────────────────────────
-  const iconSrc = iconMap[sponsor.iconKey];
+  // Inline Featured Partner card
+  const iconSrc = partner.icon ? iconMap[partner.icon] : undefined;
   return (
     <aside
-      aria-label={`Featured partner: ${sponsor.name}`}
+      aria-label={`Featured partner: ${partner.title}`}
       className="relative mb-6 sm:mb-8 group"
     >
       <div className="absolute -top-2 left-3 z-10 px-2 py-0.5 rounded-full bg-accent-pink/15 dark:bg-accent-pink/20 border border-accent-pink/30 text-[10px] font-semibold tracking-wider uppercase text-accent-pink">
         Featured Partner
       </div>
       <a
-        href={sponsor.url}
+        href={partner.url}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        data-analytics-id={`sponsor-inline-${sponsor.name.toLowerCase()}`}
-        className="block rounded-xl border border-accent-pink/25 dark:border-accent-pink/30 bg-gradient-to-br from-accent-pink/5 via-transparent to-primary/5 dark:from-accent-pink/10 dark:via-transparent dark:to-primary/10 backdrop-blur-sm p-4 sm:p-5 transition-all duration-300 hover:border-accent-pink/50 hover:shadow-lg hover:shadow-accent-pink/10 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:transform-none"
+        data-analytics-id={`sponsor-inline-${sponsorAnalyticsId}`}
+        className="block rounded-xl border border-accent-pink/25 dark:border-accent-pink/30 bg-gradient-to-br from-accent-pink/5 via-transparent to-primary/5 dark:from-accent-pink/10 dark:via-transparent dark:to-primary/10 backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/50 hover:shadow-lg hover:shadow-accent-pink/10 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:transform-none"
       >
         <div className="flex items-center gap-3 sm:gap-4">
           {iconSrc && (
-            <div className="shrink-0 w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent-pink/30 group-hover:ring-accent-pink/60 transition">
+            <div className="shrink-0 w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent-pink/30 group-hover:ring-accent-pink/60 transition duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
               <img
                 src={iconSrc}
-                alt={`${sponsor.name} logo`}
+                alt={`${partner.title} logo`}
                 className="w-full h-full object-cover"
                 width={48}
                 height={48}
@@ -168,20 +176,20 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
           )}
           <div className="flex-1 min-w-0">
             <h3 className="text-base sm:text-lg font-bold text-black dark:text-white">
-              {sponsor.name}
+              {partner.title}
             </h3>
             <p className="text-xs sm:text-sm text-black/65 dark:text-white/65 line-clamp-2">
-              {sponsor.tagline}
+              {sponsorTagline}
             </p>
           </div>
           <div className="shrink-0 flex flex-col items-end gap-1">
-            {sponsor.code && (
-              <span className="px-2 py-1 rounded-md bg-primary/10 dark:bg-glow/15 text-primary dark:text-glow text-xs font-mono font-semibold">
-                {sponsor.code}
+            {sponsorCode && (
+              <span className="px-2 py-1 rounded-md bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink text-xs font-mono font-semibold">
+                {sponsorCode}
               </span>
             )}
             <span className="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40">
-              Open →
+              Open &gt;
             </span>
           </div>
         </div>

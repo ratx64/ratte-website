@@ -107,7 +107,7 @@ const TopBar: React.FC = () => {
           onClick={() => {
             dismiss();
           }}
-          className="shrink-0 inline-flex items-center justify-center min-h-[40px] px-3 sm:px-4 rounded-full bg-primary text-white dark:bg-glow dark:text-black text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition"
+              className="shrink-0 inline-flex items-center justify-center min-h-[40px] px-3 sm:px-4 rounded-full bg-primary text-white dark:bg-accent-pink dark:text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition"
         >
           See codes
         </a>

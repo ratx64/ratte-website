@@ -130,7 +130,7 @@ const LinkList: React.FC = () => {
                   }
                   className={`px-2.5 max-[360px]:px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] max-[360px]:text-[10px] sm:text-sm font-medium whitespace-nowrap transition-colors ${
                     activeCategory === category
-                      ? "bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow"
+                      ? "bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-300"
                       : "bg-white/5 dark:bg-background text-black/60 dark:text-white/60 hover:bg-white/10 dark:hover:bg-background/50"
                   }`}
                   aria-label={`${category} links`}
@@ -218,7 +218,7 @@ const LinkList: React.FC = () => {
           organizedLinks.social,
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-glow"
+            className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-primary-300"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -257,7 +257,7 @@ const LinkList: React.FC = () => {
           organizedLinks.steam,
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-glow"
+              className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-primary-300"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -277,7 +277,7 @@ const LinkList: React.FC = () => {
           organizedLinks.config,
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-glow"
+            className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-primary-300"
             viewBox="0 0 20 20"
             fill="currentColor"
           >

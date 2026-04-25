@@ -29,7 +29,7 @@ const SocialIcons: React.FC = () => {
       name: "Email",
       icon: FaEnvelope,
       url: "mailto:biz@ratte.xyz",
-      color: "text-gray-400",
+      color: "text-ratteGray dark:text-accent-gray",
       size: "w-[18px] h-[18px]",
     },
   ];

@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col items-center md:items-start text-xs sm:text-sm text-center md:text-left">
             <div className="mb-3">
-              <h2 className="text-base sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-br from-glow via-primary to-deep">
+          <h2 className="text-base sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-br from-accent-pink via-primary to-deep">
                 Ratte
               </h2>
               <p className="text-xs text-dark/50 dark:text-light/50">
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             <p>
               <a
                 href="#"
-                className="hover:underline text-deep dark:text-glow transition-colors hover:text-primary dark:hover:text-accent-pink hover-lift inline-flex items-center min-h-[44px] px-2"
+            className="hover:underline text-deep dark:text-accent-pink transition-colors hover:text-primary dark:hover:text-accent-pink hover-lift inline-flex items-center min-h-[44px] px-2"
                 onClick={(e) => {
                   e.preventDefault();
                   const email = 'biz' + '@' + 'ratte.xyz';
@@ -73,14 +73,14 @@ const Footer: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
               href="#faq"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors inline-flex items-center min-h-[44px] px-2"
+              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2"
               aria-label="Frequently Asked Questions"
             >
               FAQ
             </a>
             <a
               href="#"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-glow transition-colors inline-flex items-center min-h-[44px] px-2"
+              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2"
               aria-label="Contact for partner inquiries"
               onClick={(e) => {
                 e.preventDefault();

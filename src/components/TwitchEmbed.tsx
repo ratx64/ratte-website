@@ -20,9 +20,8 @@ type StreamStatus = "loading" | "live" | "offline" | "error";
  *
  * Behaviour:
  *  - Mounts a hidden Twitch player just to detect ONLINE / OFFLINE.
- *  - When live → shows the embed (autoplay=false, muted by default).
- *  - When offline → fully unmounts the player and shows a clean "offline" card
- *    with a prominent "WATCH ON TWITCH" CTA.
+ *  - When live, shows the embed (autoplay=false, muted by default).
+ *  - When offline, erroring, or still checking, renders no visible block.
  */
 export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
   const probeRef = useRef<HTMLDivElement | null>(null);
@@ -196,31 +195,38 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
   // ── Render ─────────────────────────────────────────────────────────────
   const twitchUrl = `https://twitch.tv/${channel}`;
 
+  const probeElement = (
+    <div
+      ref={probeRef}
+      aria-hidden="true"
+      style={{
+        position: "absolute",
+        width: 1,
+        height: 1,
+        overflow: "hidden",
+        opacity: 0,
+        pointerEvents: "none",
+        left: -9999,
+        top: -9999,
+      }}
+    />
+  );
+
+  if (status !== "live") {
+    return probeElement;
+  }
+
   return (
     <section
-      className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 mb-8 sm:mb-12 mx-2 sm:mx-0"
+      className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-[border-color,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 mb-8 sm:mb-12 mx-2 sm:mx-0"
       aria-label="Twitch Live Stream"
       data-stream-status={status}
     >
       {/* Hidden probe — mounted briefly while we detect online/offline. */}
-      <div
-        ref={probeRef}
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          width: 1,
-          height: 1,
-          overflow: "hidden",
-          opacity: 0,
-          pointerEvents: "none",
-          left: -9999,
-          top: -9999,
-        }}
-      />
+      {probeElement}
 
-      {status === "live" ? (
-        <>
-          <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-red-600 text-white text-[11px] font-semibold tracking-wider uppercase shadow-md motion-safe:animate-pulse">
+      <>
+          <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-white text-[11px] font-semibold tracking-wider uppercase shadow-md motion-safe:animate-pulse">
             <span className="h-1.5 w-1.5 rounded-full bg-white" />
             Live
           </div>
@@ -250,42 +256,6 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
             })}
           </script>
         </>
-      ) : status === "loading" ? (
-        <div className="flex items-center justify-center px-6 py-10 sm:py-14 min-h-[160px]">
-          <div className="text-center">
-            <div className="inline-block animate-spin motion-reduce:animate-none rounded-full h-7 w-7 border-b-2 border-primary dark:border-glow mb-3" />
-            <p className="text-sm text-black/60 dark:text-white/60">
-              Checking stream status…
-            </p>
-          </div>
-        </div>
-      ) : (
-        // offline or error — same UX
-        <div className="px-5 sm:px-8 py-8 sm:py-12 text-center flex flex-col items-center gap-4">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/5 dark:bg-white/5 border border-accent-gray/15 text-[11px] font-medium uppercase tracking-wider text-black/50 dark:text-white/50">
-            <span className="h-1.5 w-1.5 rounded-full bg-black/40 dark:bg-white/40" />
-            Offline
-          </div>
-          <h3 className="text-lg sm:text-xl font-semibold text-black dark:text-white">
-            Stream Currently Offline
-          </h3>
-          <p className="text-sm text-black/60 dark:text-white/60 max-w-sm">
-            I'm not live right now. Hit the button below to follow on Twitch and get notified next time.
-          </p>
-          <a
-            href={twitchUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-analytics-id="twitch-watch-offline"
-            className="inline-flex items-center justify-center gap-2 min-h-[48px] px-5 py-2.5 rounded-full bg-[#9146FF] text-white text-sm sm:text-base font-bold uppercase tracking-wider hover:bg-[#772CE8] active:scale-95 transition shadow-lg shadow-[#9146FF]/30"
-          >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M4.265 3 3 6.265v13.06h4.47V21.5h2.53l2.175-2.175h3.265L21 13.795V3H4.265zm14.735 9.795-2.825 2.825h-4.47L9.53 17.795v-2.175H5.795V4.59h13.205v8.205zM16.265 7.795H14.5v4.205h1.765V7.795zm-4.945 0h-1.765v4.205h1.765V7.795z" />
-            </svg>
-            Watch on Twitch
-          </a>
-        </div>
-      )}
     </section>
   );
 }

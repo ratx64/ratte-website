@@ -74,7 +74,7 @@ class ErrorBoundary extends Component<Props, State> {
           <div className="max-w-md w-full text-center">
             <div className="mb-6">
               <svg
-                className="mx-auto h-16 w-16 text-red-500 dark:text-red-400"
+                className="mx-auto h-16 w-16 text-accent-pink"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -97,14 +97,14 @@ class ErrorBoundary extends Component<Props, State> {
             <div className="flex gap-4 justify-center">
               <button
                 onClick={this.handleReset}
-                className="px-6 py-2 bg-primary dark:bg-glow text-white rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-glow"
+            className="px-6 py-2 bg-primary dark:bg-accent-pink text-white rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-accent-pink"
                 aria-label="Try again"
               >
                 Try Again
               </button>
               <button
                 onClick={() => window.location.reload()}
-                className="px-6 py-2 bg-white/5 dark:bg-background border border-accent-gray/20 dark:border-accent-gray/20 text-black dark:text-white rounded-lg hover:bg-white/10 dark:hover:bg-background/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-glow"
+            className="px-6 py-2 bg-white/5 dark:bg-background border border-accent-gray/20 dark:border-accent-gray/20 text-black dark:text-white rounded-lg hover:bg-white/10 dark:hover:bg-background/50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-accent-pink"
                 aria-label="Reload page"
               >
                 Reload Page

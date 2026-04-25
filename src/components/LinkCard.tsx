@@ -21,8 +21,8 @@ import acezoneIcon from "../assets/acezone.webp";
 import gamerbulkIcon from "../assets/gamerbulk.webp";
 import skinvaultIcon from "../assets/skinvault.webp";
 import pfpIcon from "../assets/pfp.webp";
-import wallhackIcon from "../assets/wallhack.jpg";
-import protonvpnIcon from "../assets/protonvpn.jpg";
+import wallhackIcon from "../assets/wallhack.webp";
+import protonvpnIcon from "../assets/protonvpn.webp";
 
 // Create a mapping of icon identifiers to actual images
 const iconMap: Record<string, string> = {
@@ -58,7 +58,7 @@ const defaultIcons: Record<string, React.ReactNode> = {
   "csfloat.com": (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-primary dark:text-glow"
+      className="h-6 w-6 text-primary dark:text-primary-300"
       viewBox="0 0 24 24"
       fill="currentColor"
     >
@@ -90,7 +90,7 @@ const defaultIcons: Record<string, React.ReactNode> = {
   social: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-primary dark:text-glow"
+      className="h-6 w-6 text-primary dark:text-primary-300"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -114,7 +114,7 @@ const defaultIcons: Record<string, React.ReactNode> = {
   community: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-primary dark:text-glow"
+      className="h-6 w-6 text-primary dark:text-primary-300"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -138,7 +138,7 @@ const defaultIcons: Record<string, React.ReactNode> = {
   config: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-primary dark:text-glow"
+      className="h-6 w-6 text-primary dark:text-primary-300"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -333,17 +333,17 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
         aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
       >
         <div
-          className={`relative overflow-hidden rounded-lg sm:rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-all duration-300 hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 ${
-            isHovered ? "scale-[1.02]" : ""
+          className={`relative overflow-hidden rounded-lg sm:rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-[transform,border-color,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 ${
+            isHovered ? "-translate-y-0.5 scale-[1.012]" : ""
           } ${isClicked ? "scale-[0.98]" : ""} ${
-            priority === 1 ? "ring-2 ring-primary dark:ring-glow" : ""
+            priority === 1 ? "ring-2 ring-primary dark:ring-accent-pink" : ""
           }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Priority badge */}
           {priority === 1 && (
-            <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow text-xs font-medium">
+            <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink text-xs font-medium">
               Featured
             </div>
           )}
@@ -361,8 +361,8 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
               <div className="flex-shrink-0">
                 {icon && iconMap[icon] ? (
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden transition-all duration-300 ${
-                      isHovered ? "ring-2 ring-primary dark:ring-glow" : ""
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden transition-[box-shadow,background-color] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isHovered ? "ring-2 ring-primary dark:ring-accent-pink" : ""
                     }`}
                   >
                     <img
@@ -377,8 +377,8 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                   </div>
                 ) : (
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      isHovered ? "bg-primary/10 dark:bg-glow/10" : ""
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-[box-shadow,background-color] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isHovered ? "bg-primary/10 dark:bg-primary/20" : ""
                     }`}
                   >
                     {iconElement}
@@ -389,7 +389,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
               <div className="min-w-0 w-full flex-1">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0 flex-1 text-center sm:text-left">
-                    <h3 className="text-sm sm:text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-glow transition-colors line-clamp-2 sm:line-clamp-1 break-words">
+                    <h3 className="text-sm sm:text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-accent-pink transition-colors line-clamp-2 sm:line-clamp-1 break-words">
                       {title}
                       {isVerified && (
                         <span
@@ -428,8 +428,8 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                                   productDetails.aggregateRating?.ratingValue ||
                                     0
                                 )
-                                  ? "text-yellow-400"
-                                  : "text-gray-300"
+                                  ? "text-accent-pink"
+                                  : "text-accent-gray/40"
                               }`}
                               fill="currentColor"
                               viewBox="0 0 20 20"
@@ -474,13 +474,13 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
 
                 {/* URL and actions */}
                 <div className="mt-2 flex flex-col items-center gap-2 sm:flex-row sm:items-center">
-                  <p className="text-xs text-black/40 dark:text-white/40 min-w-0 max-w-full break-all text-center sm:text-left sm:truncate sm:flex-1 group-hover:text-primary/50 dark:group-hover:text-glow/50 transition-colors">
+                  <p className="text-xs text-black/40 dark:text-white/40 min-w-0 max-w-full break-all text-center sm:text-left sm:truncate sm:flex-1 group-hover:text-primary/50 dark:group-hover:text-accent-pink/60 transition-colors">
                     {url}
                   </p>
                   <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-auto sm:justify-end shrink-0">
                     {couponCode && (
                       <div className="flex items-center gap-2">
-                        <div className="max-w-[170px] max-[360px]:max-w-[120px] truncate px-2 py-1 rounded-md bg-primary/10 dark:bg-glow/10 text-primary dark:text-glow text-xs sm:text-sm font-medium">
+                        <div className="max-w-[170px] max-[360px]:max-w-[120px] truncate px-2 py-1 rounded-md bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink text-xs sm:text-sm font-medium">
                           Code: {couponCode}
                         </div>
                         <button
@@ -495,7 +495,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                           {isCopied ? (
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-green-500"
+                              className="h-4 w-4 text-accent-pink"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
@@ -519,7 +519,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                         </button>
                       </div>
                     )}
-                    <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded-full bg-white/5 dark:bg-background border border-accent-gray/10 dark:border-accent-gray/20 text-black/40 dark:text-white/40 group-hover:text-primary/60 dark:group-hover:text-glow/60 group-hover:border-primary/20 dark:group-hover:border-primary/30 transition-colors inline-flex items-center justify-center h-[22px]">
+                    <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded-full bg-white/5 dark:bg-background border border-accent-gray/10 dark:border-accent-gray/20 text-black/40 dark:text-white/40 group-hover:text-primary/60 dark:group-hover:text-accent-pink/60 group-hover:border-primary/20 dark:group-hover:border-primary/30 transition-colors inline-flex items-center justify-center h-[22px]">
                       Redirect
                     </span>
                   </div>

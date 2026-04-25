@@ -5,7 +5,6 @@ import LinkList from "./components/LinkList";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import HowToSchema from "./components/HowToSchema";
-import TopBar from "./components/TopBar";
 import SponsorBanner from "./components/SponsorBanner";
 import { initAnalytics } from "./utils/analytics";
 import Favicon from "./assets/favicon.ico";
@@ -268,8 +267,6 @@ const App: React.FC = () => {
           <FAQ />
         </main>
         <Footer />
-        {/* First-visit support CTA — bottom on mobile, top on desktop, dismissible */}
-        <TopBar />
       </div>
     </HelmetProvider>
   );

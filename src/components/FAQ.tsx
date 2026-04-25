@@ -50,7 +50,7 @@ const FAQ: React.FC = () => {
         {faqs.map((faq, index) => (
           <details
             key={index}
-            className="group bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 overflow-hidden transition-colors hover:border-primary/30 dark:hover:border-primary/30 open:border-primary/40 dark:open:border-glow/30"
+        className="group bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 overflow-hidden transition-colors hover:border-primary/30 dark:hover:border-primary/30 open:border-primary/40 dark:open:border-accent-pink/30"
             // First item open by default for fast scanning.
             {...(index === 0 ? { open: true } : {})}
             itemScope
@@ -58,7 +58,7 @@ const FAQ: React.FC = () => {
             role="listitem"
           >
             <summary
-              className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-base sm:text-lg font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:focus-visible:ring-glow rounded-xl"
+          className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-base sm:text-lg font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:focus-visible:ring-accent-pink rounded-xl"
               itemProp="name"
             >
               <span className="text-left">{faq.question}</span>

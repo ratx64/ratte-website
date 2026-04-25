@@ -73,33 +73,30 @@
   }
   
   ::-webkit-scrollbar-track {
-     /* Use custom color scheme with explicit rgba values */
-     background-color: rgb(241 241 241 / 0.1);
+     background-color: rgb(252 252 228 / 0.1);
   }
   
   ::-webkit-scrollbar-thumb {
-     /* Use custom color scheme with explicit rgba values */
-     background-color: rgb(241 241 241 / 0.3);
+     background-color: rgb(36 60 108 / 0.3);
      border-radius: 9999px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-     /* Use custom color scheme with explicit rgba values */
-     background-color: rgb(241 241 241 / 0.4);
+     background-color: rgb(252 12 60 / 0.4);
   }
 
   /* Dark mode styles */
   @media (prefers-color-scheme: dark) {
     ::-webkit-scrollbar-track {
-      background-color: rgb(17 24 39);
+      background-color: rgb(8 8 24);
     }
     
     ::-webkit-scrollbar-thumb {
-      background-color: rgb(55 65 81);
+      background-color: rgb(36 60 108);
     }
     
     ::-webkit-scrollbar-thumb:hover {
-      background-color: rgb(227 59 227);
+      background-color: rgb(252 12 60);
     }
   }
 }
@@ -110,10 +107,10 @@
 /* Keep keyframes as they use direct values */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 10px rgb(74 195 247), 0 0 20px rgb(227 59 227);
+    box-shadow: 0 0 10px rgb(252 228 228), 0 0 20px rgb(252 12 60);
   }
   50% {
-    box-shadow: 0 0 15px rgb(74 195 247), 0 0 30px rgb(227 59 227);
+    box-shadow: 0 0 15px rgb(252 228 228), 0 0 30px rgb(252 12 60);
   }
 }
 
@@ -137,4 +134,4 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-} 
+}
