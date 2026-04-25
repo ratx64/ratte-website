@@ -21,6 +21,8 @@ import acezoneIcon from "../assets/acezone.webp";
 import gamerbulkIcon from "../assets/gamerbulk.webp";
 import skinvaultIcon from "../assets/skinvault.webp";
 import pfpIcon from "../assets/pfp.webp";
+import wallhackIcon from "../assets/wallhack.jpg";
+import protonvpnIcon from "../assets/protonvpn.jpg";
 
 // Create a mapping of icon identifiers to actual images
 const iconMap: Record<string, string> = {
@@ -32,6 +34,8 @@ const iconMap: Record<string, string> = {
   gamerbulk: gamerbulkIcon,
   skinvault: skinvaultIcon,
   pfp: pfpIcon,
+  wallhack: wallhackIcon,
+  protonvpn: protonvpnIcon,
 };
 
 // Default icons for different types of links

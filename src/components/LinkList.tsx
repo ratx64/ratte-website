@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import LinkCard from "./LinkCard"; // Import the card component
 import TwitchEmbed from "./TwitchEmbed";
+import SponsorBanner from "./SponsorBanner";
 import { LinkData } from "../types"; // Import the shared type
 import { allLinks } from "../data/links"; // Import the actual link data
 import pfpImage from "../assets/pfp2.webp";
@@ -26,7 +27,6 @@ const LinkList: React.FC = () => {
   // Organize links by category and priority
   const organizedLinks = useMemo(() => {
     const categories = {
-      featured: allLinks.filter((link) => link.priority === 1),
       social: allLinks.filter((link) => link.category === "social"),
       steam: allLinks.filter((link) => link.category === "steam"),
       partner: allLinks.filter((link) => link.category === "partner"),
@@ -207,63 +207,10 @@ const LinkList: React.FC = () => {
         </div>
       </div>
 
-      {/* Featured Section with enhanced visual appeal */}
-      {organizedLinks.featured.length > 0 && (
-        <section className="mb-8 sm:mb-12">
-          <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-4 sm:mb-6 text-center sm:text-left">
-            <div className="p-1 sm:p-2 rounded-lg sm:rounded-xl bg-primary/10 dark:bg-glow/10">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-glow"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="min-w-0">
-              <h2 className="text-xl sm:text-2xl font-bold text-black dark:text-white">
-                Featured Links
-              </h2>
-              <p className="text-xs sm:text-sm text-black/60 dark:text-white/60 mt-0.5 sm:mt-1">
-                Stuff I want to highlight
-              </p>
-            </div>
-          </div>
-          <div className="grid gap-3 sm:gap-4">
-            {organizedLinks.featured.map((link) => (
-              <div key={link.id} className="relative">
-                <LinkCard
-                  link={link}
-                  whiteIcon={
-                    link.title === "TikTok" ||
-                    link.title === "X (Twitter)" ||
-                    link.title === "Steam" ||
-                    link.title === "Trade Link"
-                  }
-                />
-                <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2">
-                  <div className="px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full bg-primary/10 dark:bg-glow/10 text-[10px] sm:text-xs font-medium text-primary dark:text-glow">
-                    Featured
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* Twitch first — most important destination for the audience */}
+      <TwitchEmbed channel="rattecs" parent={["ratte.xyz", "localhost"]} />
 
-      <div className="aspect-video w-full mb-8 sm:mb-12">
-        {" "}
-        {/* Responsive wrapper for embed */}
-        <TwitchEmbed channel="rattecs" parent={["ratte.xyz", "localhost"]} />
-      </div>
-
-      {/* Link Sections with enhanced descriptions */}
+      {/* Main platforms (where to find me) */}
       {(!isMobile || activeCategory === null || activeCategory === "social") &&
         renderSection(
           "social",
@@ -279,6 +226,29 @@ const LinkList: React.FC = () => {
           </svg>,
           "Where to find me online"
         )}
+
+      {/* Partners — featured first via inline SponsorBanner card, then full list */}
+      {(!isMobile || activeCategory === null || activeCategory === "partner") && (
+        <>
+          <div id="partners" className="scroll-mt-20">
+            <SponsorBanner variant="inline" />
+          </div>
+          {renderSection(
+            "partners-list",
+            "Partners",
+            organizedLinks.partner,
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 sm:h-6 sm:w-6 text-accent dark:text-accent"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+            </svg>,
+            "Partner links"
+          )}
+        </>
+      )}
 
       {(!isMobile || activeCategory === null || activeCategory === "steam") &&
         renderSection(
@@ -298,22 +268,6 @@ const LinkList: React.FC = () => {
             />
           </svg>,
           "Steam stuff"
-        )}
-
-      {(!isMobile || activeCategory === null || activeCategory === "partner") &&
-        renderSection(
-          "partners",
-          "Partners",
-          organizedLinks.partner,
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 sm:h-6 sm:w-6 text-accent dark:text-accent"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
-          </svg>,
-          "Partner links"
         )}
 
       {(!isMobile || activeCategory === null || activeCategory === "config") &&

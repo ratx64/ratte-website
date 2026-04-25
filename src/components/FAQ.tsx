@@ -35,38 +35,60 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <section 
+    <section
       id="faq"
       className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12"
       aria-labelledby="faq-heading"
     >
-      <h2 id="faq-heading" className="text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-white mb-6 sm:mb-8 text-center sm:text-left">
+      <h2
+        id="faq-heading"
+        className="text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-white mb-6 sm:mb-8 text-center sm:text-left"
+      >
         Frequently Asked Questions
       </h2>
-      <div className="space-y-6" role="list">
+      <div className="space-y-3" role="list">
         {faqs.map((faq, index) => (
-          <article
+          <details
             key={index}
-            className="bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 p-4 sm:p-6"
+            className="group bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 overflow-hidden transition-colors hover:border-primary/30 dark:hover:border-primary/30 open:border-primary/40 dark:open:border-glow/30"
+            // First item open by default for fast scanning.
+            {...(index === 0 ? { open: true } : {})}
             itemScope
             itemType="https://schema.org/Question"
             role="listitem"
           >
-            <h3 
-              className="text-base sm:text-lg font-medium text-black dark:text-white mb-2 text-center sm:text-left"
+            <summary
+              className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-base sm:text-lg font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:focus-visible:ring-glow rounded-xl"
               itemProp="name"
             >
-              {faq.question}
-            </h3>
-            <div itemScope itemType="https://schema.org/Answer" itemProp="acceptedAnswer">
-              <p 
-                className="text-sm sm:text-base text-black/70 dark:text-white/70 text-center sm:text-left"
+              <span className="text-left">{faq.question}</span>
+              <svg
+                className="shrink-0 h-5 w-5 text-black/50 dark:text-white/50 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.24 4.38a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </summary>
+            <div
+              itemScope
+              itemType="https://schema.org/Answer"
+              itemProp="acceptedAnswer"
+              className="px-4 sm:px-5 pb-4 sm:pb-5"
+            >
+              <p
+                className="text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed"
                 itemProp="text"
               >
                 {faq.answer}
               </p>
             </div>
-          </article>
+          </details>
         ))}
       </div>
     </section>
