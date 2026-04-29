@@ -44,6 +44,11 @@ const App: React.FC = () => {
       "RatteCS link hub: CS2 streamer social profiles, CS2 settings, partner links, and all my links in one place.",
     url: "https://ratte.xyz/",
     image: "https://ratte.xyz/assets/og-image.webp",
+    // Bumped on each meaningful content change; surfaced to crawlers and
+    // AI answer engines as a freshness signal.
+    dateModified: "2026-04-29",
+    datePublished: "2024-01-01",
+    inLanguage: "en",
   };
 
   return (
@@ -105,11 +110,13 @@ const App: React.FC = () => {
         <meta property="og:title" content={siteData.title} />
         <meta property="og:description" content={siteData.description} />
         <meta property="og:image" content={siteData.image} />
+        <meta property="og:image:type" content="image/webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="RatteCS - CS2 Streamer Links" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="RatteCS" />
+        <meta property="og:updated_time" content={siteData.dateModified} />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -117,6 +124,7 @@ const App: React.FC = () => {
         <meta property="twitter:title" content={siteData.title} />
         <meta property="twitter:description" content={siteData.description} />
         <meta property="twitter:image" content={siteData.image} />
+        <meta property="twitter:image:alt" content="RatteCS - CS2 Streamer Links" />
         <meta property="twitter:creator" content="@rattecs" />
         <meta property="twitter:site" content="@rattecs" />
 
@@ -125,10 +133,14 @@ const App: React.FC = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
+            "@id": "https://ratte.xyz/#website",
             name: "RatteCS",
             description: siteData.description,
             url: siteData.url,
             image: siteData.image,
+            inLanguage: siteData.inLanguage,
+            datePublished: siteData.datePublished,
+            dateModified: siteData.dateModified,
             author: {
               "@type": "Person",
               "@id": "https://ratte.xyz/#person",
@@ -151,6 +163,29 @@ const App: React.FC = () => {
                 urlTemplate: "https://ratte.xyz/?q={search_term_string}",
               },
               "query-input": "required name=search_term_string",
+            },
+          })}
+        </script>
+
+        {/* Structured Data - ProfilePage (recommended type for creator/link-hub pages) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "@id": "https://ratte.xyz/#profilepage",
+            url: siteData.url,
+            name: siteData.title,
+            description: siteData.description,
+            inLanguage: siteData.inLanguage,
+            dateModified: siteData.dateModified,
+            datePublished: siteData.datePublished,
+            isPartOf: { "@id": "https://ratte.xyz/#website" },
+            mainEntity: { "@id": "https://ratte.xyz/#person" },
+            primaryImageOfPage: {
+              "@type": "ImageObject",
+              url: siteData.image,
+              width: 1200,
+              height: 630,
             },
           })}
         </script>
@@ -202,6 +237,12 @@ const App: React.FC = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
+            inLanguage: siteData.inLanguage,
+            dateModified: siteData.dateModified,
+            speakable: {
+              "@type": "SpeakableSpecification",
+              cssSelector: ["#faq h2", "#faq summary", "#faq p"],
+            },
             mainEntity: [
               {
                 "@type": "Question",
@@ -240,7 +281,7 @@ const App: React.FC = () => {
                 name: "How do I know if a link is a partner link?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Partner links are marked with a 'Redirect' label. I keep it transparent so you know when you're using one.",
+                  text: "Partner links live in the 'Partners' section, and the featured partner shows an affiliate disclosure right on the card. I keep it transparent so you know when you're using one.",
                 },
               },
               {
@@ -259,7 +300,7 @@ const App: React.FC = () => {
       {/* HowTo Schema for AEO - Outside Helmet to avoid nesting */}
       <HowToSchema />
 
-      <div className="min-h-screen bg-white dark:bg-background text-black dark:text-white transition-colors duration-300">
+      <div className="min-h-screen text-black dark:text-white">
         {/* Sticky partner banner — non-intrusive, dismissible per-user via localStorage */}
         <SponsorBanner variant="sticky" />
         <main id="main-content" role="main">

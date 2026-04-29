@@ -12,72 +12,49 @@ interface AffiliateBadgeProps {
 
 const AffiliateBadge: React.FC<AffiliateBadgeProps> = ({
   discountPercentage,
-  isVerified,
-  clickCount,
-  lastUpdated,
   successRate,
   isLimitedTime,
-  remainingCodes
+  remainingCodes,
+  // Verified, popularity (clickCount), and last-updated date are intentionally
+  // not rendered here: verified is shown inline as a tick next to the card
+  // title, last-updated lives in the footer, and "Popular" was decorative
+  // chrome. Keeping only commercial badges that carry actionable info.
 }) => {
+  const hasAny =
+    (typeof discountPercentage === "number" && discountPercentage > 0) ||
+    (typeof successRate === "number" && successRate > 0) ||
+    isLimitedTime ||
+    (typeof remainingCodes === "number" && remainingCodes > 0);
+
+  if (!hasAny) return null;
+
   return (
-    <div className="flex flex-wrap items-center justify-center sm:justify-end gap-1.5 mt-1 sm:mt-2">
+    <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
       {/* Discount Badge */}
       {typeof discountPercentage === "number" && discountPercentage > 0 && (
-        <div className="px-2 py-1 rounded-full bg-accent-pink/10 text-accent-pink text-[10px] sm:text-xs font-medium">
+        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[10px] font-medium">
           Save {discountPercentage}%
-        </div>
-      )}
-
-      {/* Verified Badge */}
-      {isVerified && (
-        <div className="hidden sm:flex px-2 py-1 rounded-full bg-primary/10 text-primary dark:text-primary-300 text-xs font-medium items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-          </svg>
-          Verified
-        </div>
-      )}
-
-      {/* Popularity Badge */}
-      {typeof clickCount === "number" && clickCount > 100 && (
-        <div className="hidden sm:flex px-2 py-1 rounded-full bg-highlight/10 text-highlight dark:text-primary-300 text-xs font-medium items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-          </svg>
-          Popular
         </div>
       )}
 
       {/* Success Rate Badge */}
       {typeof successRate === "number" && successRate > 0 && (
-        <div className="hidden sm:block px-2 py-1 rounded-full bg-accent-pink/10 text-accent-pink text-xs font-medium">
-          {successRate}% Success Rate
+        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[10px] font-medium">
+          {successRate}% success
         </div>
       )}
 
       {/* Limited Time Badge */}
       {isLimitedTime && (
-        <div className="px-2 py-1 rounded-full bg-accent-pink/10 text-accent-pink text-[10px] sm:text-xs font-medium flex items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-          </svg>
-          <span className="sm:hidden">Limited</span>
-          <span className="hidden sm:inline">Limited Time</span>
+        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[10px] font-medium">
+          Limited
         </div>
       )}
 
       {/* Remaining Codes Badge */}
       {typeof remainingCodes === "number" && remainingCodes > 0 && (
-        <div className="px-2 py-1 rounded-full bg-primary/10 text-primary dark:text-primary-300 text-[10px] sm:text-xs font-medium">
-          <span className="sm:hidden">{remainingCodes} left</span>
-          <span className="hidden sm:inline">{remainingCodes} Codes Left</span>
-        </div>
-      )}
-
-      {/* Last Updated Badge */}
-      {lastUpdated && (
-        <div className="hidden sm:block px-2 py-1 rounded-full bg-ratteGray/10 text-ratteGray dark:bg-accent-gray/10 dark:text-accent-gray text-xs font-medium">
-          Updated {new Date(lastUpdated).toLocaleDateString()}
+        <div className="px-1.5 py-0.5 rounded-md bg-black/[0.05] dark:bg-white/[0.06] text-black/65 dark:text-white/65 text-[10px] font-medium">
+          {remainingCodes} left
         </div>
       )}
     </div>

@@ -81,11 +81,11 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
       <div
         role="region"
         aria-label="Partner banner"
-        className="sticky top-0 z-30 w-full bg-gradient-to-r from-primary-500/10 via-accent-500/10 to-primary-500/10 dark:from-primary-500/15 dark:via-accent-500/15 dark:to-primary-500/15 backdrop-blur-md border-b border-accent-gray/15 dark:border-accent-gray/20"
+        className="sticky top-0 z-30 w-full bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-md border-b border-black/10 dark:border-white/10"
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
           <span
-            className="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-white/10 dark:bg-white/10 text-black/70 dark:text-white/80 border border-white/10"
+            className="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-accent-pink/10 text-accent-pink border border-accent-pink/20"
             title={sponsor.disclosure}
           >
             Partner
@@ -112,7 +112,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             target="_blank"
             rel="noopener noreferrer sponsored"
             data-analytics-id={`sponsor-sticky-${sponsorAnalyticsId}`}
-            className="shrink-0 inline-flex items-center justify-center min-h-[36px] px-3 py-1.5 rounded-full bg-primary text-white dark:bg-accent-pink dark:text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="shrink-0 inline-flex items-center justify-center min-h-[36px] px-3 py-1.5 rounded-lg bg-accent-pink text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             Open
             <svg
@@ -149,7 +149,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
   return (
     <aside
       aria-label={`Featured partner: ${partner.title}`}
-      className="relative mb-6 sm:mb-8 group"
+      className="relative mb-5 sm:mb-6 group"
     >
       <div className="absolute -top-2 left-3 z-10 px-2 py-0.5 rounded-full bg-accent-pink/15 dark:bg-accent-pink/20 border border-accent-pink/30 text-[10px] font-semibold tracking-wider uppercase text-accent-pink">
         Featured Partner
@@ -159,7 +159,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
         target="_blank"
         rel="noopener noreferrer sponsored"
         data-analytics-id={`sponsor-inline-${sponsorAnalyticsId}`}
-        className="block rounded-xl border border-accent-pink/25 dark:border-accent-pink/30 bg-gradient-to-br from-accent-pink/5 via-transparent to-primary/5 dark:from-accent-pink/10 dark:via-transparent dark:to-primary/10 backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/50 hover:shadow-lg hover:shadow-accent-pink/10 hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:transform-none"
+        className="block rounded-xl border border-accent-pink/25 dark:border-accent-pink/30 bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/55 hover:bg-black/[0.05] dark:hover:bg-white/[0.07] hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:transform-none"
       >
         <div className="flex items-center gap-3 sm:gap-4">
           {iconSrc && (

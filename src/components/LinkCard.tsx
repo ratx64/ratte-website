@@ -138,7 +138,7 @@ const defaultIcons: Record<string, React.ReactNode> = {
   config: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-primary dark:text-primary-300"
+      className="h-6 w-6 text-black/55 dark:text-white/55"
       viewBox="0 0 20 20"
       fill="currentColor"
     >
@@ -328,203 +328,143 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
         href={url}
         target="_blank"
         rel={`noopener noreferrer${category === "affiliate" || category === "partner" ? " sponsored" : ""}`}
-        className="block mb-3 group"
+        className="block group"
         data-analytics-id={analyticsId}
         aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
       >
         <div
-          className={`relative overflow-hidden rounded-lg sm:rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 bg-white/5 dark:bg-background backdrop-blur-sm transition-[transform,border-color,box-shadow,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-primary/30 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10 ${
-            isHovered ? "-translate-y-0.5 scale-[1.012]" : ""
-          } ${isClicked ? "scale-[0.98]" : ""} ${
-            priority === 1 ? "ring-2 ring-primary dark:ring-accent-pink" : ""
+          className={`relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-sm transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-black/[0.05] dark:hover:bg-white/[0.07] hover:border-accent-pink/35 dark:hover:border-accent-pink/40 motion-reduce:transition-none ${
+            isHovered ? "-translate-y-0.5" : ""
+          } ${isClicked ? "scale-[0.985]" : ""} ${
+            priority === 1 ? "ring-1 ring-accent-pink/40" : ""
           }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Priority badge */}
-          {priority === 1 && (
-            <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink text-xs font-medium">
-              Featured
-            </div>
-          )}
-
-          {/* Gradient overlay on hover */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-accent/5 dark:from-primary/0 dark:via-primary/10 dark:to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-              isHovered ? "bg-primary/5 dark:bg-primary/10" : ""
-            }`}
-          ></div>
-
-          <div className="relative p-3 max-[360px]:p-2.5 sm:p-4">
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-start sm:gap-4">
-              {/* Icon with enhanced hover effect */}
-              <div className="flex-shrink-0">
+          <div className="relative flex items-center gap-3 sm:gap-4 p-3 sm:p-4">
+            {/* Uniform icon container — 44/48px rounded square */}
+            <div className="shrink-0">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.06] border border-black/5 dark:border-white/5 flex items-center justify-center">
                 {icon && iconMap[icon] ? (
-                  <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden transition-[box-shadow,background-color] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isHovered ? "ring-2 ring-primary dark:ring-accent-pink" : ""
-                    }`}
-                  >
-                    <img
-                      src={iconMap[icon]}
-                      alt={`${title} ${category === 'affiliate' ? 'affiliate link' : 'link'} icon`}
-                      className="w-full h-full object-cover"
-                      width={32}
-                      height={32}
-                      loading="lazy"
-                      sizes="32px"
-                    />
-                  </div>
+                  <img
+                    src={iconMap[icon]}
+                    alt={`${title} ${category === "affiliate" ? "affiliate link" : "link"} icon`}
+                    className="w-full h-full object-cover"
+                    width={48}
+                    height={48}
+                    loading="lazy"
+                    sizes="48px"
+                  />
                 ) : (
-                  <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-[box-shadow,background-color] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      isHovered ? "bg-primary/10 dark:bg-primary/20" : ""
-                    }`}
-                  >
-                    {iconElement}
-                  </div>
+                  iconElement
                 )}
               </div>
+            </div>
 
-              <div className="min-w-0 w-full flex-1">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0 flex-1 text-center sm:text-left">
-                    <h3 className="text-sm sm:text-base font-medium text-black dark:text-white group-hover:text-primary dark:group-hover:text-accent-pink transition-colors line-clamp-2 sm:line-clamp-1 break-words">
-                      {title}
-                      {isVerified && (
-                        <span
-                          className="ml-1.5 inline-flex items-center align-middle leading-none"
-                          title="Verified Link"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4 text-primary block"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                      )}
-                    </h3>
-                    {description && (
-                      <p className="text-xs sm:text-sm text-black/60 dark:text-white/60 mt-1 line-clamp-2">
-                        {description}
-                      </p>
-                    )}
-                    {productDetails?.aggregateRating && (
-                      <div className="mt-1 flex items-center justify-center sm:justify-start gap-1">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <svg
-                              key={i}
-                              className={`w-3 h-3 ${
-                                i <
-                                Math.floor(
-                                  productDetails.aggregateRating?.ratingValue ||
-                                    0
-                                )
-                                  ? "text-accent-pink"
-                                  : "text-accent-gray/40"
-                              }`}
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="text-xs text-black/40 dark:text-white/40">
-                          (
-                          {productDetails.aggregateRating?.reviewCount?.toLocaleString() ||
-                            "0"}{" "}
-                          reviews)
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Badges container */}
-                  <div className="w-full sm:w-auto shrink-0">
-                    {/* Affiliate Badges */}
-                    <AffiliateBadge
-                      discountPercentage={discountPercentage}
-                      isVerified={isVerified}
-                      clickCount={clickCount}
-                      lastUpdated={lastUpdated}
-                      successRate={successRate}
-                      isLimitedTime={isLimitedTime}
-                      remainingCodes={remainingCodes}
-                    />
-
-                    {/* Gamification Badges */}
-                    <GamificationBadge
-                      streakCount={streakCount}
-                      pointsEarned={pointsEarned}
-                      nextReward={nextReward}
-                      isDealOfTheDay={isDealOfTheDay}
-                      rank={rank}
-                    />
-                  </div>
-                </div>
-
-                {/* URL and actions */}
-                <div className="mt-2 flex flex-col items-center gap-2 sm:flex-row sm:items-center">
-                  <p className="text-xs text-black/40 dark:text-white/40 min-w-0 max-w-full break-all text-center sm:text-left sm:truncate sm:flex-1 group-hover:text-primary/50 dark:group-hover:text-accent-pink/60 transition-colors">
-                    {url}
-                  </p>
-                  <div className="flex w-full flex-wrap items-center justify-center gap-2 sm:w-auto sm:justify-end shrink-0">
-                    {couponCode && (
-                      <div className="flex items-center gap-2">
-                        <div className="max-w-[170px] max-[360px]:max-w-[120px] truncate px-2 py-1 rounded-md bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink text-xs sm:text-sm font-medium">
-                          Code: {couponCode}
-                        </div>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleCopyCode(couponCode);
-                          }}
-                          className="p-1 rounded-md hover:bg-white/10 dark:hover:bg-background/50 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-                          aria-label={`Copy code ${couponCode}`}
-                          aria-pressed={isCopied}
-                        >
-                          {isCopied ? (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-accent-pink"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          ) : (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 text-black/60 dark:text-white/60"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                              <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                            </svg>
-                          )}
-                        </button>
-                      </div>
-                    )}
-                    <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded-full bg-white/5 dark:bg-background border border-accent-gray/10 dark:border-accent-gray/20 text-black/40 dark:text-white/40 group-hover:text-primary/60 dark:group-hover:text-accent-pink/60 group-hover:border-primary/20 dark:group-hover:border-primary/30 transition-colors inline-flex items-center justify-center h-[22px]">
-                      Redirect
-                    </span>
-                  </div>
-                </div>
+            {/* Title + description */}
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <h3 className="text-sm sm:text-base font-semibold text-black dark:text-white truncate group-hover:text-accent-pink/90 dark:group-hover:text-accent-pink transition-colors">
+                  {title}
+                </h3>
+                {isVerified && (
+                  <span
+                    className="shrink-0 inline-flex items-center align-middle leading-none"
+                    title="Verified Link"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3.5 w-3.5 text-black/40 dark:text-white/45 group-hover:text-accent-pink/80 transition-colors"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                )}
               </div>
+              {description && (
+                <p className="text-xs sm:text-sm text-black/55 dark:text-white/55 truncate mt-0.5">
+                  {description}
+                </p>
+              )}
+              {productDetails?.aggregateRating && (
+                <div className="mt-1 flex items-center gap-1">
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className={`w-3 h-3 ${
+                          i <
+                          Math.floor(
+                            productDetails.aggregateRating?.ratingValue || 0,
+                          )
+                            ? "text-accent-pink"
+                            : "text-black/15 dark:text-white/15"
+                        }`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs text-black/40 dark:text-white/40">
+                    (
+                    {productDetails.aggregateRating?.reviewCount?.toLocaleString() ||
+                      "0"}{" "}
+                    reviews)
+                  </span>
+                </div>
+              )}
+              {/* Optional meta badges — render inline & small to fit the new clean layout. */}
+              <AffiliateBadge
+                discountPercentage={discountPercentage}
+                isVerified={isVerified}
+                clickCount={clickCount}
+                lastUpdated={lastUpdated}
+                successRate={successRate}
+                isLimitedTime={isLimitedTime}
+                remainingCodes={remainingCodes}
+              />
+              <GamificationBadge
+                streakCount={streakCount}
+                pointsEarned={pointsEarned}
+                nextReward={nextReward}
+                isDealOfTheDay={isDealOfTheDay}
+                rank={rank}
+              />
+            </div>
+
+            {/* Right-side action: optional coupon pill + arrow button */}
+            <div className="shrink-0 flex items-center gap-2">
+              {couponCode && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCopyCode(couponCode);
+                  }}
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-xs font-mono font-semibold hover:bg-accent-pink/20 transition-colors"
+                  aria-label={`Copy code ${couponCode}`}
+                  aria-pressed={isCopied}
+                >
+                  {isCopied ? "Copied" : couponCode}
+                </button>
+              )}
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] text-black/55 dark:text-white/55 group-hover:border-accent-pink/40 group-hover:text-accent-pink transition-colors"
+              >
+                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11 3a1 1 0 100 2h2.586L7.293 11.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+              </span>
             </div>
           </div>
         </div>

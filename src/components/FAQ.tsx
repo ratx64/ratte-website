@@ -25,7 +25,7 @@ const FAQ: React.FC = () => {
     {
       question: "How do I know if a link is a partner link?",
       answer:
-        "Partner links are marked with a 'Redirect' label. I keep it transparent so you know when you're using one.",
+        "Partner links live in the 'Partners' section, and the featured partner shows an affiliate disclosure right on the card. I keep it transparent so you know when you're using one.",
     },
     {
       question: "How can I contact you?",
@@ -37,20 +37,20 @@ const FAQ: React.FC = () => {
   return (
     <section
       id="faq"
-      className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12"
+      className="max-w-3xl mx-auto px-4 sm:px-6 pt-2 sm:pt-4 pb-8 sm:pb-12"
       aria-labelledby="faq-heading"
     >
       <h2
         id="faq-heading"
-        className="text-xl sm:text-2xl md:text-3xl font-bold text-black dark:text-white mb-6 sm:mb-8 text-center sm:text-left"
+        className="text-lg sm:text-xl font-semibold text-black dark:text-white mb-4 sm:mb-5 text-center"
       >
         Frequently Asked Questions
       </h2>
-      <div className="space-y-3" role="list">
+      <div className="space-y-2" role="list">
         {faqs.map((faq, index) => (
           <details
             key={index}
-        className="group bg-white/5 dark:bg-background rounded-xl border border-accent-gray/10 dark:border-accent-gray/20 overflow-hidden transition-colors hover:border-primary/30 dark:hover:border-primary/30 open:border-primary/40 dark:open:border-accent-pink/30"
+        className="group bg-black/[0.03] dark:bg-white/[0.04] rounded-xl border border-black/10 dark:border-white/10 overflow-hidden transition-colors hover:border-accent-pink/30 open:border-accent-pink/40"
             // First item open by default for fast scanning.
             {...(index === 0 ? { open: true } : {})}
             itemScope
@@ -58,12 +58,12 @@ const FAQ: React.FC = () => {
             role="listitem"
           >
             <summary
-          className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-base sm:text-lg font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:focus-visible:ring-accent-pink rounded-xl"
+          className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-sm sm:text-base font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink rounded-xl"
               itemProp="name"
             >
               <span className="text-left">{faq.question}</span>
               <svg
-                className="shrink-0 h-5 w-5 text-black/50 dark:text-white/50 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+                className="shrink-0 h-4 w-4 text-black/45 dark:text-white/45 transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
                 viewBox="0 0 20 20"
                 fill="currentColor"
                 aria-hidden="true"
@@ -82,7 +82,7 @@ const FAQ: React.FC = () => {
               className="px-4 sm:px-5 pb-4 sm:pb-5"
             >
               <p
-                className="text-sm sm:text-base text-black/70 dark:text-white/70 leading-relaxed"
+                className="text-sm text-black/65 dark:text-white/65 leading-relaxed"
                 itemProp="text"
               >
                 {faq.answer}

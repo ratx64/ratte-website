@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col items-center md:items-start text-xs sm:text-sm text-center md:text-left">
             <div className="mb-3">
-          <h2 className="text-base sm:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-br from-accent-pink via-primary to-deep">
+          <h2 className="text-base sm:text-lg font-semibold text-accent-pink">
                 Ratte
               </h2>
               <p className="text-xs text-dark/50 dark:text-light/50">
