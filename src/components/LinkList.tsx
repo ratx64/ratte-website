@@ -52,7 +52,7 @@ const LinkList: React.FC = () => {
     title: string,
     links: LinkData[],
     icon: React.ReactNode,
-    description?: string
+    description?: string,
   ) => {
     if (links.length === 0) return null;
 
@@ -126,7 +126,9 @@ const LinkList: React.FC = () => {
                 <button
                   key={category}
                   onClick={() =>
-                    setActiveCategory(activeCategory === category ? null : category)
+                    setActiveCategory(
+                      activeCategory === category ? null : category,
+                    )
                   }
                   className={`px-2.5 max-[360px]:px-2 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] max-[360px]:text-[10px] sm:text-sm font-medium whitespace-nowrap transition-colors ${
                     activeCategory === category
@@ -173,13 +175,13 @@ const LinkList: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 py-4 sm:py-8">
+    <div className="w-full max-w-3xl mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 py-4 sm:py-8 sm:mt-12">
       {/* Mobile Navigation */}
       {renderMobileNav()}
 
       {/* Profile Section with enhanced visual appeal */}
       <div className="mb-4 sm:mb-6 flex flex-col items-center">
-          <div className="relative w-24 h-24 sm:w-32 sm:h-32 mb-3 sm:mb-4">
+        <div className="relative w-24 h-24 sm:w-32 sm:h-32 mb-3 sm:mb-4">
           <div className="absolute inset-0 rounded-full overflow-hidden border-2 border-primary/30 dark:border-primary/20 bg-white dark:bg-background">
             <img
               src={pfpImage}
@@ -188,7 +190,9 @@ const LinkList: React.FC = () => {
               width={128}
               height={128}
               loading="eager"
-              {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              {...({
+                fetchpriority: "high",
+              } as React.ImgHTMLAttributes<HTMLImageElement>)}
             />
           </div>
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 blur-xl -z-10" />
@@ -224,11 +228,13 @@ const LinkList: React.FC = () => {
           >
             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
           </svg>,
-          "Where to find me online"
+          "Where to find me online",
         )}
 
       {/* Partners — featured first via inline SponsorBanner card, then full list */}
-      {(!isMobile || activeCategory === null || activeCategory === "partner") && (
+      {(!isMobile ||
+        activeCategory === null ||
+        activeCategory === "partner") && (
         <>
           <div id="partners" className="scroll-mt-20">
             <SponsorBanner variant="inline" />
@@ -245,7 +251,7 @@ const LinkList: React.FC = () => {
             >
               <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
             </svg>,
-            "Partner links"
+            "Partner links",
           )}
         </>
       )}
@@ -257,7 +263,7 @@ const LinkList: React.FC = () => {
           organizedLinks.steam,
           <svg
             xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-primary-300"
+            className="h-5 w-5 sm:h-6 sm:w-6 text-primary dark:text-primary-300"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -267,7 +273,7 @@ const LinkList: React.FC = () => {
               clipRule="evenodd"
             />
           </svg>,
-          "Steam stuff"
+          "Steam stuff",
         )}
 
       {(!isMobile || activeCategory === null || activeCategory === "config") &&
@@ -287,7 +293,7 @@ const LinkList: React.FC = () => {
               clipRule="evenodd"
             />
           </svg>,
-          "My CS2 settings and gear"
+          "My CS2 settings and gear",
         )}
     </div>
   );
