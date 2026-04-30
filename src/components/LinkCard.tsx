@@ -23,6 +23,7 @@ import skinvaultIcon from "../assets/skinvault.webp";
 import pfpIcon from "../assets/pfp.webp";
 import wallhackIcon from "../assets/wallhack.webp";
 import protonvpnIcon from "../assets/protonvpn.webp";
+import wlmouseIcon from "../assets/wlmouse.webp";
 
 // Create a mapping of icon identifiers to actual images
 const iconMap: Record<string, string> = {
@@ -36,6 +37,7 @@ const iconMap: Record<string, string> = {
   pfp: pfpIcon,
   wallhack: wallhackIcon,
   protonvpn: protonvpnIcon,
+  wlmouse: wlmouseIcon,
 };
 
 // Default icons for different types of links
