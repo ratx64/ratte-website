@@ -14,36 +14,14 @@
   }
 
   body {
-    /* Base body styles - background color is handled by App.tsx */
-    overflow-x: hidden;
-    background-color: #0a0a0a;
-
     /*
-      Linx-style faint blueprint grid. Two layered gradients draw 1px lines
-      every 32px. Kept very low contrast so it sits behind content without
-      competing with it. Light/dark variants are handled below.
+      Base body. Background is transparent so the html base color and the
+      animated gradient layer (body::before) show through. The faint
+      blueprint grid lives on body::after. See the layered backdrop block
+      lower in this file.
     */
-    background-image:
-      linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.005) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.005) 1px,
-        transparent 1px
-      );
-    background-size: 32px 32px;
-    background-attachment: fixed;
-  }
-
-  /* Light mode: invert the grid color and brighten the base. */
-  html:not(.dark) body {
-    background-color: #fafafa;
-    background-image:
-      linear-gradient(to right, rgba(0, 0, 0, 0.023) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.023) 1px, transparent 1px);
+    overflow-x: hidden;
+    background-color: transparent;
   }
 
   html:not(.dark) {
@@ -164,6 +142,107 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/*
+  Layered page backdrop:
+    body::before  -> animated Framer-style gradient blobs (z-index: -2)
+    body::after   -> faint Linx-style blueprint grid       (z-index: -1)
+  Both are position:fixed so they cover the viewport regardless of scroll.
+  Brand palette is sampled from tailwind.config.js: accent #FC0C3C,
+  ratteBlue #243C6C / #3C6CB4, rattePurple #3C54B4, blush #FCE4E4.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  /* Overscan so the blurred edges never reveal the page background when
+     the layer is translated/scaled by the drift animation. */
+  inset: -15vmax;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      40% 50% at 18% 28%,
+      rgba(252, 12, 60, 0.22),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 55% at 82% 18%,
+      rgba(60, 84, 180, 0.22),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 60% at 70% 82%,
+      rgba(60, 108, 180, 0.20),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 50% at 28% 78%,
+      rgba(252, 204, 204, 0.14),
+      transparent 70%
+    );
+  filter: blur(60px) saturate(1.1);
+  animation: ratte-gradient-drift 22s ease-in-out infinite alternate;
+  will-change: transform, filter;
+}
+
+/* Light mode: softer, lower-saturation variant. */
+html:not(.dark) body::before {
+  background:
+    radial-gradient(
+      40% 50% at 18% 28%,
+      rgba(252, 12, 60, 0.10),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 55% at 82% 18%,
+      rgba(60, 84, 180, 0.10),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 60% at 70% 82%,
+      rgba(60, 108, 180, 0.08),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 50% at 28% 78%,
+      rgba(252, 204, 204, 0.18),
+      transparent 70%
+    );
+  filter: blur(70px) saturate(1.05);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+html:not(.dark) body::after {
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.023) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.023) 1px, transparent 1px);
+}
+
+@keyframes ratte-gradient-drift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+    filter: blur(60px) saturate(1.1) hue-rotate(0deg);
+  }
+  50% {
+    transform: translate3d(2%, 2%, 0) scale(1.06);
+    filter: blur(70px) saturate(1.15) hue-rotate(8deg);
+  }
+  100% {
+    transform: translate3d(0%, -2%, 0) scale(1.02);
+    filter: blur(65px) saturate(1.08) hue-rotate(-6deg);
   }
 }
 
