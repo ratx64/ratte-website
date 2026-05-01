@@ -42,8 +42,16 @@ const App: React.FC = () => {
     title: "RatteCS - Links",
     description:
       "RatteCS link hub: CS2 streamer social profiles, CS2 settings, partner links, and all my links in one place.",
+    // Embed-tuned variants used for og:* / twitter:* (shorter, creator-style,
+    // optimized for Discord / Slack / iMessage previews). Document <title>
+    // and meta description above stay SEO-rich for search engines.
+    embedTitle: "Ratte — CS2 Streamer",
+    embedDescription:
+      "Twitch, YouTube, TikTok, Kick, Discord — plus my CS2 settings and partner links. All my links in one place.",
     url: "https://ratte.xyz/",
-    image: "https://ratte.xyz/assets/og-image.webp",
+    image: "https://ratte.xyz/assets/og-image.jpg",
+    imageWebp: "https://ratte.xyz/assets/og-image.webp",
+    imageAlt: "Ratte — CS2 streamer and content creator",
     // Bumped on each meaningful content change; surfaced to crawlers and
     // AI answer engines as a freshness signal.
     dateModified: "2026-04-29",
@@ -104,27 +112,33 @@ const App: React.FC = () => {
         <link rel="canonical" href={siteData.url} />
         <link rel="icon" type="image/x-icon" href={Favicon} />
 
-        {/* Open Graph / Facebook */}
+        {/* Open Graph / Facebook — tuned for link embeds. JPG primary for
+            scraper compatibility; WebP listed second as fallback. */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={siteData.url} />
-        <meta property="og:title" content={siteData.title} />
-        <meta property="og:description" content={siteData.description} />
+        <meta property="og:title" content={siteData.embedTitle} />
+        <meta property="og:description" content={siteData.embedDescription} />
         <meta property="og:image" content={siteData.image} />
+        <meta property="og:image:secure_url" content={siteData.image} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={siteData.imageAlt} />
+        <meta property="og:image" content={siteData.imageWebp} />
         <meta property="og:image:type" content="image/webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="RatteCS - CS2 Streamer Links" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="RatteCS" />
         <meta property="og:updated_time" content={siteData.dateModified} />
 
-        {/* Twitter */}
+        {/* Twitter / X */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={siteData.url} />
-        <meta property="twitter:title" content={siteData.title} />
-        <meta property="twitter:description" content={siteData.description} />
+        <meta property="twitter:title" content={siteData.embedTitle} />
+        <meta property="twitter:description" content={siteData.embedDescription} />
         <meta property="twitter:image" content={siteData.image} />
-        <meta property="twitter:image:alt" content="RatteCS - CS2 Streamer Links" />
+        <meta property="twitter:image:alt" content={siteData.imageAlt} />
         <meta property="twitter:creator" content="@rattecs" />
         <meta property="twitter:site" content="@rattecs" />
 
