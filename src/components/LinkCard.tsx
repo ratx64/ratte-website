@@ -43,8 +43,8 @@ const iconMap: Record<string, string> = {
 // Default icons for different types of links
 const defaultIcons: Record<string, React.ReactNode> = {
   // Social Media Icons
-  "x.com": <FaXTwitter className="h-6 w-6 text-[#000000]" />,
-  "twitter.com": <FaXTwitter className="h-6 w-6 text-[#000000]" />,
+  "x.com": <FaXTwitter className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
+  "twitter.com": <FaXTwitter className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
   "steamcommunity.com": <FaSteam className="h-6 w-6 text-[#1B2838]" />,
   "steamcommunity.com/tradeoffer": (
     <FaSteam className="h-6 w-6 text-[#1B2838]" />
@@ -53,7 +53,7 @@ const defaultIcons: Record<string, React.ReactNode> = {
   "discord.gg": <FaDiscord className="h-6 w-6 text-[#5865F2]" />,
   "twitch.tv": <FaTwitch className="h-6 w-6 text-[#9146FF]" />,
   "youtube.com": <FaYoutube className="h-6 w-6 text-[#FF0000]" />,
-  "tiktok.com": <FaTiktok className="h-6 w-6 text-[#000000]" />,
+  "tiktok.com": <FaTiktok className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
   "kick.com": <SiKick className="h-6 w-6 text-[#00FF47]" />,
 
   // Trading/Skin Sites
@@ -217,8 +217,8 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
       await navigator.clipboard.writeText(code);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy code:", err);
+    } catch {
+      // Clipboard access can be blocked by browser permissions. Keep the code visible for manual copy.
     }
   };
 
@@ -326,16 +326,9 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSchema()) }}
       />
 
-      <a
-        href={url}
-        target="_blank"
-        rel={`noopener noreferrer${category === "affiliate" || category === "partner" ? " sponsored" : ""}`}
-        className="block group"
-        data-analytics-id={analyticsId}
-        aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
-      >
+      <div className="block group">
         <div
-          className={`relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-sm transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-black/[0.05] dark:hover:bg-white/[0.07] hover:border-accent-pink/35 dark:hover:border-accent-pink/40 motion-reduce:transition-none ${
+          className={`relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.035] dark:bg-white/[0.045] backdrop-blur-sm transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-black/[0.055] dark:hover:bg-white/[0.075] hover:border-accent-pink/35 dark:hover:border-accent-pink/40 motion-reduce:transition-none motion-reduce:transform-none ${
             isHovered ? "-translate-y-0.5" : ""
           } ${isClicked ? "scale-[0.985]" : ""} ${
             priority === 1 ? "ring-1 ring-accent-pink/40" : ""
@@ -343,7 +336,16 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative flex items-center gap-3 sm:gap-4 p-3 sm:p-4">
+          <a
+            href={url}
+            target="_blank"
+            rel={`noopener noreferrer${category === "affiliate" || category === "partner" ? " sponsored" : ""}`}
+            className="absolute inset-0 z-0 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-pink"
+            data-analytics-id={analyticsId}
+            aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
+            onClick={handleClick}
+          />
+          <div className="relative z-10 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 pointer-events-none">
             {/* Uniform icon container — 44/48px rounded square */}
             <div className="shrink-0">
               <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.06] border border-black/5 dark:border-white/5 flex items-center justify-center">
@@ -355,6 +357,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                     width={48}
                     height={48}
                     loading="lazy"
+                    decoding="async"
                     sizes="48px"
                   />
                 ) : (
@@ -391,7 +394,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                 )}
               </div>
               {description && (
-                <p className="text-xs sm:text-sm text-black/55 dark:text-white/55 truncate mt-0.5">
+                <p className="text-xs sm:text-sm text-black/58 dark:text-white/58 truncate mt-0.5">
                   {description}
                 </p>
               )}
@@ -444,14 +447,12 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             </div>
 
             {/* Right-side action: optional coupon pill + arrow button */}
-            <div className="shrink-0 flex items-center gap-2">
+            <div className="shrink-0 flex items-center gap-2 pointer-events-none">
               {couponCode && (
                 <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleCopyCode(couponCode);
-                  }}
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-xs font-mono font-semibold hover:bg-accent-pink/20 transition-colors"
+                  type="button"
+                  onClick={() => handleCopyCode(couponCode)}
+                  className="pointer-events-auto inline-flex min-h-[36px] items-center gap-1 px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-[11px] sm:text-xs font-mono font-semibold hover:bg-accent-pink/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-colors"
                   aria-label={`Copy code ${couponCode}`}
                   aria-pressed={isCopied}
                 >
@@ -460,9 +461,9 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
               )}
               <span
                 aria-hidden="true"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] text-black/55 dark:text-white/55 group-hover:border-accent-pink/40 group-hover:text-accent-pink transition-colors"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] text-black/55 dark:text-white/55 group-hover:border-accent-pink/40 group-hover:text-accent-pink hover:bg-black/[0.04] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-colors"
               >
-                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M11 3a1 1 0 100 2h2.586L7.293 11.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
                   <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                 </svg>
@@ -470,7 +471,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </>
   );
 };

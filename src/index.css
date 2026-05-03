@@ -10,7 +10,7 @@
     font-family: theme("fontFamily.sans");
     /* Smooth scrolling behavior */
     scroll-behavior: smooth;
-    background-color: #0a0a0a;
+    background-color: #08080c;
   }
 
   body {
@@ -25,7 +25,7 @@
   }
 
   html:not(.dark) {
-    background-color: #fafafa;
+    background-color: #fcfcf6;
   }
 
   /* Focus visible styles for accessibility */
@@ -147,7 +147,7 @@
 
 /*
   Layered page backdrop:
-    body::before  -> animated Framer-style gradient blobs (z-index: -2)
+    body::before  -> animated red/blue atmosphere wash (z-index: -2)
     body::after   -> faint Linx-style blueprint grid       (z-index: -1)
   Both are position:fixed so they cover the viewport regardless of scroll.
   Brand palette is sampled from tailwind.config.js: accent #FC0C3C,
@@ -162,55 +162,23 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(
-      40% 50% at 18% 28%,
-      rgba(252, 12, 60, 0.22),
-      transparent 70%
-    ),
-    radial-gradient(
-      45% 55% at 82% 18%,
-      rgba(60, 84, 180, 0.22),
-      transparent 70%
-    ),
-    radial-gradient(
-      50% 60% at 70% 82%,
-      rgba(60, 108, 180, 0.20),
-      transparent 70%
-    ),
-    radial-gradient(
-      40% 50% at 28% 78%,
-      rgba(252, 204, 204, 0.14),
-      transparent 70%
-    );
-  filter: blur(60px) saturate(1.1);
+    linear-gradient(115deg, rgba(252, 12, 60, 0.24) 0%, transparent 34%),
+    linear-gradient(245deg, rgba(60, 84, 180, 0.24) 0%, transparent 38%),
+    radial-gradient(80% 65% at 50% 18%, rgba(252, 228, 228, 0.08), transparent 72%),
+    linear-gradient(180deg, rgba(8, 8, 12, 0) 0%, rgba(8, 8, 12, 0.62) 74%);
+  filter: blur(42px) saturate(1.08);
   animation: ratte-gradient-drift 22s ease-in-out infinite alternate;
-  will-change: transform, filter;
+  will-change: transform;
 }
 
 /* Light mode: softer, lower-saturation variant. */
 html:not(.dark) body::before {
   background:
-    radial-gradient(
-      40% 50% at 18% 28%,
-      rgba(252, 12, 60, 0.10),
-      transparent 70%
-    ),
-    radial-gradient(
-      45% 55% at 82% 18%,
-      rgba(60, 84, 180, 0.10),
-      transparent 70%
-    ),
-    radial-gradient(
-      50% 60% at 70% 82%,
-      rgba(60, 108, 180, 0.08),
-      transparent 70%
-    ),
-    radial-gradient(
-      40% 50% at 28% 78%,
-      rgba(252, 204, 204, 0.18),
-      transparent 70%
-    );
-  filter: blur(70px) saturate(1.05);
+    linear-gradient(115deg, rgba(252, 12, 60, 0.12) 0%, transparent 34%),
+    linear-gradient(245deg, rgba(60, 84, 180, 0.12) 0%, transparent 38%),
+    radial-gradient(80% 65% at 50% 18%, rgba(252, 204, 204, 0.16), transparent 72%),
+    linear-gradient(180deg, rgba(252, 252, 246, 0) 0%, rgba(252, 252, 246, 0.72) 74%);
+  filter: blur(50px) saturate(1.04);
 }
 
 body::after {
@@ -234,15 +202,12 @@ html:not(.dark) body::after {
 @keyframes ratte-gradient-drift {
   0% {
     transform: translate3d(-2%, -1%, 0) scale(1);
-    filter: blur(60px) saturate(1.1) hue-rotate(0deg);
   }
   50% {
     transform: translate3d(2%, 2%, 0) scale(1.06);
-    filter: blur(70px) saturate(1.15) hue-rotate(8deg);
   }
   100% {
     transform: translate3d(0%, -2%, 0) scale(1.02);
-    filter: blur(65px) saturate(1.08) hue-rotate(-6deg);
   }
 }
 

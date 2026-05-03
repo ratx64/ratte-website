@@ -9,6 +9,11 @@ function getUtcDate() {
 
 function updateSitemapLastmod() {
   const xml = fs.readFileSync(sitemapPath, "utf8");
+  if (!/<lastmod>[^<]*<\/lastmod>/.test(xml)) {
+    console.warn("No <lastmod> tag found in sitemap.xml; no changes made.");
+    return;
+  }
+
   const updated = xml.replace(
     /<lastmod>[^<]*<\/lastmod>/,
     `<lastmod>${getUtcDate()}</lastmod>`
@@ -20,7 +25,7 @@ function updateSitemapLastmod() {
     return;
   }
 
-  console.warn("No <lastmod> tag found in sitemap.xml; no changes made.");
+  console.log(`Sitemap lastmod already ${getUtcDate()}`);
 }
 
 updateSitemapLastmod();

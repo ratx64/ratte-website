@@ -28,12 +28,12 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-transparent dark:bg-dark/30 backdrop-blur-sm text-dark/60 dark:text-light/60 p-4 sm:p-8 mt-8 sm:mt-12 border-t border-light/20 dark:border-steel/20">
-      <div className="container mx-auto max-w-4xl px-4 sm:px-6">
+    <footer className="bg-transparent dark:bg-dark/25 backdrop-blur-sm text-dark/60 dark:text-light/60 p-4 sm:p-8 mt-10 sm:mt-14 border-t border-black/10 dark:border-white/10">
+      <div className="container mx-auto max-w-3xl px-4 sm:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex flex-col items-center md:items-start text-xs sm:text-sm text-center md:text-left">
             <div className="mb-3">
-          <h2 className="text-base sm:text-lg font-semibold text-accent-pink">
+              <h2 className="text-base sm:text-lg font-semibold text-accent-pink">
                 Ratte
               </h2>
               <p className="text-xs text-dark/50 dark:text-light/50">
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
             <p>
               <a
                 href="#"
-            className="hover:underline text-deep dark:text-accent-pink transition-colors hover:text-primary dark:hover:text-accent-pink hover-lift inline-flex items-center min-h-[44px] px-2"
+                className="text-deep dark:text-accent-pink transition-colors hover:text-primary dark:hover:text-accent-pink inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                 onClick={(e) => {
                   e.preventDefault();
                   const email = 'biz' + '@' + 'ratte.xyz';
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full border-t border-light/10 dark:border-light/5 my-6"></div>
+        <div className="w-full border-t border-black/10 dark:border-white/10 my-6"></div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
           <p className="text-xs sm:text-sm text-dark/40 dark:text-light/40 text-center md:text-left">
@@ -73,14 +73,14 @@ const Footer: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
               href="#faq"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2"
+              className="text-dark/45 dark:text-light/45 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               aria-label="Frequently Asked Questions"
             >
               FAQ
             </a>
             <a
               href="#"
-              className="text-dark/40 dark:text-light/40 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2"
+              className="text-dark/45 dark:text-light/45 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               aria-label="Contact for partner inquiries"
               onClick={(e) => {
                 e.preventDefault();

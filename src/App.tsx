@@ -5,7 +5,6 @@ import LinkList from "./components/LinkList";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import HowToSchema from "./components/HowToSchema";
-import SponsorBanner from "./components/SponsorBanner";
 import { initAnalytics } from "./utils/analytics";
 import Favicon from "./assets/favicon.ico";
 
@@ -108,7 +107,7 @@ const App: React.FC = () => {
         <meta name="googlebot" content="index, follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#0C0C0C" />
         <link rel="canonical" href={siteData.url} />
         <link rel="icon" type="image/x-icon" href={Favicon} />
 
@@ -263,7 +262,7 @@ const App: React.FC = () => {
                 name: "What's on this website?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Links to all my socials (Twitch, YouTube, TikTok, Kick, Discord), my CS2 settings, Steam trading links, and partner links like CSFloat. All my links in one place.",
+                  text: "My official socials, live channels, CS2 settings, Steam links, partner codes, and contact info.",
                 },
               },
               {
@@ -271,7 +270,7 @@ const App: React.FC = () => {
                 name: "Do I pay more when using your links?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "No. Using my partner links doesn't increase the price you pay. I may get a small commission; you pay the same. Win-win.",
+                  text: "No. Partner links do not increase your price. I may earn a commission, and you pay the same.",
                 },
               },
               {
@@ -279,7 +278,7 @@ const App: React.FC = () => {
                 name: "How can I support you?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Use my partner links when you buy stuff (e.g. CSFloat for skins). Following on Twitch, YouTube, or Discord and sharing the stream also helps.",
+                  text: "Use a partner link or code when it fits what you already planned to buy. Following the stream, joining Discord, and sharing clips helps too.",
                 },
               },
               {
@@ -295,7 +294,7 @@ const App: React.FC = () => {
                 name: "How do I know if a link is a partner link?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Partner links live in the 'Partners' section, and the featured partner shows an affiliate disclosure right on the card. I keep it transparent so you know when you're using one.",
+                  text: "Partner links live in the Partners section and use affiliate or partner disclosure copy on the card.",
                 },
               },
               {
@@ -303,7 +302,7 @@ const App: React.FC = () => {
                 name: "How can I contact you?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Email biz@ratte.xyz for business, partnerships, or questions. I reply when I can; response may be slower when I'm streaming or busy.",
+                  text: "Email biz@ratte.xyz for business, partnerships, or questions. Replies may be slower while I am streaming or busy.",
                 },
               },
             ],
@@ -315,8 +314,6 @@ const App: React.FC = () => {
       <HowToSchema />
 
       <div className="min-h-screen text-black dark:text-white">
-        {/* Sticky partner banner — non-intrusive, dismissible per-user via localStorage */}
-        <SponsorBanner variant="sticky" />
         <main id="main-content" role="main">
           <LinkList />
           <FAQ />

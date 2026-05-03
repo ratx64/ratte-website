@@ -5,17 +5,17 @@ const FAQ: React.FC = () => {
     {
       question: "What's on this website?",
       answer:
-        "Links to all my socials (Twitch, YouTube, TikTok, Kick, Discord), my CS2 settings, Steam trading links, and partner links like CSFloat. All my links in one place.",
+        "My official socials, live channels, CS2 settings, Steam links, partner codes, and contact info.",
     },
     {
       question: "Do I pay more when using your links?",
       answer:
-        "No. Using my partner links doesn't increase the price you pay. I may get a small commission; you pay the same. Win-win.",
+        "No. Partner links do not increase your price. I may earn a commission, and you pay the same.",
     },
     {
       question: "How can I support you?",
       answer:
-        "Use my partner links when you buy stuff (e.g. CSFloat for skins). Following on Twitch, YouTube, or Discord and sharing the stream also helps.",
+        "Use a partner link or code when it fits what you already planned to buy. Following the stream, joining Discord, and sharing clips helps too.",
     },
     {
       question: "Where can I find you?",
@@ -25,19 +25,19 @@ const FAQ: React.FC = () => {
     {
       question: "How do I know if a link is a partner link?",
       answer:
-        "Partner links live in the 'Partners' section, and the featured partner shows an affiliate disclosure right on the card. I keep it transparent so you know when you're using one.",
+        "Partner links live in the Partners section and use affiliate or partner disclosure copy on the card.",
     },
     {
       question: "How can I contact you?",
       answer:
-        "Email biz@ratte.xyz for business, partnerships, or questions. I reply when I can; response may be slower when I'm streaming or busy.",
+        "Email biz@ratte.xyz for business, partnerships, or questions. Replies may be slower while I am streaming or busy.",
     },
   ];
 
   return (
     <section
       id="faq"
-      className="max-w-3xl mx-auto px-4 sm:px-6 pt-2 sm:pt-4 pb-8 sm:pb-12"
+      className="max-w-3xl mx-auto px-4 sm:px-6 pt-8 sm:pt-10 pb-8 sm:pb-12"
       aria-labelledby="faq-heading"
     >
       <h2
@@ -50,7 +50,7 @@ const FAQ: React.FC = () => {
         {faqs.map((faq, index) => (
           <details
             key={index}
-        className="group bg-black/[0.03] dark:bg-white/[0.04] rounded-xl border border-black/10 dark:border-white/10 overflow-hidden transition-colors hover:border-accent-pink/30 open:border-accent-pink/40"
+            className="group bg-black/[0.035] dark:bg-white/[0.045] rounded-xl border border-black/10 dark:border-white/10 overflow-hidden transition-colors hover:border-accent-pink/30 open:border-accent-pink/40"
             // First item open by default for fast scanning.
             {...(index === 0 ? { open: true } : {})}
             itemScope
@@ -58,7 +58,7 @@ const FAQ: React.FC = () => {
             role="listitem"
           >
             <summary
-          className="flex items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-sm sm:text-base font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink rounded-xl"
+              className="flex min-h-[52px] items-center justify-between gap-4 cursor-pointer list-none p-4 sm:p-5 text-sm sm:text-base font-medium text-black dark:text-white select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink rounded-xl"
               itemProp="name"
             >
               <span className="text-left">{faq.question}</span>

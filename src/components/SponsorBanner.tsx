@@ -81,11 +81,11 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
       <div
         role="region"
         aria-label="Partner banner"
-        className="sticky top-0 z-30 w-full bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-md border-b border-black/10 dark:border-white/10"
+        className="sticky top-0 z-30 w-full bg-light/85 dark:bg-background/80 backdrop-blur-md border-b border-black/10 dark:border-white/10"
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
           <span
-            className="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wider uppercase bg-accent-pink/10 text-accent-pink border border-accent-pink/20"
+            className="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-normal uppercase bg-accent-pink/10 text-accent-pink border border-accent-pink/20"
             title={sponsor.disclosure}
           >
             Partner
@@ -96,7 +96,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             </span>
             <span className="hidden sm:inline">
               {" "}
-              - {sponsorTagline}
+              {sponsorTagline}
             </span>
             {sponsorCode && (
               <span className="ml-2 inline-flex items-center gap-1 align-middle">
@@ -112,9 +112,9 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             target="_blank"
             rel="noopener noreferrer sponsored"
             data-analytics-id={`sponsor-sticky-${sponsorAnalyticsId}`}
-            className="shrink-0 inline-flex items-center justify-center min-h-[36px] px-3 py-1.5 rounded-lg bg-accent-pink text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="shrink-0 inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-lg bg-accent-pink text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
-            Open
+            Use code
             <svg
               className="ml-1 h-3.5 w-3.5"
               viewBox="0 0 20 20"
@@ -129,7 +129,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             type="button"
             onClick={handleDismiss}
             aria-label="Dismiss partner banner"
-            className="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-white/10 transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-full text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path
@@ -149,9 +149,9 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
   return (
     <aside
       aria-label={`Featured partner: ${partner.title}`}
-      className="relative mb-5 sm:mb-6 group"
+      className="relative mb-6 sm:mb-7 group"
     >
-      <div className="absolute -top-2 left-3 z-10 px-2 py-0.5 rounded-full bg-accent-pink/15 dark:bg-accent-pink/20 border border-accent-pink/30 text-[10px] font-semibold tracking-wider uppercase text-accent-pink">
+      <div className="absolute -top-2 left-3 z-10 px-2 py-0.5 rounded-full bg-accent-pink/15 dark:bg-accent-pink/20 border border-accent-pink/30 text-[10px] font-semibold tracking-normal uppercase text-accent-pink">
         Featured Partner
       </div>
       <a
@@ -159,7 +159,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
         target="_blank"
         rel="noopener noreferrer sponsored"
         data-analytics-id={`sponsor-inline-${sponsorAnalyticsId}`}
-        className="block rounded-xl border border-accent-pink/25 dark:border-accent-pink/30 bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/55 hover:bg-black/[0.05] dark:hover:bg-white/[0.07] hover:-translate-y-0.5 active:translate-y-0 motion-reduce:transition-none motion-reduce:transform-none"
+        className="block rounded-xl border border-accent-pink/30 dark:border-accent-pink/35 bg-black/[0.04] dark:bg-white/[0.05] backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/60 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
       >
         <div className="flex items-center gap-3 sm:gap-4">
           {iconSrc && (
@@ -171,6 +171,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
                 width={48}
                 height={48}
                 loading="lazy"
+                decoding="async"
               />
             </div>
           )}
@@ -184,16 +185,16 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
           </div>
           <div className="shrink-0 flex flex-col items-end gap-1">
             {sponsorCode && (
-              <span className="px-2 py-1 rounded-md bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink text-xs font-mono font-semibold">
+              <span className="px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-xs font-mono font-semibold">
                 {sponsorCode}
               </span>
             )}
-            <span className="text-[10px] uppercase tracking-wider text-black/40 dark:text-white/40">
-              Open &gt;
+            <span className="text-[10px] uppercase tracking-normal text-black/45 dark:text-white/45">
+              Visit &gt;
             </span>
           </div>
         </div>
-        <p className="mt-3 text-[10px] text-black/45 dark:text-white/45 leading-snug">
+        <p className="mt-3 text-[11px] text-black/50 dark:text-white/50 leading-snug">
           {sponsor.disclosure}
         </p>
       </a>

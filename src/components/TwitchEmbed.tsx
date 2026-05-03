@@ -58,8 +58,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
           muted: true,
         });
         playerRef.current = visiblePlayer;
-      } catch (e) {
-        console.warn("Failed to mount visible Twitch player:", e);
+      } catch {
         if (!cancelled) setStatus("error");
       }
     }
@@ -135,8 +134,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
           destroy(probePlayer);
           probePlayer = null;
         }, 6000);
-      } catch (e) {
-        console.warn("Failed to start Twitch probe:", e);
+      } catch {
         if (!cancelled) setStatus("offline");
       }
     }
@@ -226,7 +224,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
       {probeElement}
 
       <>
-          <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-white text-[11px] font-semibold tracking-wider uppercase shadow-md motion-safe:animate-pulse">
+          <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-white text-[11px] font-semibold tracking-normal uppercase shadow-md motion-safe:animate-pulse">
             <span className="h-1.5 w-1.5 rounded-full bg-white" />
             Live
           </div>

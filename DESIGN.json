@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-03T00:00:00+03:00",
+  "title": "Design System: RatteCS Link Hub",
+  "extensions": {
+    "colorMeta": {
+      "void-black": {
+        "role": "neutral",
+        "displayName": "Void Black",
+        "canonical": "#0C0C0C",
+        "tonalRamp": ["oklch(15% 0.005 260)", "oklch(25% 0.005 260)", "oklch(35% 0.005 260)", "oklch(45% 0.005 260)", "oklch(55% 0.005 260)", "oklch(65% 0.005 260)", "oklch(80% 0.005 260)", "oklch(95% 0.005 260)"]
+      },
+      "ratte-red": {
+        "role": "primary",
+        "displayName": "Ratte Red",
+        "canonical": "#FC0C3C",
+        "tonalRamp": ["oklch(18% 0.08 20)", "oklch(28% 0.12 20)", "oklch(38% 0.16 20)", "oklch(50% 0.20 20)", "oklch(62% 0.23 20)", "oklch(74% 0.16 20)", "oklch(86% 0.08 20)", "oklch(95% 0.03 20)"]
+      },
+      "ratte-blue": {
+        "role": "secondary",
+        "displayName": "Ratte Blue",
+        "canonical": "#243C6C",
+        "tonalRamp": ["oklch(16% 0.05 260)", "oklch(25% 0.07 260)", "oklch(35% 0.09 260)", "oklch(45% 0.10 260)", "oklch(58% 0.10 260)", "oklch(70% 0.08 260)", "oklch(84% 0.05 260)", "oklch(95% 0.02 260)"]
+      },
+      "ratte-purple": {
+        "role": "secondary",
+        "displayName": "Ratte Purple",
+        "canonical": "#242454",
+        "tonalRamp": ["oklch(15% 0.04 285)", "oklch(24% 0.06 285)", "oklch(34% 0.08 285)", "oklch(46% 0.09 285)", "oklch(58% 0.08 285)", "oklch(70% 0.06 285)", "oklch(84% 0.04 285)", "oklch(95% 0.02 285)"]
+      },
+      "blush-glow": {
+        "role": "tertiary",
+        "displayName": "Blush Glow",
+        "canonical": "#FCE4E4",
+        "tonalRamp": ["oklch(18% 0.02 20)", "oklch(30% 0.03 20)", "oklch(42% 0.04 20)", "oklch(56% 0.05 20)", "oklch(70% 0.05 20)", "oklch(82% 0.04 20)", "oklch(90% 0.03 20)", "oklch(96% 0.02 20)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Profile identity only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles and FAQ heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Link titles, partner names, FAQ questions, and compact actions."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions, FAQ answers, disclosures, and secondary copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Partner tags, tiny metadata, and coupon status."
+      }
+    },
+    "shadows": [
+      {
+        "name": "profile-glow",
+        "value": "blur-xl on a red-to-blue gradient halo",
+        "purpose": "Anchors the profile image without making the whole page glow."
+      },
+      {
+        "name": "toast-float",
+        "value": "0 20px 25px -5px rgb(0 0 0 / 0.15), 0 8px 10px -6px rgb(0 0 0 / 0.15)",
+        "purpose": "Used for bottom support prompts that need to float above content."
+      },
+      {
+        "name": "neon-text-rare",
+        "value": "0 0 5px #FCE4E4, 0 0 10px #FC0C3C",
+        "purpose": "Rare emphasis only, never body copy."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-standard",
+        "value": "220ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default state changes for buttons, borders, and background."
+      },
+      {
+        "name": "card-lift",
+        "value": "260ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Hover lift for link cards and featured partner surfaces."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Hero CTA",
+      "kind": "button",
+      "refersTo": "hero-cta",
+      "description": "Compact ghost action for Twitch and email under the profile intro.",
+      "html": "<button class=\"ds-hero-cta\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z\"/></svg><span>E-Mail</span></button>",
+      "css": ".ds-hero-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:120px;padding:10px 20px;border-radius:8px;border:1px solid rgb(255 255 255 / .10);background:rgb(255 255 255 / .04);color:#FFFFFF;font:500 14px/1.25 Inter,sans-serif;transition:background-color 220ms cubic-bezier(.22,1,.36,1),border-color 220ms cubic-bezier(.22,1,.36,1),transform 220ms cubic-bezier(.22,1,.36,1)}.ds-hero-cta svg{width:16px;height:16px;fill:currentColor}.ds-hero-cta:hover{background:rgb(255 255 255 / .08);border-color:rgb(252 12 60 / .40)}.ds-hero-cta:focus-visible{outline:2px solid #FCE4E4;outline-offset:2px}.ds-hero-cta:active{transform:scale(.985)}"
+    },
+    {
+      "name": "Link Card",
+      "kind": "card",
+      "refersTo": "link-card",
+      "description": "The canonical link row for socials, Steam, settings, and normal partner links.",
+      "html": "<a class=\"ds-link-card\" href=\"#\"><span class=\"ds-icon-tile\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 2a8 8 0 100 16 8 8 0 000-16z\"/></svg></span><span class=\"ds-link-copy\"><strong>Discord</strong><small>Join my Discord to chat with me and the community.</small></span><span class=\"ds-external\" aria-hidden=\"true\">↗</span></a>",
+      "css": ".ds-link-card{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;border:1px solid rgb(255 255 255 / .10);background:rgb(255 255 255 / .04);color:#FFFFFF;text-decoration:none;transition:transform 260ms cubic-bezier(.22,1,.36,1),background-color 260ms cubic-bezier(.22,1,.36,1),border-color 260ms cubic-bezier(.22,1,.36,1)}.ds-link-card:hover{transform:translateY(-2px);background:rgb(255 255 255 / .07);border-color:rgb(252 12 60 / .40)}.ds-link-card:focus-visible{outline:2px solid #FCE4E4;outline-offset:2px}.ds-icon-tile{display:inline-flex;align-items:center;justify-content:center;flex:0 0 48px;width:48px;height:48px;border-radius:12px;border:1px solid rgb(255 255 255 / .05);background:rgb(255 255 255 / .06)}.ds-icon-tile svg{width:24px;height:24px;fill:#FC0C3C}.ds-link-copy{min-width:0;flex:1;display:grid;gap:2px}.ds-link-copy strong{font:600 15px/1.3 Inter,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ds-link-copy small{font:400 13px/1.35 Inter,sans-serif;color:rgb(255 255 255 / .55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ds-external{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;border:1px solid rgb(255 255 255 / .10);color:rgb(255 255 255 / .55)}"
+    },
+    {
+      "name": "Featured Partner",
+      "kind": "custom",
+      "refersTo": "link-card",
+      "description": "Prominent partner card with visible code and disclosure.",
+      "html": "<aside class=\"ds-featured\"><span class=\"ds-featured-label\">Featured Partner</span><div class=\"ds-featured-row\"><span class=\"ds-partner-logo\">W</span><span class=\"ds-link-copy\"><strong>WallHack</strong><small>Use code RATTE for 10% off.</small></span><code>RATTE</code></div><p>Affiliate / Partner link. I may earn a commission at no extra cost to you.</p></aside>",
+      "css": ".ds-featured{position:relative;padding:18px 20px 14px;border-radius:12px;border:1px solid rgb(252 12 60 / .30);background:rgb(255 255 255 / .04);color:#FFFFFF}.ds-featured-label{position:absolute;top:-10px;left:12px;padding:3px 8px;border-radius:9999px;border:1px solid rgb(252 12 60 / .30);background:rgb(252 12 60 / .20);color:#FC0C3C;text-transform:uppercase;letter-spacing:.05em;font:700 10px/1 Inter,sans-serif}.ds-featured-row{display:flex;align-items:center;gap:14px}.ds-partner-logo{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:9999px;background:#FFFFFF;color:#0C0C0C;font:800 18px/1 Inter,sans-serif}.ds-featured code{padding:4px 8px;border-radius:6px;background:rgb(252 12 60 / .15);color:#FC0C3C;font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace}.ds-featured p{margin:12px 0 0;color:rgb(255 255 255 / .45);font:400 11px/1.4 Inter,sans-serif}.ds-featured:hover{border-color:rgb(252 12 60 / .55);background:rgb(255 255 255 / .07)}"
+    },
+    {
+      "name": "FAQ Accordion",
+      "kind": "custom",
+      "refersTo": "link-card",
+      "description": "Quiet disclosure accordion for common trust and support questions.",
+      "html": "<details class=\"ds-faq\" open><summary>What's on this website?<span>⌄</span></summary><p>Links to all my socials, settings, Steam trading links, and partner links.</p></details>",
+      "css": ".ds-faq{border-radius:12px;border:1px solid rgb(255 255 255 / .10);background:rgb(255 255 255 / .04);color:#FFFFFF;overflow:hidden}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding:16px 20px;cursor:pointer;list-style:none;font:600 14px/1.4 Inter,sans-serif}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:focus-visible{outline:2px solid #FC0C3C;outline-offset:-2px}.ds-faq p{margin:0;padding:0 20px 18px;color:rgb(255 255 255 / .65);font:400 14px/1.75 Inter,sans-serif}.ds-faq:hover,.ds-faq[open]{border-color:rgb(252 12 60 / .35)}"
+    },
+    {
+      "name": "Partner Chip",
+      "kind": "chip",
+      "refersTo": "partner-chip",
+      "description": "Tiny red signal for partner status and coupon codes.",
+      "html": "<span class=\"ds-partner-chip\">RATTE</span>",
+      "css": ".ds-partner-chip{display:inline-flex;align-items:center;justify-content:center;min-height:24px;padding:4px 8px;border-radius:6px;background:rgb(252 12 60 / .15);color:#FC0C3C;font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace}.ds-partner-chip:hover{background:rgb(252 12 60 / .24)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The After-Stream Control Room",
+    "overview": "This system should feel like the current RatteCS page with the craft turned up: dark, compact, personal, and lightly atmospheric. The user should land, recognize Ratte immediately, and move through socials, partners, Steam links, settings, and FAQ without feeling sold to or slowed down.\n\nThe page is a focused creator hub, not a generic landing page. Red and blue ambience may shape the surface, but the content stays disciplined: profile first, links in stable rows, partner disclosure visible, and no decorative flourish that competes with the next click.",
+    "keyCharacteristics": [
+      "Compact centered column with generous breathing room around sections.",
+      "Dark surface with red and blue environmental glow.",
+      "Soft translucent cards with precise borders instead of heavy shadows.",
+      "Small but clear text hierarchy, optimized for scanning.",
+      "Affiliate moments are visible and transparent, never spammy."
+    ],
+    "rules": [
+      {
+        "name": "The Red Signal Rule",
+        "body": "Ratte Red is a signal, not wallpaper. Use it for actions, verified partner emphasis, and meaningful hover states only.",
+        "section": "colors"
+      },
+      {
+        "name": "The Atmosphere Behind Content Rule",
+        "body": "Red and blue gradients belong behind the interface. They must never reduce text contrast or make cards harder to scan.",
+        "section": "colors"
+      },
+      {
+        "name": "The Scan First Rule",
+        "body": "Link titles must win over descriptions. Descriptions support the click, they do not compete with it.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Hero Bloat Rule",
+        "body": "Do not turn this into a landing page with oversized slogans. Ratte is the headline; everything else supports navigation.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat At Rest Rule",
+        "body": "Link cards stay close to the surface at rest. Hover may lift and brighten; idle cards should not look like floating glass panels.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the current moody red and blue atmosphere, but keep it behind content.",
+      "Do preserve the compact centered link-hub structure.",
+      "Do make partner disclosures visible wherever a partner link is promoted.",
+      "Do keep links scannable with strong titles, muted descriptions, and stable icon tiles.",
+      "Do maintain WCAG 2.1 AA contrast, especially on tiny partner metadata and muted copy.",
+      "Do use red for meaningful signals: partner emphasis, hover borders, coupon chips, and important action states.",
+      "Do honor reduced-motion preferences and keep transitions short, around 220ms to 260ms."
+    ],
+    "donts": [
+      "Don't make this a generic Linktree clone.",
+      "Don't add loud esports neon clutter.",
+      "Don't push it toward over-polished SaaS marketing.",
+      "Don't use crypto-style glow overload.",
+      "Don't turn the page into a broad landing page instead of a focused creator hub.",
+      "Don't erase the current vibe, make the page too bright, bury partner disclosures, or make affiliate links feel deceptive or spammy.",
+      "Don't use gradient text, side-stripe card accents, nested cards, or decorative glassmorphism.",
+      "Don't use oversized hero slogans, hero metrics, or repeated generic icon-card grids."
+    ]
+  }
+}

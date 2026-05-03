@@ -28,7 +28,7 @@ const HeroCTAs: React.FC = () => {
   };
 
   const baseBtn =
-    "inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-black dark:text-white hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:border-accent-pink/40 dark:hover:border-accent-pink/40 transition-[background-color,border-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] min-h-[44px] min-w-[120px]";
+    "inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium border border-black/10 dark:border-white/10 bg-black/[0.035] dark:bg-white/[0.045] text-black dark:text-white hover:bg-black/[0.065] dark:hover:bg-white/[0.085] hover:border-accent-pink/40 dark:hover:border-accent-pink/45 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,background-color,border-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none min-h-[44px] min-w-[120px]";
 
   return (
     <div className="flex items-center justify-center gap-3">
@@ -108,26 +108,26 @@ const LinkList: React.FC = () => {
     return (
       <section
         id={sectionId}
-        className="mb-5 sm:mb-6"
+        className="mb-6 sm:mb-7 scroll-mt-20"
         itemScope
         itemType="https://schema.org/ItemList"
       >
         <meta itemProp="numberOfItems" content={links.length.toString()} />
         <div className="mb-3 sm:mb-4 text-center">
           <h2
-            className="text-lg sm:text-xl font-semibold text-black dark:text-white"
+            className="text-[1.05rem] sm:text-xl font-semibold text-black dark:text-white leading-tight"
             itemProp="name"
           >
             {title}
           </h2>
           {description && (
-            <p className="text-xs sm:text-sm text-black/50 dark:text-white/50 mt-0.5">
+            <p className="text-xs sm:text-sm text-black/52 dark:text-white/52 mt-1">
               {description}
             </p>
           )}
         </div>
         <div
-          className="grid gap-2.5 sm:gap-3 grid-cols-1" // Always 1 column on mobile, implicit on larger
+          className="grid gap-2.5 sm:gap-3 grid-cols-1"
           itemProp="itemListElement"
           itemScope
           itemType="https://schema.org/ListItem"
@@ -157,11 +157,11 @@ const LinkList: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 pt-10 pb-4 sm:py-8 sm:mt-12">
+    <div className="w-full max-w-3xl mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 pt-9 pb-4 sm:pt-14 sm:pb-8">
       {/* Profile Section with enhanced visual appeal */}
-      <div className="mb-4 sm:mb-6 flex flex-col items-center">
+      <div className="mb-5 sm:mb-7 flex flex-col items-center">
         <div className="relative w-24 h-24 sm:w-32 sm:h-32 mb-3 sm:mb-4">
-          <div className="absolute inset-0 rounded-full overflow-hidden border-2 border-primary/30 dark:border-primary/20 bg-white dark:bg-background">
+          <div className="absolute inset-0 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-background shadow-2xl shadow-black/20 dark:shadow-black/40">
             <img
               src={pfpImage}
               alt="RatteCS CS2 streamer and gaming content creator profile photo"
@@ -169,20 +169,25 @@ const LinkList: React.FC = () => {
               width={128}
               height={128}
               loading="eager"
+              decoding="async"
               {...({
                 fetchpriority: "high",
               } as React.ImgHTMLAttributes<HTMLImageElement>)}
             />
           </div>
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 dark:from-primary/30 dark:to-accent/30 blur-xl -z-10" />
+          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-accent-pink/20 via-primary/20 to-rattePurple-light/20 dark:from-accent-pink/35 dark:via-primary/25 dark:to-rattePurple-light/30 blur-2xl -z-10" />
         </div>
 
         <div className="text-center max-w-2xl flex flex-col items-center">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-black dark:text-white mb-3 sm:mb-4">
+          <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-accent-pink/20 bg-accent-pink/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-normal text-accent-pink">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-pink" />
+            Official hub
+          </p>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-normal text-black dark:text-white mb-2 sm:mb-3">
             Ratte
           </h1>
-          <p className="text-sm sm:text-base text-black/60 dark:text-white/60 leading-relaxed px-2 sm:px-0 mb-4 sm:mb-5 max-w-md">
-            All my links in one place. Thanks for the support!
+          <p className="text-sm sm:text-base text-black/62 dark:text-white/62 leading-relaxed px-2 sm:px-0 mb-4 sm:mb-5 max-w-md">
+            Socials, live channels, CS2 settings, and partner codes in one place.
           </p>
           <HeroCTAs />
         </div>
