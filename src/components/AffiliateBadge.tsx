@@ -32,28 +32,28 @@ const AffiliateBadge: React.FC<AffiliateBadgeProps> = ({
     <div className="flex flex-wrap items-center gap-1.5 mt-1.5">
       {/* Discount Badge */}
       {typeof discountPercentage === "number" && discountPercentage > 0 && (
-        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[10px] font-medium">
+        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[0.625rem] font-bold leading-none">
           Save {discountPercentage}%
         </div>
       )}
 
       {/* Success Rate Badge */}
       {typeof successRate === "number" && successRate > 0 && (
-        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[10px] font-medium">
+        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[0.625rem] font-bold leading-none">
           {successRate}% success
         </div>
       )}
 
       {/* Limited Time Badge */}
       {isLimitedTime && (
-        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[10px] font-medium">
+        <div className="px-1.5 py-0.5 rounded-md bg-accent-pink/10 text-accent-pink text-[0.625rem] font-bold leading-none">
           Limited
         </div>
       )}
 
       {/* Remaining Codes Badge */}
       {typeof remainingCodes === "number" && remainingCodes > 0 && (
-        <div className="px-1.5 py-0.5 rounded-md bg-black/[0.05] dark:bg-white/[0.06] text-black/65 dark:text-white/65 text-[10px] font-medium">
+        <div className="px-1.5 py-0.5 rounded-md bg-black/[0.05] dark:bg-white/[0.06] text-black/66 dark:text-white/68 text-[0.625rem] font-bold leading-none">
           {remainingCodes} left
         </div>
       )}

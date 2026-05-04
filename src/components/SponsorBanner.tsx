@@ -85,12 +85,12 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
           <span
-            className="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-normal uppercase bg-accent-pink/10 text-accent-pink border border-accent-pink/20"
+            className="shrink-0 px-1.5 py-0.5 rounded text-[0.625rem] font-bold leading-none tracking-[0.08em] uppercase bg-accent-pink/10 text-accent-pink border border-accent-pink/20"
             title={sponsor.disclosure}
           >
             Partner
           </span>
-          <p className="text-xs sm:text-sm text-black/80 dark:text-white/85 truncate flex-1 min-w-0">
+          <p className="text-[0.8125rem] sm:text-[0.9375rem] font-medium leading-snug text-black/80 dark:text-white/85 truncate flex-1 min-w-0">
             <span className="font-semibold text-black dark:text-white">
               {partner.title}
             </span>
@@ -101,7 +101,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             {sponsorCode && (
               <span className="ml-2 inline-flex items-center gap-1 align-middle">
                 <span className="opacity-60">code</span>
-                <code className="px-1.5 py-0.5 rounded bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink font-mono text-[11px] sm:text-xs">
+                <code className="px-1.5 py-0.5 rounded bg-primary/10 dark:bg-accent-pink/10 text-primary dark:text-accent-pink font-mono text-[0.6875rem] sm:text-[0.75rem] font-bold">
                   {sponsorCode}
                 </code>
               </span>
@@ -112,7 +112,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             target="_blank"
             rel="noopener noreferrer sponsored"
             data-analytics-id={`sponsor-sticky-${sponsorAnalyticsId}`}
-            className="shrink-0 inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-lg bg-accent-pink text-white text-xs sm:text-sm font-semibold hover:opacity-90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="shrink-0 inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-lg bg-accent-pink text-white text-[0.8125rem] sm:text-[0.875rem] leading-none font-bold hover:opacity-90 hover:-translate-y-px active:scale-95 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,opacity] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none"
           >
             Use code
             <svg
@@ -151,7 +151,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
       aria-label={`Featured partner: ${partner.title}`}
       className="relative mb-6 sm:mb-7 group"
     >
-      <div className="absolute -top-2 left-3 z-10 px-2 py-0.5 rounded-full bg-accent-pink/15 dark:bg-accent-pink/20 border border-accent-pink/30 text-[10px] font-semibold tracking-normal uppercase text-accent-pink">
+      <div className="absolute -top-2 left-3 z-10 px-2 py-0.5 rounded-full bg-accent-pink/15 dark:bg-accent-pink/20 border border-accent-pink/30 text-[0.625rem] font-bold leading-none tracking-[0.08em] uppercase text-accent-pink">
         Featured Partner
       </div>
       <a
@@ -159,11 +159,11 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
         target="_blank"
         rel="noopener noreferrer sponsored"
         data-analytics-id={`sponsor-inline-${sponsorAnalyticsId}`}
-        className="block rounded-xl border border-accent-pink/30 dark:border-accent-pink/35 bg-black/[0.04] dark:bg-white/[0.05] backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/60 hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
+        className="featured-signal block rounded-xl border border-accent-pink/35 dark:border-accent-pink/40 bg-black/[0.045] dark:bg-white/[0.055] backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,background-color,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.01] hover:border-accent-pink/70 hover:bg-black/[0.065] dark:hover:bg-white/[0.085] hover:-translate-y-0.5 hover:shadow-[0_18px_50px_rgba(252,12,60,0.14)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
       >
         <div className="flex items-center gap-3 sm:gap-4">
           {iconSrc && (
-            <div className="shrink-0 w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent-pink/30 group-hover:ring-accent-pink/60 transition duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <div className="shrink-0 w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent-pink/30 group-hover:ring-accent-pink/60 transition-[transform,box-shadow] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:transform-none">
               <img
                 src={iconSrc}
                 alt={`${partner.title} logo`}
@@ -176,25 +176,25 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <h3 className="text-base sm:text-lg font-bold text-black dark:text-white">
+            <h3 className="text-[1.0625rem] sm:text-[1.1875rem] font-extrabold leading-tight text-black dark:text-white">
               {partner.title}
             </h3>
-            <p className="text-xs sm:text-sm text-black/65 dark:text-white/65 line-clamp-2">
+            <p className="text-[0.8125rem] sm:text-[0.9375rem] font-medium leading-snug text-black/66 dark:text-white/68 line-clamp-2 mt-0.5">
               {sponsorTagline}
             </p>
           </div>
-          <div className="shrink-0 flex flex-col items-end gap-1">
+          <div className="hidden min-[421px]:flex shrink-0 flex-col items-end gap-1">
             {sponsorCode && (
-              <span className="px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-xs font-mono font-semibold">
+              <span className="px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-[0.75rem] leading-none font-mono font-bold">
                 {sponsorCode}
               </span>
             )}
-            <span className="text-[10px] uppercase tracking-normal text-black/45 dark:text-white/45">
+            <span className="text-[0.625rem] uppercase tracking-[0.08em] font-bold leading-none text-black/46 dark:text-white/48 transition-transform duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 motion-reduce:transition-none motion-reduce:transform-none">
               Visit &gt;
             </span>
           </div>
         </div>
-        <p className="mt-3 text-[11px] text-black/50 dark:text-white/50 leading-snug">
+        <p className="mt-3 text-[0.75rem] font-medium text-black/52 dark:text-white/54 leading-snug">
           {sponsor.disclosure}
         </p>
       </a>

@@ -42,15 +42,15 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section titles and FAQ heading."
+        "purpose": "Section titles."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Link titles, partner names, FAQ questions, and compact actions."
+        "purpose": "Link titles, partner names, and compact actions."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Descriptions, FAQ answers, disclosures, and secondary copy."
+        "purpose": "Descriptions, disclosures, and secondary copy."
       },
       "label": {
         "displayName": "Label",
@@ -123,14 +123,6 @@
       "css": ".ds-featured{position:relative;padding:18px 20px 14px;border-radius:12px;border:1px solid rgb(252 12 60 / .30);background:rgb(255 255 255 / .04);color:#FFFFFF}.ds-featured-label{position:absolute;top:-10px;left:12px;padding:3px 8px;border-radius:9999px;border:1px solid rgb(252 12 60 / .30);background:rgb(252 12 60 / .20);color:#FC0C3C;text-transform:uppercase;letter-spacing:.05em;font:700 10px/1 Inter,sans-serif}.ds-featured-row{display:flex;align-items:center;gap:14px}.ds-partner-logo{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:9999px;background:#FFFFFF;color:#0C0C0C;font:800 18px/1 Inter,sans-serif}.ds-featured code{padding:4px 8px;border-radius:6px;background:rgb(252 12 60 / .15);color:#FC0C3C;font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace}.ds-featured p{margin:12px 0 0;color:rgb(255 255 255 / .45);font:400 11px/1.4 Inter,sans-serif}.ds-featured:hover{border-color:rgb(252 12 60 / .55);background:rgb(255 255 255 / .07)}"
     },
     {
-      "name": "FAQ Accordion",
-      "kind": "custom",
-      "refersTo": "link-card",
-      "description": "Quiet disclosure accordion for common trust and support questions.",
-      "html": "<details class=\"ds-faq\" open><summary>What's on this website?<span>⌄</span></summary><p>Links to all my socials, settings, Steam trading links, and partner links.</p></details>",
-      "css": ".ds-faq{border-radius:12px;border:1px solid rgb(255 255 255 / .10);background:rgb(255 255 255 / .04);color:#FFFFFF;overflow:hidden}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding:16px 20px;cursor:pointer;list-style:none;font:600 14px/1.4 Inter,sans-serif}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:focus-visible{outline:2px solid #FC0C3C;outline-offset:-2px}.ds-faq p{margin:0;padding:0 20px 18px;color:rgb(255 255 255 / .65);font:400 14px/1.75 Inter,sans-serif}.ds-faq:hover,.ds-faq[open]{border-color:rgb(252 12 60 / .35)}"
-    },
-    {
       "name": "Partner Chip",
       "kind": "chip",
       "refersTo": "partner-chip",
@@ -141,7 +133,7 @@
   ],
   "narrative": {
     "northStar": "The After-Stream Control Room",
-    "overview": "This system should feel like the current RatteCS page with the craft turned up: dark, compact, personal, and lightly atmospheric. The user should land, recognize Ratte immediately, and move through socials, partners, Steam links, settings, and FAQ without feeling sold to or slowed down.\n\nThe page is a focused creator hub, not a generic landing page. Red and blue ambience may shape the surface, but the content stays disciplined: profile first, links in stable rows, partner disclosure visible, and no decorative flourish that competes with the next click.",
+    "overview": "This system should feel like the current RatteCS page with the craft turned up: dark, compact, personal, and lightly atmospheric. The user should land, recognize Ratte immediately, and move through socials, partners, Steam links, and settings without feeling sold to or slowed down.\n\nThe page is a focused creator hub, not a generic landing page. Red and blue ambience may shape the surface, but the content stays disciplined: profile first, links in stable rows, partner disclosure visible, and no decorative flourish that competes with the next click.",
     "keyCharacteristics": [
       "Compact centered column with generous breathing room around sections.",
       "Dark surface with red and blue environmental glow.",

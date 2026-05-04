@@ -222,6 +222,18 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
     }
   };
 
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty(
+      "--card-x",
+      `${event.clientX - rect.left}px`,
+    );
+    event.currentTarget.style.setProperty(
+      "--card-y",
+      `${event.clientY - rect.top}px`,
+    );
+  };
+
   // Generate enhanced schema.org JSON-LD
   const generateSchema = () => {
     const baseSchema = {
@@ -328,13 +340,14 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
 
       <div className="block group">
         <div
-          className={`relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.035] dark:bg-white/[0.045] backdrop-blur-sm transition-[transform,border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-black/[0.055] dark:hover:bg-white/[0.075] hover:border-accent-pink/35 dark:hover:border-accent-pink/40 motion-reduce:transition-none motion-reduce:transform-none ${
+          className={`signal-card relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-white/[0.05] backdrop-blur-sm transition-[transform,border-color,background-color,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.012] hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:border-accent-pink/45 dark:hover:border-accent-pink/50 hover:shadow-[0_14px_36px_rgba(0,0,0,0.18)] dark:hover:shadow-[0_18px_44px_rgba(0,0,0,0.38)] motion-reduce:transition-none motion-reduce:transform-none ${
             isHovered ? "-translate-y-0.5" : ""
           } ${isClicked ? "scale-[0.985]" : ""} ${
             priority === 1 ? "ring-1 ring-accent-pink/40" : ""
           }`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onPointerMove={handlePointerMove}
         >
           <a
             href={url}
@@ -348,12 +361,12 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
           <div className="relative z-10 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 pointer-events-none">
             {/* Uniform icon container — 44/48px rounded square */}
             <div className="shrink-0">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.06] border border-black/5 dark:border-white/5 flex items-center justify-center">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.06] border border-black/5 dark:border-white/5 flex items-center justify-center transition-[transform,border-color,background-color,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] group-hover:border-accent-pink/20 group-hover:bg-accent-pink/[0.035] group-hover:shadow-[0_0_24px_rgba(252,12,60,0.12)] motion-reduce:transition-none motion-reduce:transform-none">
                 {icon && iconMap[icon] ? (
                   <img
                     src={iconMap[icon]}
                     alt={`${title} ${category === "affiliate" ? "affiliate link" : "link"} icon`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:transform-none"
                     width={48}
                     height={48}
                     loading="lazy"
@@ -369,7 +382,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             {/* Title + description */}
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5 min-w-0">
-                <h3 className="text-sm sm:text-base font-semibold text-black dark:text-white truncate group-hover:text-accent-pink/90 dark:group-hover:text-accent-pink transition-colors">
+                <h3 className="text-[0.9375rem] sm:text-[1.0625rem] font-bold leading-tight text-black dark:text-white truncate group-hover:text-accent-pink/90 dark:group-hover:text-accent-pink transition-colors duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
                   {title}
                 </h3>
                 {isVerified && (
@@ -379,7 +392,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="h-3.5 w-3.5 text-black/40 dark:text-white/45 group-hover:text-accent-pink/80 transition-colors"
+                      className="h-3.5 w-3.5 text-black/44 dark:text-white/50 group-hover:text-accent-pink/80 transition-colors"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
@@ -394,7 +407,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                 )}
               </div>
               {description && (
-                <p className="text-xs sm:text-sm text-black/58 dark:text-white/58 truncate mt-0.5">
+                <p className="text-[0.8125rem] sm:text-[0.9375rem] font-medium leading-snug text-black/62 dark:text-white/64 truncate mt-1">
                   {description}
                 </p>
               )}
@@ -419,7 +432,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
                       </svg>
                     ))}
                   </div>
-                  <span className="text-xs text-black/40 dark:text-white/40">
+                  <span className="text-[0.75rem] font-medium text-black/46 dark:text-white/46">
                     (
                     {productDetails.aggregateRating?.reviewCount?.toLocaleString() ||
                       "0"}{" "}
@@ -447,12 +460,12 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             </div>
 
             {/* Right-side action: optional coupon pill + arrow button */}
-            <div className="shrink-0 flex items-center gap-2 pointer-events-none">
+            <div className="shrink-0 flex items-center gap-1.5 sm:gap-2 pointer-events-none">
               {couponCode && (
                 <button
                   type="button"
                   onClick={() => handleCopyCode(couponCode)}
-                  className="pointer-events-auto inline-flex min-h-[36px] items-center gap-1 px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-[11px] sm:text-xs font-mono font-semibold hover:bg-accent-pink/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-colors"
+                  className="pointer-events-auto hidden min-[421px]:inline-flex min-h-[36px] items-center gap-1 px-2 py-1 rounded-md bg-accent-pink/10 dark:bg-accent-pink/15 text-accent-pink text-[0.6875rem] sm:text-[0.75rem] leading-none font-mono font-bold hover:bg-accent-pink/20 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,background-color] duration-[180ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none"
                   aria-label={`Copy code ${couponCode}`}
                   aria-pressed={isCopied}
                 >
@@ -461,7 +474,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
               )}
               <span
                 aria-hidden="true"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] text-black/55 dark:text-white/55 group-hover:border-accent-pink/40 group-hover:text-accent-pink hover:bg-black/[0.04] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-colors"
+                className="hidden min-[421px]:inline-flex items-center justify-center w-9 h-9 rounded-lg border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] text-black/55 dark:text-white/55 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:border-accent-pink/40 group-hover:text-accent-pink hover:bg-black/[0.04] dark:hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,color,border-color,background-color] duration-[240ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none"
               >
                 <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M11 3a1 1 0 100 2h2.586L7.293 11.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />

@@ -93,7 +93,7 @@ components:
 
 **Creative North Star: "The After-Stream Control Room"**
 
-This system should feel like the current RatteCS page with the craft turned up: dark, compact, personal, and lightly atmospheric. The user should land, recognize Ratte immediately, and move through socials, partners, Steam links, settings, and FAQ without feeling sold to or slowed down.
+This system should feel like the current RatteCS page with the craft turned up: dark, compact, personal, and lightly atmospheric. The user should land, recognize Ratte immediately, and move through socials, partners, Steam links, and settings without feeling sold to or slowed down.
 
 The page is a focused creator hub, not a generic landing page. Red and blue ambience may shape the surface, but the content stays disciplined: profile first, links in stable rows, partner disclosure visible, and no decorative flourish that competes with the next click.
 
@@ -142,9 +142,9 @@ The palette is a night-mode creator palette: blackened surfaces, cold blue depth
 
 ### Hierarchy
 - **Display** (700, 2.25rem desktop, 1 line): Profile name and only true identity headline.
-- **Headline** (600, 1.125rem to 1.25rem, relaxed line-height): Section titles such as Social Profiles, Partners, Steam, Config & Settings, and FAQ.
-- **Title** (600, 0.875rem to 1rem, 1.5 line-height): Link titles, partner names, CTA labels, and FAQ questions.
-- **Body** (400, 0.75rem to 0.875rem, 1.75 line-height): Link descriptions, FAQ answers, disclosure copy, and contextual support.
+- **Headline** (600, 1.125rem to 1.25rem, relaxed line-height): Section titles such as Social Profiles, Partners, Steam, and Config & Settings.
+- **Title** (600, 0.875rem to 1rem, 1.5 line-height): Link titles, partner names, CTA labels, and compact actions.
+- **Body** (400, 0.75rem to 0.875rem, 1.75 line-height): Link descriptions, disclosure copy, and contextual support.
 - **Label** (600, 0.625rem to 0.75rem, uppercase with wider tracking): Partner tags, disclosure badges, tiny status labels, and compact metadata.
 
 ### Named Rules

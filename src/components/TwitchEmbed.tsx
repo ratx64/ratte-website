@@ -101,7 +101,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
           probePlayer = null;
         };
         const handleReady = () => {
-          // Some embeds fire READY before ONLINE/OFFLINE — query state directly.
+          // Some embeds fire READY before ONLINE/OFFLINE; query state directly.
           if (cancelled) return;
           try {
             const live =
@@ -117,7 +117,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
         };
         const handleError = () => {
           if (cancelled) return;
-          setStatus("offline"); // Treat errors as offline — same UX, cleaner copy.
+          setStatus("offline"); // Treat errors as offline for the same clean UX.
           destroy(probePlayer);
           probePlayer = null;
         };
@@ -190,7 +190,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
     };
   }, [channel, parent]);
 
-  // ── Render ─────────────────────────────────────────────────────────────
+  // Render
   const twitchUrl = `https://twitch.tv/${channel}`;
 
   const probeElement = (
@@ -220,40 +220,40 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
       aria-label="Twitch Live Stream"
       data-stream-status={status}
     >
-      {/* Hidden probe — mounted briefly while we detect online/offline. */}
+      {/* Hidden probe mounted briefly while we detect online/offline. */}
       {probeElement}
 
       <>
-          <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-white text-[11px] font-semibold tracking-normal uppercase shadow-md motion-safe:animate-pulse">
-            <span className="h-1.5 w-1.5 rounded-full bg-white" />
-            Live
-          </div>
-          <div className="relative pt-[56.25%] min-h-[200px] sm:min-h-[300px] rounded-xl sm:rounded-2xl overflow-hidden">
-            <div
-              ref={visibleRef}
-              className="absolute top-0 left-0 w-full h-full"
-              aria-label={`Twitch stream for ${channel}`}
-            />
-          </div>
+        <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-white text-[0.6875rem] font-bold tracking-[0.08em] uppercase shadow-md motion-safe:animate-pulse">
+          <span className="h-1.5 w-1.5 rounded-full bg-white" />
+          Live
+        </div>
+        <div className="relative pt-[56.25%] min-h-[200px] sm:min-h-[300px] rounded-xl sm:rounded-2xl overflow-hidden">
+          <div
+            ref={visibleRef}
+            className="absolute top-0 left-0 w-full h-full"
+            aria-label={`Twitch stream for ${channel}`}
+          />
+        </div>
 
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "VideoObject",
-              name: `RatteCS Twitch Stream - ${channel}`,
-              description: "Live CS2 streaming content from RatteCS",
-              thumbnailUrl: `https://static-cdn.jtvnw.net/previews-ttv/live_user_${channel}-1920x1080.jpg`,
-              uploadDate: new Date().toISOString(),
-              contentUrl: twitchUrl,
-              embedUrl: `https://player.twitch.tv/?channel=${channel}`,
-              publisher: {
-                "@type": "Person",
-                name: "RatteCS",
-                url: "https://ratte.xyz/",
-              },
-            })}
-          </script>
-        </>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: `RatteCS Twitch Stream - ${channel}`,
+            description: "Live CS2 streaming content from RatteCS",
+            thumbnailUrl: `https://static-cdn.jtvnw.net/previews-ttv/live_user_${channel}-1920x1080.jpg`,
+            uploadDate: new Date().toISOString(),
+            contentUrl: twitchUrl,
+            embedUrl: `https://player.twitch.tv/?channel=${channel}`,
+            publisher: {
+              "@type": "Person",
+              name: "RatteCS",
+              url: "https://ratte.xyz/",
+            },
+          })}
+        </script>
+      </>
     </section>
   );
 }

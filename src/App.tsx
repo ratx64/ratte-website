@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import LinkList from "./components/LinkList";
-import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import HowToSchema from "./components/HowToSchema";
 import { initAnalytics } from "./utils/analytics";
@@ -16,25 +15,8 @@ const App: React.FC = () => {
     // Initialize analytics
     initAnalytics();
 
-    // Check if dark mode is preferred
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    // Listen for changes in color scheme preference
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (e.matches) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    // Ratte's visual system is intentionally dark-first.
+    document.documentElement.classList.add("dark");
   }, []);
 
   const siteData = {
@@ -245,69 +227,6 @@ const App: React.FC = () => {
           })}
         </script>
 
-        {/* FAQ Schema - must match visible FAQ content for rich results */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            inLanguage: siteData.inLanguage,
-            dateModified: siteData.dateModified,
-            speakable: {
-              "@type": "SpeakableSpecification",
-              cssSelector: ["#faq h2", "#faq summary", "#faq p"],
-            },
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "What's on this website?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "My official socials, live channels, CS2 settings, Steam links, partner codes, and contact info.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Do I pay more when using your links?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "No. Partner links do not increase your price. I may earn a commission, and you pay the same.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I support you?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Use a partner link or code when it fits what you already planned to buy. Following the stream, joining Discord, and sharing clips helps too.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Where can I find you?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Twitch and Kick for live streams, YouTube for longer videos, TikTok for clips, Discord to chat, and X (Twitter) for updates. All links are on this page.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How do I know if a link is a partner link?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Partner links live in the Partners section and use affiliate or partner disclosure copy on the card.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How can I contact you?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Email biz@ratte.xyz for business, partnerships, or questions. Replies may be slower while I am streaming or busy.",
-                },
-              },
-            ],
-          })}
-        </script>
       </Helmet>
 
       {/* HowTo Schema for AEO - Outside Helmet to avoid nesting */}
@@ -316,7 +235,6 @@ const App: React.FC = () => {
       <div className="min-h-screen text-black dark:text-white">
         <main id="main-content" role="main">
           <LinkList />
-          <FAQ />
         </main>
         <Footer />
       </div>

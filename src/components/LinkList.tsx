@@ -28,7 +28,7 @@ const HeroCTAs: React.FC = () => {
   };
 
   const baseBtn =
-    "inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium border border-black/10 dark:border-white/10 bg-black/[0.035] dark:bg-white/[0.045] text-black dark:text-white hover:bg-black/[0.065] dark:hover:bg-white/[0.085] hover:border-accent-pink/40 dark:hover:border-accent-pink/45 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,background-color,border-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none min-h-[44px] min-w-[120px]";
+    "inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-[0.8125rem] font-semibold leading-none border border-black/10 dark:border-white/10 bg-black/[0.035] dark:bg-white/[0.045] text-black dark:text-white hover:bg-black/[0.065] dark:hover:bg-white/[0.085] hover:border-accent-pink/40 dark:hover:border-accent-pink/45 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,background-color,border-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none min-h-[44px] min-w-[120px]";
 
   return (
     <div className="flex items-center justify-center gap-3">
@@ -102,26 +102,28 @@ const LinkList: React.FC = () => {
     title: string,
     links: LinkData[],
     description?: string,
+    sectionDelay = 0,
   ) => {
     if (links.length === 0) return null;
 
     return (
       <section
         id={sectionId}
-        className="mb-6 sm:mb-7 scroll-mt-20"
+        className="mb-6 sm:mb-7 scroll-mt-20 motion-safe:animate-[section-load-in_560ms_cubic-bezier(0.16,1,0.3,1)_both]"
+        style={{ animationDelay: `${sectionDelay}ms` }}
         itemScope
         itemType="https://schema.org/ItemList"
       >
         <meta itemProp="numberOfItems" content={links.length.toString()} />
         <div className="mb-3 sm:mb-4 text-center">
           <h2
-            className="text-[1.05rem] sm:text-xl font-semibold text-black dark:text-white leading-tight"
+            className="text-[1.125rem] sm:text-[1.375rem] font-bold text-black dark:text-white leading-[1.15]"
             itemProp="name"
           >
             {title}
           </h2>
           {description && (
-            <p className="text-xs sm:text-sm text-black/52 dark:text-white/52 mt-1">
+            <p className="text-[0.8125rem] sm:text-[0.9375rem] font-medium leading-snug text-black/56 dark:text-white/58 mt-1">
               {description}
             </p>
           )}
@@ -135,6 +137,8 @@ const LinkList: React.FC = () => {
           {links.map((link, index) => (
             <div
               key={link.id}
+              className="motion-safe:animate-[list-item-in_520ms_cubic-bezier(0.16,1,0.3,1)_both]"
+              style={{ animationDelay: `${sectionDelay + 90 + Math.min(index * 55, 240)}ms` }}
               itemProp="item"
               itemScope
               itemType="https://schema.org/Thing"
@@ -157,10 +161,10 @@ const LinkList: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 pt-9 pb-4 sm:pt-14 sm:pb-8">
+    <div className="signal-shell w-[min(100%,48rem)] box-border mx-auto px-3 max-[360px]:px-2 sm:px-4 md:px-6 pt-9 pb-4 sm:pt-14 sm:pb-8 motion-safe:animate-[page-load-in_700ms_cubic-bezier(0.16,1,0.3,1)_both]">
       {/* Profile Section with enhanced visual appeal */}
       <div className="mb-5 sm:mb-7 flex flex-col items-center">
-        <div className="relative w-24 h-24 sm:w-32 sm:h-32 mb-3 sm:mb-4">
+        <div className="signal-avatar relative w-24 h-24 sm:w-32 sm:h-32 mb-5 sm:mb-6 motion-safe:animate-[avatar-load-in_680ms_cubic-bezier(0.16,1,0.3,1)_both]">
           <div className="absolute inset-0 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-background shadow-2xl shadow-black/20 dark:shadow-black/40">
             <img
               src={pfpImage}
@@ -178,15 +182,18 @@ const LinkList: React.FC = () => {
           <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-accent-pink/20 via-primary/20 to-rattePurple-light/20 dark:from-accent-pink/35 dark:via-primary/25 dark:to-rattePurple-light/30 blur-2xl -z-10" />
         </div>
 
-        <div className="text-center max-w-2xl flex flex-col items-center">
-          <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-accent-pink/20 bg-accent-pink/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-normal text-accent-pink">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-pink" />
+        <div
+          className="w-full text-center max-w-2xl flex flex-col items-center motion-safe:animate-[section-load-in_620ms_cubic-bezier(0.16,1,0.3,1)_both]"
+          style={{ animationDelay: "90ms" }}
+        >
+          <p className="signal-chip mb-2 inline-flex items-center gap-2 rounded-full border border-accent-pink/20 bg-accent-pink/10 px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-[0.08em] text-accent-pink leading-none">
+            <span className="signal-dot h-1.5 w-1.5 rounded-full bg-accent-pink" />
             Official hub
           </p>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-normal text-black dark:text-white mb-2 sm:mb-3">
+          <h1 className="text-[2.375rem] sm:text-[3rem] font-extrabold tracking-normal text-black dark:text-white mb-2 sm:mb-3 leading-none">
             Ratte
           </h1>
-          <p className="text-sm sm:text-base text-black/62 dark:text-white/62 leading-relaxed px-2 sm:px-0 mb-4 sm:mb-5 max-w-md">
+          <p className="w-full text-[0.9375rem] sm:text-base font-medium text-black/68 dark:text-white/70 leading-[1.55] px-2 sm:px-0 mb-4 sm:mb-5 max-w-[34ch] sm:max-w-[42ch]">
             Socials, live channels, CS2 settings, and partner codes in one place.
           </p>
           <HeroCTAs />
@@ -202,6 +209,7 @@ const LinkList: React.FC = () => {
         "Social Profiles",
         organizedLinks.social,
         "Where to find me online",
+        170,
       )}
 
       {/* Partners — featured first via inline SponsorBanner card, then full list */}
@@ -213,15 +221,17 @@ const LinkList: React.FC = () => {
         "Partners",
         organizedLinks.partner,
         "Partner links",
+        260,
       )}
 
-      {renderSection("steam", "Steam", organizedLinks.steam, "Steam stuff")}
+      {renderSection("steam", "Steam", organizedLinks.steam, "Steam stuff", 330)}
 
       {renderSection(
         "config",
         "Config & Settings",
         organizedLinks.config,
         "My CS2 settings and gear",
+        390,
       )}
     </div>
   );

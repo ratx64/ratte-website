@@ -11,7 +11,7 @@ A central hub for RatteCS social media profiles, affiliate links, and discount c
 - 👤 EEAT signals (Person schema, expertise indicators)
 - ♿ WCAG 2.1 AA accessible
 - 🔒 Security headers and CSP
-- 🌓 Dark/Light mode support
+- 🌓 Dark creator-native theme
 - 📱 Fully responsive design
 - 🚀 Blazing fast performance with Cloudflare Pages
 - 🤖 Web scraper and search engine friendly
@@ -61,7 +61,7 @@ The site is optimized for:
 ### Key SEO Features
 
 - ✅ Comprehensive meta tags (title, description, Open Graph, Twitter Cards)
-- ✅ Structured data (JSON-LD) for WebSite, Person, FAQPage, VideoObject
+- ✅ Structured data (JSON-LD) for WebSite, Person, and VideoObject
 - ✅ XML sitemap with image entries
 - ✅ robots.txt configuration
 - ✅ Canonical URLs

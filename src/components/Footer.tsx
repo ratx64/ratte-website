@@ -28,22 +28,25 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-transparent dark:bg-dark/25 backdrop-blur-sm text-dark/60 dark:text-light/60 p-4 sm:p-8 mt-10 sm:mt-14 border-t border-black/10 dark:border-white/10">
+    <footer
+      className="bg-transparent dark:bg-dark/25 backdrop-blur-sm text-dark/60 dark:text-light/60 p-4 sm:p-8 mt-10 sm:mt-14 border-t border-black/10 dark:border-white/10 motion-safe:animate-[section-load-in_560ms_cubic-bezier(0.16,1,0.3,1)_both]"
+      style={{ animationDelay: "460ms" }}
+    >
       <div className="container mx-auto max-w-3xl px-4 sm:px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col items-center md:items-start text-xs sm:text-sm text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start text-[0.8125rem] sm:text-[0.875rem] font-medium text-center md:text-left">
             <div className="mb-3">
-              <h2 className="text-base sm:text-lg font-semibold text-accent-pink">
+              <h2 className="text-[1.0625rem] sm:text-[1.1875rem] font-extrabold leading-tight text-accent-pink">
                 Ratte
               </h2>
-              <p className="text-xs text-dark/50 dark:text-light/50">
+              <p className="text-[0.75rem] font-semibold leading-snug text-dark/52 dark:text-light/52">
                 @rattecs
               </p>
             </div>
             <p>
               <a
                 href="#"
-                className="text-deep dark:text-accent-pink transition-colors hover:text-primary dark:hover:text-accent-pink inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                className="text-deep dark:text-accent-pink transition-[transform,color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-px hover:text-primary dark:hover:text-accent-pink inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
                 onClick={(e) => {
                   e.preventDefault();
                   const email = 'biz' + '@' + 'ratte.xyz';
@@ -60,7 +63,7 @@ const Footer: React.FC = () => {
         <div className="w-full border-t border-black/10 dark:border-white/10 my-6"></div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
-          <p className="text-xs sm:text-sm text-dark/40 dark:text-light/40 text-center md:text-left">
+          <p className="text-[0.75rem] sm:text-[0.8125rem] font-medium leading-snug text-dark/44 dark:text-light/44 text-center md:text-left">
             © {currentYear} All rights reserved.
             {lastUpdated && (
               <>
@@ -72,15 +75,8 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
-              href="#faq"
-              className="text-dark/45 dark:text-light/45 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              aria-label="Frequently Asked Questions"
-            >
-              FAQ
-            </a>
-            <a
               href="#"
-              className="text-dark/45 dark:text-light/45 hover:text-primary dark:hover:text-accent-pink transition-colors inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="text-[0.8125rem] font-semibold leading-none text-dark/48 dark:text-light/48 hover:-translate-y-px hover:text-primary dark:hover:text-accent-pink transition-[transform,color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] inline-flex items-center min-h-[44px] px-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
               aria-label="Contact for partner inquiries"
               onClick={(e) => {
                 e.preventDefault();
