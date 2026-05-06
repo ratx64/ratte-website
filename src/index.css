@@ -17,7 +17,7 @@
   body {
     /*
       Base body. Background is transparent so the html base color and the
-      animated gradient layer (body::before) show through. The faint
+      static gradient layer (body::before) show through. The faint
       blueprint grid lives on body::after. See the layered backdrop block
       lower in this file.
     */
@@ -182,34 +182,6 @@
   }
 }
 
-@keyframes signal-ring-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes signal-ring-breathe {
-  0%,
-  100% {
-    opacity: 0.42;
-    transform: scale(0.98);
-  }
-  50% {
-    opacity: 0.78;
-    transform: scale(1.04);
-  }
-}
-
-@keyframes signal-dot {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(252, 12, 60, 0.48);
-  }
-  50% {
-    box-shadow: 0 0 0 5px rgba(252, 12, 60, 0);
-  }
-}
-
 @layer components {
   .signal-shell {
     position: relative;
@@ -262,18 +234,17 @@
       linear-gradient(black 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
-    animation: signal-ring-spin 9s linear infinite;
     opacity: 0.72;
   }
 
   .signal-avatar::after {
     inset: -0.9rem;
     border: 1px solid rgba(252, 228, 228, 0.12);
-    animation: signal-ring-breathe 3.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    opacity: 0.55;
   }
 
   .signal-dot {
-    animation: signal-dot 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    box-shadow: 0 0 0 3px rgba(252, 12, 60, 0.14);
   }
 
   .signal-chip {
@@ -285,6 +256,7 @@
   .signal-card {
     position: relative;
     isolation: isolate;
+    contain: paint;
   }
 
   .signal-card::before,
@@ -299,7 +271,7 @@
   .signal-card::before {
     z-index: 0;
     background:
-      radial-gradient(240px circle at var(--card-x, 50%) var(--card-y, 50%), rgba(252, 12, 60, 0.16), transparent 58%),
+      radial-gradient(240px circle at 22% 50%, rgba(252, 12, 60, 0.13), transparent 58%),
       linear-gradient(90deg, rgba(252, 12, 60, 0.08), transparent 32%, rgba(60, 108, 180, 0.08));
     opacity: 0;
     transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -329,6 +301,7 @@
   .featured-signal {
     position: relative;
     isolation: isolate;
+    contain: paint;
   }
 
   .featured-signal::before {
@@ -349,7 +322,7 @@
 
 /*
   Layered page backdrop:
-    body::before  -> animated red/blue atmosphere wash (z-index: -2)
+    body::before  -> static red/blue atmosphere wash   (z-index: -2)
     body::after   -> faint Linx-style blueprint grid       (z-index: -1)
   Both are position:fixed so they cover the viewport regardless of scroll.
   Brand palette is sampled from tailwind.config.js: accent #FC0C3C,
@@ -358,29 +331,23 @@
 body::before {
   content: "";
   position: fixed;
-  /* Overscan so the blurred edges never reveal the page background when
-     the layer is translated/scaled by the drift animation. */
-  inset: -15vmax;
+  inset: 0;
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(115deg, rgba(252, 12, 60, 0.24) 0%, transparent 34%),
-    linear-gradient(245deg, rgba(60, 84, 180, 0.24) 0%, transparent 38%),
-    radial-gradient(80% 65% at 50% 18%, rgba(252, 228, 228, 0.08), transparent 72%),
+    radial-gradient(68% 62% at 14% 8%, rgba(252, 12, 60, 0.18), transparent 64%),
+    radial-gradient(62% 58% at 88% 4%, rgba(60, 84, 180, 0.2), transparent 66%),
+    radial-gradient(58% 42% at 50% 18%, rgba(252, 228, 228, 0.06), transparent 72%),
     linear-gradient(180deg, rgba(8, 8, 12, 0) 0%, rgba(8, 8, 12, 0.62) 74%);
-  filter: blur(42px) saturate(1.08);
-  animation: ratte-gradient-drift 22s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 /* Light mode: softer, lower-saturation variant. */
 html:not(.dark) body::before {
   background:
-    linear-gradient(115deg, rgba(252, 12, 60, 0.12) 0%, transparent 34%),
-    linear-gradient(245deg, rgba(60, 84, 180, 0.12) 0%, transparent 38%),
-    radial-gradient(80% 65% at 50% 18%, rgba(252, 204, 204, 0.16), transparent 72%),
+    radial-gradient(68% 62% at 14% 8%, rgba(252, 12, 60, 0.1), transparent 64%),
+    radial-gradient(62% 58% at 88% 4%, rgba(60, 84, 180, 0.12), transparent 66%),
+    radial-gradient(58% 42% at 50% 18%, rgba(252, 204, 204, 0.12), transparent 72%),
     linear-gradient(180deg, rgba(252, 252, 246, 0) 0%, rgba(252, 252, 246, 0.72) 74%);
-  filter: blur(50px) saturate(1.04);
 }
 
 body::after {
@@ -404,18 +371,6 @@ html:not(.dark) body::after {
   background-image:
     linear-gradient(to right, rgba(0, 0, 0, 0.023) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.023) 1px, transparent 1px);
-}
-
-@keyframes ratte-gradient-drift {
-  0% {
-    transform: translate3d(-2%, -1%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(2%, 2%, 0) scale(1.06);
-  }
-  100% {
-    transform: translate3d(0%, -2%, 0) scale(1.02);
-  }
 }
 
 /* Honor users who prefer reduced motion: kill all transitions/animations */

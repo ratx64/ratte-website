@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from "react";
-import { FaTwitch } from "react-icons/fa";
 import LinkCard from "./LinkCard"; // Import the card component
 import TwitchEmbed from "./TwitchEmbed";
 import SponsorBanner from "./SponsorBanner";
 import { LinkData } from "../types"; // Import the shared type
 import { allLinks } from "../data/links"; // Import the actual link data
 import pfpImage from "../assets/pfp2.webp";
+import { TwitchIcon } from "./icons";
 
 /**
  * Hero CTA buttons (Twitch + E-Mail) — matches the Linx-style two-button row
@@ -40,7 +40,7 @@ const HeroCTAs: React.FC = () => {
         data-analytics-id="hero-cta-twitch"
         aria-label="Watch Ratte live on Twitch"
       >
-        <FaTwitch className="h-4 w-4" aria-hidden="true" />
+        <TwitchIcon className="h-4 w-4" />
         <span>Twitch</span>
       </a>
       <button
@@ -165,7 +165,7 @@ const LinkList: React.FC = () => {
       {/* Profile Section with enhanced visual appeal */}
       <div className="mb-5 sm:mb-7 flex flex-col items-center">
         <div className="signal-avatar relative w-24 h-24 sm:w-32 sm:h-32 mb-5 sm:mb-6 motion-safe:animate-[avatar-load-in_680ms_cubic-bezier(0.16,1,0.3,1)_both]">
-          <div className="absolute inset-0 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-background shadow-2xl shadow-black/20 dark:shadow-black/40">
+          <div className="absolute inset-0 rounded-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-background shadow-lg shadow-black/15 dark:shadow-black/30">
             <img
               src={pfpImage}
               alt="RatteCS CS2 streamer and gaming content creator profile photo"
@@ -179,7 +179,7 @@ const LinkList: React.FC = () => {
               } as React.ImgHTMLAttributes<HTMLImageElement>)}
             />
           </div>
-          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-accent-pink/20 via-primary/20 to-rattePurple-light/20 dark:from-accent-pink/35 dark:via-primary/25 dark:to-rattePurple-light/30 blur-2xl -z-10" />
+          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-accent-pink/16 via-primary/16 to-rattePurple-light/16 dark:from-accent-pink/24 dark:via-primary/18 dark:to-rattePurple-light/22 blur-lg -z-10" />
         </div>
 
         <div

@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer
-      className="bg-transparent dark:bg-dark/25 backdrop-blur-sm text-dark/60 dark:text-light/60 p-4 sm:p-8 mt-10 sm:mt-14 border-t border-black/10 dark:border-white/10 motion-safe:animate-[section-load-in_560ms_cubic-bezier(0.16,1,0.3,1)_both]"
+      className="bg-transparent dark:bg-dark/25 text-dark/60 dark:text-light/60 p-4 sm:p-8 mt-10 sm:mt-14 border-t border-black/10 dark:border-white/10 motion-safe:animate-[section-load-in_560ms_cubic-bezier(0.16,1,0.3,1)_both]"
       style={{ animationDelay: "460ms" }}
     >
       <div className="container mx-auto max-w-3xl px-4 sm:px-6">

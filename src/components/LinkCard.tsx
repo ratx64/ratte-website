@@ -1,16 +1,16 @@
 import React from "react";
 import { LinkData } from "../types";
-import { FaXTwitter } from "react-icons/fa6";
-import {
-  FaSteam,
-  FaDiscord,
-  FaTwitch,
-  FaYoutube,
-  FaTiktok,
-} from "react-icons/fa";
-import { SiKick } from "react-icons/si";
 import AffiliateBadge from "./AffiliateBadge";
 import GamificationBadge from "./GamificationBadge";
+import {
+  DiscordIcon,
+  KickIcon,
+  SteamIcon,
+  TikTokIcon,
+  TwitchIcon,
+  XIcon,
+  YouTubeIcon,
+} from "./icons";
 
 // Import all images
 import gearzggIcon from "../assets/gearzgg.webp";
@@ -43,18 +43,18 @@ const iconMap: Record<string, string> = {
 // Default icons for different types of links
 const defaultIcons: Record<string, React.ReactNode> = {
   // Social Media Icons
-  "x.com": <FaXTwitter className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
-  "twitter.com": <FaXTwitter className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
-  "steamcommunity.com": <FaSteam className="h-6 w-6 text-[#1B2838]" />,
+  "x.com": <XIcon className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
+  "twitter.com": <XIcon className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
+  "steamcommunity.com": <SteamIcon className="h-6 w-6 text-[#1B2838]" />,
   "steamcommunity.com/tradeoffer": (
-    <FaSteam className="h-6 w-6 text-[#1B2838]" />
+    <SteamIcon className="h-6 w-6 text-[#1B2838]" />
   ),
-  "discord.com": <FaDiscord className="h-6 w-6 text-[#5865F2]" />,
-  "discord.gg": <FaDiscord className="h-6 w-6 text-[#5865F2]" />,
-  "twitch.tv": <FaTwitch className="h-6 w-6 text-[#9146FF]" />,
-  "youtube.com": <FaYoutube className="h-6 w-6 text-[#FF0000]" />,
-  "tiktok.com": <FaTiktok className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
-  "kick.com": <SiKick className="h-6 w-6 text-[#00FF47]" />,
+  "discord.com": <DiscordIcon className="h-6 w-6 text-[#5865F2]" />,
+  "discord.gg": <DiscordIcon className="h-6 w-6 text-[#5865F2]" />,
+  "twitch.tv": <TwitchIcon className="h-6 w-6 text-[#9146FF]" />,
+  "youtube.com": <YouTubeIcon className="h-6 w-6 text-[#FF0000]" />,
+  "tiktok.com": <TikTokIcon className="h-6 w-6 text-ratteDarkGray dark:text-white" />,
+  "kick.com": <KickIcon className="h-6 w-6 text-[#00FF47]" />,
 
   // Trading/Skin Sites
   "csfloat.com": (
@@ -203,14 +203,7 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
     rank,
   } = link;
 
-  const [isHovered, setIsHovered] = React.useState(false);
-  const [isClicked, setIsClicked] = React.useState(false);
   const [isCopied, setIsCopied] = React.useState(false);
-
-  const handleClick = () => {
-    setIsClicked(true);
-    setTimeout(() => setIsClicked(false), 300);
-  };
 
   const handleCopyCode = async (code: string) => {
     try {
@@ -220,18 +213,6 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
     } catch {
       // Clipboard access can be blocked by browser permissions. Keep the code visible for manual copy.
     }
-  };
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty(
-      "--card-x",
-      `${event.clientX - rect.left}px`,
-    );
-    event.currentTarget.style.setProperty(
-      "--card-y",
-      `${event.clientY - rect.top}px`,
-    );
   };
 
   // Generate enhanced schema.org JSON-LD
@@ -340,14 +321,9 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
 
       <div className="block group">
         <div
-          className={`signal-card relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-white/[0.05] backdrop-blur-sm transition-[transform,border-color,background-color,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.012] hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:border-accent-pink/45 dark:hover:border-accent-pink/50 hover:shadow-[0_14px_36px_rgba(0,0,0,0.18)] dark:hover:shadow-[0_18px_44px_rgba(0,0,0,0.38)] motion-reduce:transition-none motion-reduce:transform-none ${
-            isHovered ? "-translate-y-0.5" : ""
-          } ${isClicked ? "scale-[0.985]" : ""} ${
+          className={`signal-card relative overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/[0.04] dark:bg-white/[0.05] transition-[transform,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.006] hover:bg-black/[0.06] dark:hover:bg-white/[0.08] hover:border-accent-pink/45 dark:hover:border-accent-pink/50 active:scale-[0.985] motion-reduce:transition-none motion-reduce:transform-none ${
             priority === 1 ? "ring-1 ring-accent-pink/40" : ""
           }`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onPointerMove={handlePointerMove}
         >
           <a
             href={url}
@@ -356,12 +332,11 @@ const LinkCard: React.FC<LinkCardProps> = ({ link, whiteIcon = false }) => {
             className="absolute inset-0 z-0 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-pink"
             data-analytics-id={analyticsId}
             aria-label={`Visit ${title}${description ? ` - ${description}` : ""}`}
-            onClick={handleClick}
           />
           <div className="relative z-10 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 pointer-events-none">
             {/* Uniform icon container — 44/48px rounded square */}
             <div className="shrink-0">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.06] border border-black/5 dark:border-white/5 flex items-center justify-center transition-[transform,border-color,background-color,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] group-hover:border-accent-pink/20 group-hover:bg-accent-pink/[0.035] group-hover:shadow-[0_0_24px_rgba(252,12,60,0.12)] motion-reduce:transition-none motion-reduce:transform-none">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.06] border border-black/5 dark:border-white/5 flex items-center justify-center transition-[transform,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025] group-hover:border-accent-pink/20 group-hover:bg-accent-pink/[0.035] motion-reduce:transition-none motion-reduce:transform-none">
                 {icon && iconMap[icon] ? (
                   <img
                     src={iconMap[icon]}

@@ -81,7 +81,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
       <div
         role="region"
         aria-label="Partner banner"
-        className="sticky top-0 z-30 w-full bg-light/85 dark:bg-background/80 backdrop-blur-md border-b border-black/10 dark:border-white/10"
+        className="sticky top-0 z-30 w-full bg-light/95 dark:bg-background/95 border-b border-black/10 dark:border-white/10"
       >
         <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
           <span
@@ -159,7 +159,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
         target="_blank"
         rel="noopener noreferrer sponsored"
         data-analytics-id={`sponsor-inline-${sponsorAnalyticsId}`}
-        className="featured-signal block rounded-xl border border-accent-pink/35 dark:border-accent-pink/40 bg-black/[0.045] dark:bg-white/[0.055] backdrop-blur-sm p-4 sm:p-5 transition-[transform,border-color,background-color,box-shadow] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.01] hover:border-accent-pink/70 hover:bg-black/[0.065] dark:hover:bg-white/[0.085] hover:-translate-y-0.5 hover:shadow-[0_18px_50px_rgba(252,12,60,0.14)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
+        className="featured-signal block rounded-xl border border-accent-pink/35 dark:border-accent-pink/40 bg-black/[0.045] dark:bg-white/[0.055] p-4 sm:p-5 transition-[transform,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.006] hover:border-accent-pink/70 hover:bg-black/[0.065] dark:hover:bg-white/[0.085] hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none motion-reduce:transform-none"
       >
         <div className="flex items-center gap-3 sm:gap-4">
           {iconSrc && (

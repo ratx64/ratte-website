@@ -216,7 +216,7 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
 
   return (
     <section
-      className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] backdrop-blur-sm transition-[border-color,background-color] duration-[260ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/35 mb-8 sm:mb-12 mx-2 sm:mx-0"
+      className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] transition-[border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-accent-pink/35 mb-8 sm:mb-12 mx-2 sm:mx-0"
       aria-label="Twitch Live Stream"
       data-stream-status={status}
     >

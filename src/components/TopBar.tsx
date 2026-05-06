@@ -87,7 +87,7 @@ const TopBar: React.FC = () => {
       aria-label="Support RatteCS"
       className="fixed inset-x-0 bottom-0 z-40 px-3 pb-[env(safe-area-inset-bottom)] pointer-events-none motion-safe:animate-[topbar-in_280ms_ease-out_both]"
     >
-      <div className="pointer-events-auto mx-auto max-w-md mb-3 flex items-center gap-2 sm:gap-3 rounded-2xl border border-accent-gray/15 dark:border-accent-gray/25 bg-white/85 dark:bg-ratteDarkGray/95 backdrop-blur-lg shadow-xl shadow-black/15 dark:shadow-black/50 px-3 sm:px-4 py-2.5 sm:py-3">
+      <div className="pointer-events-auto mx-auto max-w-md mb-3 flex items-center gap-2 sm:gap-3 rounded-2xl border border-accent-gray/15 dark:border-accent-gray/25 bg-white/95 dark:bg-ratteDarkGray/95 shadow-lg shadow-black/10 dark:shadow-black/30 px-3 sm:px-4 py-2.5 sm:py-3">
         <span
           aria-hidden="true"
           className="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent-pink/15 text-accent-pink"
