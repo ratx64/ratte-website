@@ -1,16 +1,42 @@
+# https://ratte.xyz/robots.txt
+# LLM context: https://ratte.xyz/llms.txt
+
 User-agent: *
 Allow: /
+Allow: /llms.txt
 Allow: /sitemap.xml
-Allow: /*.html
-Allow: /*.js
-Allow: /*.css
-Allow: /*.png
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.gif
-Allow: /*.svg
-Allow: /*.ico
-Allow: /*.json
-Allow: /*.xml
 
-Sitemap: https://ratte.xyz/sitemap.xml 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://ratte.xyz/sitemap.xml

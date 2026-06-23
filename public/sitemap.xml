@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ratte.xyz/</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://ratte.xyz/assets/og-image.webp</image:loc>
-      <image:title>RatteCS - CS2 Streamer Links</image:title>
-      <image:caption>Official RatteCS link hub with social profiles and partner links</image:caption>
+      <image:title>ratte — cs2 streamer links</image:title>
+      <image:caption>Official RatteCS link hub with streams, socials, partner codes, and Steam links</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://ratte.xyz/assets/pfp.webp</image:loc>

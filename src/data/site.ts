@@ -1,0 +1,47 @@
+import { SEO_DATE_MODIFIED, SEO_GOOGLE_VERIFICATION } from "../generated/seo-meta";
+
+export const SITE = {
+  url: "https://ratte.xyz/",
+  name: "RatteCS",
+  personName: "Ratte",
+  handle: "@rattecs",
+  title: "ratte — links",
+  description:
+    "official rattecs link hub — twitch, discord, kick, youtube, partner codes, and steam links in one place.",
+  embedTitle: "ratte — cs2 streamer",
+  embedDescription:
+    "twitch, discord, kick, youtube, and partner codes. all my links in one place.",
+  email: "biz@ratte.xyz",
+  image: "https://ratte.xyz/assets/og-image.jpg",
+  imageWebp: "https://ratte.xyz/assets/og-image.webp",
+  imageAlt: "ratte — cs2 streamer and content creator",
+  logo: "https://ratte.xyz/assets/pfp.webp",
+  datePublished: "2024-01-01",
+  dateModified: SEO_DATE_MODIFIED,
+  googleSiteVerification: SEO_GOOGLE_VERIFICATION,
+  inLanguage: "en",
+  keywords: [
+    "rattecs",
+    "ratte",
+    "cs2",
+    "counter-strike 2",
+    "gaming streamer",
+    "twitch streamer",
+    "kick streamer",
+    "link hub",
+    "linktree alternative",
+    "wallhack discount code",
+    "wlmouse discount code",
+    "csfloat",
+    "steam trade link",
+  ],
+  sameAs: [
+    "https://twitch.tv/rattecs",
+    "https://kick.com/rattecs",
+    "https://www.youtube.com/@rattecs",
+    "https://www.tiktok.com/@rattecs",
+    "https://x.com/rattecs",
+    "https://discord.gg/gc2epPGDKP",
+    "https://instagram.com/cs_ratte",
+  ],
+} as const;

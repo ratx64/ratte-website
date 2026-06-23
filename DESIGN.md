@@ -1,58 +1,62 @@
 ---
-name: RatteCS Link Hub
-description: A moody, compact creator link hub for RatteCS socials, CS2 settings, partner links, and affiliate codes.
+name: RatteCS X Profile Link Hub
+description: An X.com-style creator profile shell for RatteCS official links, partner codes, streams, and setup.
 colors:
-  void-black: "#0C0C0C"
-  near-black: "#0D0D0D"
-  pure-black: "#000000"
-  white: "#FFFFFF"
-  paper-white: "#FCFCFC"
-  cream-glow: "#FCFCE4"
-  blush-glow: "#FCE4E4"
-  steel-blush: "#FCCCCC"
+  x-bg: "#000000"
+  x-card: "#050505"
+  x-hover: "#080808"
+  x-icon: "#16181C"
+  x-border: "#2F3336"
+  x-border-strong: "#536471"
+  x-text: "#E7E9EA"
+  x-muted: "#71767B"
+  x-soft: "#8B98A5"
+  x-accent: "#7856FF"
+  x-verified: "#1D9BF0"
+  x-verified-text: "#F7FBFF"
+  x-button: "#EFF3F4"
+  x-button-text: "#0F1419"
   ratte-red: "#FC0C3C"
-  deep-red: "#6C0C0C"
-  ratte-blue: "#243C6C"
-  bright-blue: "#3C6CB4"
-  deep-blue: "#0C2454"
-  ratte-purple: "#242454"
-  bright-purple: "#3C54B4"
-  night-purple: "#0C0C3C"
+  banner-purple: "#7856FF"
+  banner-red: "#FC0C3C"
+  discord: "#5865F2"
+  twitch: "#9146FF"
+  kick: "#53FC18"
+  youtube: "#FF0033"
 typography:
   display:
     fontFamily: "Inter, sans-serif"
-    fontSize: "2.25rem"
-    fontWeight: 700
+    fontSize: "1.625rem"
+    fontWeight: 800
     lineHeight: 1
-    letterSpacing: "normal"
+    letterSpacing: "0"
   headline:
     fontFamily: "Inter, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 600
-    lineHeight: 1.75
-    letterSpacing: "normal"
+    fontSize: "1.375rem"
+    fontWeight: 800
+    lineHeight: 1.15
+    letterSpacing: "0"
   title:
     fontFamily: "Inter, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 600
-    lineHeight: 1.5
-    letterSpacing: "normal"
+    fontSize: "0.9375rem"
+    fontWeight: 800
+    lineHeight: 1.25
+    letterSpacing: "0"
   body:
     fontFamily: "Inter, sans-serif"
-    fontSize: "0.875rem"
+    fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.75
-    letterSpacing: "normal"
+    lineHeight: 1.5
+    letterSpacing: "0"
   label:
     fontFamily: "Inter, sans-serif"
-    fontSize: "0.75rem"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "0.05em"
+    fontSize: "0.8125rem"
+    fontWeight: 700
+    lineHeight: 1.25
+    letterSpacing: "0"
 rounded:
   sm: "6px"
   md: "8px"
-  lg: "12px"
   xl: "16px"
   full: "9999px"
 spacing:
@@ -61,156 +65,178 @@ spacing:
   md: "12px"
   lg: "16px"
   xl: "20px"
-  section: "32px"
+  rail: "32px"
 components:
-  hero-cta:
-    backgroundColor: "{colors.pure-black}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.md}"
-    padding: "10px 20px"
-    height: "44px"
-  link-card:
-    backgroundColor: "{colors.near-black}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.lg}"
+  shell:
+    backgroundColor: "{colors.x-bg}"
+    textColor: "{colors.x-text}"
+    width: "100vw"
+    height: "100vh"
+  timeline-row:
+    backgroundColor: "{colors.x-bg}"
+    textColor: "{colors.x-text}"
     padding: "12px 16px"
-  partner-chip:
-    backgroundColor: "{colors.ratte-red}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.sm}"
-    padding: "4px 8px"
-  icon-tile:
-    backgroundColor: "{colors.pure-black}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.lg}"
-    width: "48px"
-    height: "48px"
+  right-rail-card:
+    backgroundColor: "{colors.x-bg}"
+    textColor: "{colors.x-text}"
+    rounded: "{rounded.xl}"
+    padding: "16px"
+  primary-button:
+    backgroundColor: "{colors.x-button}"
+    textColor: "{colors.x-button-text}"
+    rounded: "{rounded.full}"
+    height: "44px"
+    padding: "0 20px"
+  code-button:
+    backgroundColor: "{colors.x-bg}"
+    textColor: "{colors.x-text}"
+    rounded: "{rounded.full}"
+    height: "44px"
+    padding: "0 12px"
 ---
 
-# Design System: RatteCS Link Hub
+# Design System: RatteCS X Profile Link Hub
 
 ## Overview
 
-**Creative North Star: "The After-Stream Control Room"**
+**Creative North Star: "The Creator Profile Control Room"**
 
-This system should feel like the current RatteCS page with the craft turned up: dark, compact, personal, and lightly atmospheric. The user should land, recognize Ratte immediately, and move through socials, partners, Steam links, and settings without feeling sold to or slowed down.
+The interface is a creator link hub wearing an X.com profile shell. It should feel instantly familiar to anyone who knows X: left navigation, center profile timeline, right contextual rail, pure black chrome, thin dividers, rounded pills, verified marks, and a scroll model where only the middle column moves.
 
-The page is a focused creator hub, not a generic landing page. Red and blue ambience may shape the surface, but the content stays disciplined: profile first, links in stable rows, partner disclosure visible, and no decorative flourish that competes with the next click.
+This is still RatteCS, not a generic social clone. The avatar, red and purple profile-banner atmosphere, partner transparency, and compact link rows keep the creator identity present. The X structure is an interaction model and visual discipline, not permission to add fake platform features or bury the useful links.
 
 **Key Characteristics:**
-- Compact centered column with generous breathing room around sections.
-- Dark surface with red and blue environmental glow.
-- Soft translucent cards with precise borders instead of heavy shadows.
-- Small but clear text hierarchy, optimized for scanning.
-- Affiliate moments are visible and transparent, never spammy.
+- Pure black viewport shell with fixed side rails and a single center scroll column.
+- 600px profile timeline rhythm, bordered by X-style dividers.
+- Link rows are flat timeline entries, not card grids and not nested containers.
+- Typography is compact but high-contrast: 26px profile display, 22px section heads, 15px row titles, 16px body copy.
+- Partner codes are visible beside relevant links with explicit disclosure.
+- Purple is the active section signal; verified blue is reserved for verification.
 
 ## Colors
 
-The palette is a night-mode creator palette: blackened surfaces, cold blue depth, red signal accents, and pale blush highlights.
+The palette is X.com black restraint with RatteCS atmosphere reserved for the profile banner and partner context.
 
 ### Primary
-- **Ratte Red**: the only hot action color. Use it for partner emphasis, hover borders, badges, discount codes, and active signals. It should feel rare enough to matter.
-- **Ratte Blue**: the structural brand color. Use it for primary dark buttons in light contexts, subtle code pills, and the cool half of the backdrop.
+- **X Black Shell**: The page floor, fixed rails, center timeline, and browser background. It must stay pure black to match X.com.
+- **X Text**: The main readable text color for names, headings, descriptions, and button text on dark surfaces.
+- **Ratte Purple Active**: The only section-navigation accent. Use it for active tab underlines and selected profile-section cues.
 
 ### Secondary
-- **Ratte Purple**: a supporting depth color for the blue side of the atmosphere. Use it in gradients and environmental layers, not as a competing CTA color.
-- **Bright Blue**: a highlight tint for atmospheric depth and occasional icon or state support.
+- **Verified Blue**: Verification badges only. Do not use it as a general CTA color.
+- **Ratte Banner Red**: Environmental color in the profile banner and rare partner atmosphere only.
+- **Platform Accents**: Discord, Twitch, Kick, YouTube, and similar brand colors belong only on their icons.
 
 ### Tertiary
-- **Blush Glow**: a pale glow color used for soft highlights, neon-like text shadows, and low-intensity borders. It should read as reflected light, not as a surface color.
-- **Cream Glow**: a warmer pale neutral reserved for tiny ambient accents and scrollbar tracks.
+- **X Hover Black**: The subtle hover fill for rows, rails, tabs, and ghost actions.
+- **X Icon Well**: Circular icon tile background for link rows and generic link icons.
 
 ### Neutral
-- **Void Black**: the primary dark UI floor. Use it for page background, dark cards, and the footer.
-- **Near Black**: the default dark surface color when a card needs separation from the page.
-- **Paper White**: the light-mode base surface. Use sparingly because the primary experience is dark.
-- **White**: currently used for pure text and icons. When polishing, consider tinting this slightly toward blush to avoid stark white glare.
+- **X Border**: The 1px structural divider for the timeline, rails, section breaks, and right rail cards.
+- **X Strong Border**: Coupon pills and stronger ghost buttons.
+- **X Muted**: Handles, metadata, timestamps, secondary nav labels, and low-priority support text.
+- **X Soft**: Descriptions and disclosures when the text should recede but remain readable.
+- **X Button White**: Filled action pills such as Watch.
 
 ### Named Rules
 
-**The Red Signal Rule.** Ratte Red is a signal, not wallpaper. Use it for actions, verified partner emphasis, and meaningful hover states only.
+**The X Black Rule.** The profile shell background is `#000000`. Do not tint, gradient, or texture the page floor.
 
-**The Atmosphere Behind Content Rule.** Red and blue gradients belong behind the interface. They must never reduce text contrast or make cards harder to scan.
+**The One Accent Rule.** Purple marks active navigation. Verified blue marks verified identity. Red belongs to Ratte atmosphere and partner context. Do not let these roles bleed into each other.
+
+**The Divider Rule.** Borders are 1px structural lines. Never use side-stripe accents or colored border-left treatments.
 
 ## Typography
 
 **Display Font:** Inter, with sans-serif fallback  
 **Body Font:** Inter, with sans-serif fallback  
-**Label/Mono Font:** Inter for labels; monospace only for coupon codes
+**Label/Mono Font:** Inter for labels; system monospace only when a literal code needs monospace treatment.
 
-**Character:** The type system is plain, compact, and functional. It should feel creator-native and direct, with hierarchy coming from weight, spacing, and placement rather than oversized marketing type.
+**Character:** The type system is compact, creator-native, and X-adjacent. It should read fast in a dense profile column, with hierarchy coming from weight, line-height, and placement rather than oversized marketing type.
 
 ### Hierarchy
-- **Display** (700, 2.25rem desktop, 1 line): Profile name and only true identity headline.
-- **Headline** (600, 1.125rem to 1.25rem, relaxed line-height): Section titles such as Social Profiles, Partners, Steam, and Config & Settings.
-- **Title** (600, 0.875rem to 1rem, 1.5 line-height): Link titles, partner names, CTA labels, and compact actions.
-- **Body** (400, 0.75rem to 0.875rem, 1.75 line-height): Link descriptions, disclosure copy, and contextual support.
-- **Label** (600, 0.625rem to 0.75rem, uppercase with wider tracking): Partner tags, disclosure badges, tiny status labels, and compact metadata.
+- **Display** (800, 1.625rem, 1 line): The visible profile name in the bio block.
+- **Headline** (800, 1.375rem, 1.15 line-height): Section headings such as Top links, Partner codes, and Steam and setup.
+- **Title** (800, 0.9375rem, 1.25 line-height): Link row titles, tab labels, rail nav labels, and compact content titles.
+- **Body** (400, 1rem, 1.5 line-height): Bio copy, link descriptions, right rail explanatory copy, and section descriptions.
+- **Label** (700, 0.8125rem, 1.25 line-height): Metadata, pinned labels, disclosure text, coupon states, and small utility copy.
 
 ### Named Rules
 
-**The Scan First Rule.** Link titles must win over descriptions. Descriptions support the click, they do not compete with it.
+**The Profile Scale Rule.** Ratte is the largest text in the profile body. Section heads are second. Link titles are dense and bold, never hero-sized.
 
-**The No Hero Bloat Rule.** Do not turn this into a landing page with oversized slogans. Ratte is the headline; everything else supports navigation.
+**The Dark Readability Rule.** Body copy on black gets 1.5 line-height and a 54ch to 62ch max width where paragraphs can run long.
+
+**The No Marketing Hero Rule.** Do not introduce oversized slogans. The banner copy is short, right-weighted, and subordinate to the profile identity.
 
 ## Elevation
 
-Depth is created with tonal layering, translucent surfaces, borders, blur, and atmospheric background light. Shadows are secondary and should stay soft. Cards are mostly flat at rest, then lift by a half step on hover with a small translate and brighter border.
+Depth is almost entirely tonal and structural: pure black surfaces, 1px borders, hover fills, avatar border, sticky header blur, and restrained red-purple banner atmosphere. The system is flat by default because the X profile metaphor depends on a continuous timeline rather than floating cards.
 
 ### Shadow Vocabulary
-- **Profile Glow** (`blur-xl` on a red-to-blue gradient halo): Used only behind the profile image to make the creator identity feel anchored.
-- **Neon Text Shadow** (`0 0 5px #FCE4E4, 0 0 10px #FC0C3C`): Available as a rare emphasis utility. Do not use it on body text.
-- **Toast Shadow** (`shadow-xl shadow-black/15` in light mode, `shadow-black/50` in dark mode): Used for bottom support prompts where the surface must float above content.
+- **Sticky Header Blur** (`backdrop-blur-md` over `rgba(0, 0, 0, 0.8)`): Keeps profile context readable while the center column scrolls.
+- **Banner Atmosphere** (radial red and purple over black): Used only in the profile banner behind text and avatar.
+- **Focus Ring** (`2px` verified-blue ring): Keyboard focus on links and buttons.
 
 ### Named Rules
 
-**The Flat At Rest Rule.** Link cards stay close to the surface at rest. Hover may lift and brighten; idle cards should not look like floating glass panels.
+**The Flat Timeline Rule.** Link rows do not cast shadows and do not lift. State is shown through hover fill, underline, focus ring, and active tab underline.
+
+**The Banner-Only Atmosphere Rule.** Red and purple light live in the banner. The timeline and rails stay black.
 
 ## Components
 
 ### Buttons
-- **Shape:** Gently squared buttons with an 8px radius for hero CTAs and rounded-full pills for bottom prompts.
-- **Primary:** Dark or red filled actions with white text, 44px minimum height, and compact horizontal padding.
-- **Hover / Focus:** Hover changes background and border color. Focus uses a visible 2px outline in the primary or glow color.
-- **Secondary / Ghost:** Translucent black or white surfaces with low-opacity borders, used for Twitch and email actions.
+- **Shape:** Rounded-full pills for all primary actions, contact actions, coupon actions, and rail actions.
+- **Primary:** X white fill with dark text for the Watch action, 44px minimum height.
+- **Hover / Focus:** Hover is opacity or black hover fill. Focus uses a 2px verified-blue ring.
+- **Secondary / Ghost:** Transparent black surface with X Strong Border and X Text, used for Contact and code copy actions.
 
 ### Chips
-- **Style:** Compact red or red-tinted pills for partner labels, coupon codes, and disclosure markers.
-- **State:** Coupon chips may copy codes. Their copied state should be text-clear and brief, not animated heavily.
+- **Style:** Coupon chips are rounded-full bordered pills. They display the literal code or a clear copied/manual state.
+- **State:** `Copied` and `Manual` states are text-based. Do not rely on color alone.
 
 ### Cards / Containers
-- **Corner Style:** Rounded but controlled, usually 12px. Avoid softer, pill-like cards for link rows.
-- **Background:** Dark cards use low-opacity white over the black surface. Light cards use low-opacity black over paper white.
-- **Shadow Strategy:** Border and tonal separation first, shadow only for toasts or rare floating UI.
-- **Border:** 1px translucent border by default, red-tinted border for featured partner emphasis or hover.
-- **Internal Padding:** Link rows use 12px to 16px. Featured partner cards can use 16px to 20px.
+- **Corner Style:** Right rail cards use 16px radius. Timeline rows use no card radius at the section level.
+- **Background:** Cards and rows sit on X Black Shell. Hover uses X Hover Black.
+- **Shadow Strategy:** No shadows for timeline content. Right rail cards separate with border only.
+- **Border:** X Border for structure, X Strong Border for code/contact affordances.
+- **Internal Padding:** Timeline rows use 12px vertical and 16px horizontal padding. Right rail cards use 16px padding.
 
 ### Inputs / Fields
 - **Style:** There are no conventional form fields in the current interface.
-- **Focus:** If fields are added later, use the same translucent surface, 12px radius, 1px border, and visible 2px focus outline.
+- **Focus:** If fields are added later, use X Black Shell, X Border, rounded-full or 16px radius depending on shape, and a verified-blue focus ring.
 - **Error / Disabled:** Use clear text and border changes. Do not rely on red alone.
 
 ### Navigation
-- **Style, typography, default/hover/active states, mobile treatment.** Navigation is mostly section flow, not a full nav system. Footer links stay quiet. Anchor-style actions should preserve 44px touch targets when interactive.
+- **Left rail:** 275px desktop rail, 20px labels, 28px icons, rounded-full hover zones, and a white Watch pill.
+- **Profile tabs:** Four equal tabs, 52px tall, 15px extra-bold labels, purple active underline.
+- **Right rail quick jump:** 350px rail with 16px cards and active hover-fill pills.
+- **Mobile treatment:** Hide side rails and keep the center profile column as the sole scrollable surface.
 
-### Signature Component: Link Card
+### Signature Component: X Profile Shell
 
-The link card is the core unit. It combines a 44px to 48px icon tile, a bold title, a muted one-line description, optional verification badge, optional coupon chip, and a right-side external-link affordance. The card must remain a stable row on mobile and desktop, with truncation protecting layout.
+The shell is fixed to the viewport (`100vh`) with overflow hidden. The center profile column is the only vertical scroll container. Side rails stay still while the timeline scrolls, matching X.com behavior.
 
-### Signature Component: Featured Partner
+### Signature Component: Timeline Link Row
 
-The featured partner is allowed to be more assertive than normal cards, but it must stay transparent. It uses a red label, red-tinted border, partner icon, code pill, action hint, and disclosure copy. This component exists to build trust as much as to drive clicks.
+The link row is the core unit. It combines a 44px icon well, bold title, muted description, optional verification mark, optional partner label, optional code pill, and a quiet Open affordance. It must remain flat and scan-first.
+
+### Signature Component: Pinned Partner
+
+The pinned partner uses the timeline-post pattern, not a promotional card grid. It may include disclosure copy and a code button, but it must remain transparent about affiliate context.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep the current moody red and blue atmosphere, but keep it behind content.
-- **Do** preserve the compact centered link-hub structure.
+- **Do** keep the page background exactly black like X.com.
+- **Do** keep the left and right columns still while only the center column scrolls.
+- **Do** use flat timeline rows for link content.
 - **Do** make partner disclosures visible wherever a partner link is promoted.
-- **Do** keep links scannable with strong titles, muted descriptions, and stable icon tiles.
-- **Do** maintain WCAG 2.1 AA contrast, especially on tiny partner metadata and muted copy.
-- **Do** use red for meaningful signals: partner emphasis, hover borders, coupon chips, and important action states.
-- **Do** honor reduced-motion preferences and keep transitions short, around 220ms to 260ms.
+- **Do** keep row titles bold and descriptions readable at 16px body rhythm.
+- **Do** use purple only as the active section signal.
+- **Do** preserve visible keyboard focus and 44px touch targets.
+- **Do** keep Ratte atmosphere in the profile banner, behind content.
 
 ### Don't:
 - **Don't** make this a generic Linktree clone.
@@ -220,4 +246,5 @@ The featured partner is allowed to be more assertive than normal cards, but it m
 - **Don't** turn the page into a broad landing page instead of a focused creator hub.
 - **Don't** erase the current vibe, make the page too bright, bury partner disclosures, or make affiliate links feel deceptive or spammy.
 - **Don't** use gradient text, side-stripe card accents, nested cards, or decorative glassmorphism.
-- **Don't** use oversized hero slogans, hero metrics, or repeated generic icon-card grids.
+- **Don't** put cards inside cards in Top links or any link section.
+- **Don't** invent fake X surfaces like search, trends, or recommendations unless they directly serve the link hub.

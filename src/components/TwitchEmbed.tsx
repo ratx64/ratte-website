@@ -28,11 +28,11 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
   const visibleRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
   const [status, setStatus] = useState<StreamStatus>("loading");
+  const [showPlayer, setShowPlayer] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     let probePlayer: any = null;
-    let visiblePlayer: any = null;
     let scriptLoadCleanup: (() => void) | null = null;
     let timeoutId: number | null = null;
 
@@ -42,24 +42,6 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
         p.destroy();
       } catch {
         /* ignore */
-      }
-    }
-
-    function mountVisiblePlayer() {
-      if (!visibleRef.current || !window.Twitch?.Player) return;
-      visibleRef.current.innerHTML = "";
-      try {
-        visiblePlayer = new window.Twitch.Player(visibleRef.current, {
-          channel,
-          width: "100%",
-          height: "100%",
-          parent,
-          autoplay: false,
-          muted: true,
-        });
-        playerRef.current = visiblePlayer;
-      } catch {
-        if (!cancelled) setStatus("error");
       }
     }
 
@@ -86,13 +68,9 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
         const handleOnline = () => {
           if (cancelled) return;
           setStatus("live");
-          // Tear down the probe and mount the real, visible player.
+          // Tear down the probe. The visible player is mounted only after user intent.
           destroy(probePlayer);
           probePlayer = null;
-          // Defer to next tick so React can render the visible container.
-          window.setTimeout(() => {
-            if (!cancelled) mountVisiblePlayer();
-          }, 0);
         };
         const handleOffline = () => {
           if (cancelled) return;
@@ -185,10 +163,73 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
       if (timeoutId !== null) window.clearTimeout(timeoutId);
       if (scriptLoadCleanup) scriptLoadCleanup();
       destroy(probePlayer);
-      destroy(visiblePlayer);
       playerRef.current = null;
     };
   }, [channel, parent]);
+
+  useEffect(() => {
+    if (status !== "live" || !showPlayer) return;
+
+    let cancelled = false;
+    let visiblePlayer: any = null;
+
+    function destroy(p: any) {
+      if (!p) return;
+      try {
+        p.destroy();
+      } catch {
+        /* ignore */
+      }
+    }
+
+    function mountVisiblePlayer() {
+      if (!visibleRef.current || !window.Twitch?.Player || cancelled) return;
+      visibleRef.current.innerHTML = "";
+      try {
+        visiblePlayer = new window.Twitch.Player(visibleRef.current, {
+          channel,
+          width: "100%",
+          height: "100%",
+          parent,
+          autoplay: false,
+          muted: true,
+        });
+        playerRef.current = visiblePlayer;
+      } catch {
+        if (!cancelled) setStatus("error");
+      }
+    }
+
+    function ensureScript(onReady: () => void) {
+      if (window.Twitch?.Player) return onReady();
+      const existing = document.getElementById(
+        "twitch-embed-script"
+      ) as HTMLScriptElement | null;
+      if (existing) {
+        existing.addEventListener("load", onReady, { once: true });
+        return;
+      }
+      const s = document.createElement("script");
+      s.id = "twitch-embed-script";
+      s.src = "https://player.twitch.tv/js/embed/v1.js";
+      s.async = true;
+      s.defer = true;
+      s.crossOrigin = "anonymous";
+      s.addEventListener("load", onReady, { once: true });
+      s.addEventListener("error", () => !cancelled && setStatus("error"), {
+        once: true,
+      });
+      document.body.appendChild(s);
+    }
+
+    ensureScript(mountVisiblePlayer);
+
+    return () => {
+      cancelled = true;
+      destroy(visiblePlayer);
+      playerRef.current = null;
+    };
+  }, [channel, parent, showPlayer, status]);
 
   // Render
   const twitchUrl = `https://twitch.tv/${channel}`;
@@ -224,17 +265,30 @@ export default function TwitchEmbed({ channel, parent }: TwitchEmbedProps) {
       {probeElement}
 
       <>
-        <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-white text-[0.6875rem] font-bold tracking-[0.08em] uppercase shadow-md motion-safe:animate-pulse">
-          <span className="h-1.5 w-1.5 rounded-full bg-white" />
+        <div className="absolute top-2 left-2 z-10 inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-pink text-background text-[0.6875rem] font-bold tracking-[0.08em] uppercase shadow-md motion-safe:animate-pulse">
+          <span className="h-1.5 w-1.5 rounded-full bg-background" />
           Live
         </div>
-        <div className="relative pt-[56.25%] min-h-[200px] sm:min-h-[300px] rounded-xl sm:rounded-2xl overflow-hidden">
-          <div
-            ref={visibleRef}
-            className="absolute top-0 left-0 w-full h-full"
-            aria-label={`Twitch stream for ${channel}`}
-          />
-        </div>
+        {showPlayer ? (
+          <div className="relative pt-[56.25%] min-h-[200px] sm:min-h-[300px] rounded-xl sm:rounded-2xl overflow-hidden">
+            <div
+              ref={visibleRef}
+              className="absolute top-0 left-0 w-full h-full"
+              aria-label={`Twitch stream for ${channel}`}
+            />
+          </div>
+        ) : (
+          <div className="relative flex min-h-[200px] sm:min-h-[300px] items-center justify-center rounded-xl sm:rounded-2xl overflow-hidden bg-black/[0.04] dark:bg-white/[0.04]">
+            <button
+              type="button"
+              onClick={() => setShowPlayer(true)}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-accent-pink px-4 py-2 text-[0.875rem] font-bold leading-none text-background hover:opacity-90 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,opacity] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none"
+              aria-label={`Watch live Twitch stream for ${channel}`}
+            >
+              Watch live
+            </button>
+          </div>
+        )}
 
         <script type="application/ld+json">
           {JSON.stringify({

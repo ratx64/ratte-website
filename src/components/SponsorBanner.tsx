@@ -112,7 +112,7 @@ const SponsorBanner: React.FC<SponsorBannerProps> = ({ variant = "inline" }) => 
             target="_blank"
             rel="noopener noreferrer sponsored"
             data-analytics-id={`sponsor-sticky-${sponsorAnalyticsId}`}
-            className="shrink-0 inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-lg bg-accent-pink text-white text-[0.8125rem] sm:text-[0.875rem] leading-none font-bold hover:opacity-90 hover:-translate-y-px active:scale-95 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,opacity] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none"
+            className="shrink-0 inline-flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-lg bg-accent-pink text-background text-[0.8125rem] sm:text-[0.875rem] leading-none font-bold hover:opacity-90 hover:-translate-y-px active:scale-95 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-pink focus-visible:ring-offset-2 focus-visible:ring-offset-transparent transition-[transform,opacity] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:transform-none"
           >
             Use code
             <svg

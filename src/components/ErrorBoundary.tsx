@@ -97,7 +97,7 @@ class ErrorBoundary extends Component<Props, State> {
             <div className="flex gap-4 justify-center">
               <button
                 onClick={this.handleReset}
-            className="px-6 py-2 bg-primary dark:bg-accent-pink text-white rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-accent-pink"
+            className="px-6 py-2 bg-primary text-white dark:bg-accent-pink dark:text-background rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-accent-pink"
                 aria-label="Try again"
               >
                 Try Again

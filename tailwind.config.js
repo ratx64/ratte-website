@@ -10,7 +10,7 @@ module.exports = {
     extend: {
       colors: {
         // Base colors
-        white: '#ffffff',
+        white: '#FCFCF6',
         black: '#000000',
         transparent: 'transparent',
         current: 'currentColor',
@@ -68,7 +68,7 @@ module.exports = {
         'accent-blue': '#243C6C',
         'accent-gray': '#FCE4E4',
         'accent-deep': '#0C2454',
-        ratteBlack: '#000000',
+        ratteBlack: '#08080C',
         ratteDarkGray: '#0C0C0C',
         ratteGray: '#242424',
         ratteLightGray: '#3C3C54',
@@ -84,7 +84,27 @@ module.exports = {
         },
         ratteAccent: '#FC0C3C',
         ratteCream: '#FCFCE4',
-        ratteBlush: '#FCE4E4'
+        ratteBlush: '#FCE4E4',
+        x: {
+          bg: '#000000',
+          card: '#050505',
+          hover: '#080808',
+          icon: '#16181c',
+          border: '#2f3336',
+          borderStrong: '#536471',
+          text: '#e7e9ea',
+          muted: '#71767b',
+          soft: '#8b98a5',
+          accent: '#7856ff',
+          verified: '#1d9bf0',
+          verifiedText: '#f7fbff',
+          button: '#eff3f4',
+          buttonText: '#0f1419',
+          discord: '#5865f2',
+          twitch: '#9146ff',
+          kick: '#53fc18',
+          youtube: '#ff0033'
+        }
       },
       fontFamily: {
         // Set Inter as the default sans-serif font
