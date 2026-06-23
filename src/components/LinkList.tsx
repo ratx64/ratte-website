@@ -36,7 +36,7 @@ type CopyState = "idle" | "copied" | "manual";
 
 function VerifiedBadge() {
   return (
-    <span aria-label="Verified" className="simplink-verified">
+    <span role="img" aria-label="Verified" className="simplink-verified">
       <svg viewBox="0 0 20 20" className="h-[70%] w-[70%]" fill="currentColor" aria-hidden="true">
         <path
           fillRule="evenodd"

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import LinkList from "./components/LinkList";
-import SeoSchema from "./components/SeoSchema";
+
 import { SITE } from "./data/site";
 import { initAnalytics } from "./utils/analytics";
 import Favicon from "./assets/favicon.ico";
@@ -89,8 +89,6 @@ const App: React.FC = () => {
         <meta name="twitter:creator" content={SITE.handle} />
         <meta name="twitter:site" content={SITE.handle} />
       </Helmet>
-
-      <SeoSchema />
 
       <main id="main-content" role="main" className="min-h-screen">
         <LinkList />

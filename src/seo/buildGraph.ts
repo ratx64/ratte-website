@@ -14,46 +14,24 @@ const IDS = {
   howTo: `${SITE.url}#howto`,
 } as const;
 
-function partnerOffer(link: LinkData) {
-  if (!link.couponCode) return undefined;
-
-  return {
-    "@type": "Offer",
-    url: link.url,
-    price: "0",
-    priceCurrency: "USD",
-    description: link.discountPercentage
-      ? `${link.discountPercentage}% off with code ${link.couponCode}`
-      : `Use code ${link.couponCode}`,
-    seller: { "@id": IDS.organization },
-  };
-}
-
 function listItem(link: LinkData, position: number) {
-  const offer = partnerOffer(link);
-  const item =
-    link.schemaType === "Product" || link.couponCode
-      ? {
-          "@type": "Product",
-          name: link.title,
-          description: link.description,
-          url: link.url,
-          ...(offer ? { offers: offer } : {}),
-        }
-      : {
-          "@type": link.schemaType || "WebPage",
-          name: link.title,
-          description: link.description,
-          url: link.url,
-        };
+  const description = link.couponCode
+    ? `${link.description || link.title}${link.discountPercentage ? ` — ${link.discountPercentage}% off with code ${link.couponCode}` : ` — code ${link.couponCode}`}`
+    : link.description;
 
   return {
     "@type": "ListItem",
     position,
     name: link.title,
-    description: link.description,
+    description,
     url: link.url,
-    item,
+    item: {
+      "@type": "WebPage",
+      "@id": link.url,
+      name: link.title,
+      description,
+      url: link.url,
+    },
   };
 }
 
