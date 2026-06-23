@@ -206,7 +206,6 @@ export function buildHeadMeta(dateModified: string, googleVerification = "") {
     <meta name="application-name" content="${escapeHtml(SITE.name)}" />
     <meta property="article:modified_time" content="${dateModified}" />${verificationMeta}
     <link rel="canonical" href="${SITE.url}" />
-    <link rel="preload" as="image" href="/assets/avatar.webp" type="image/webp" fetchpriority="high" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM site context" />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="${SITE.url}" />

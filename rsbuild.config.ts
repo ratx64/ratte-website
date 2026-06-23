@@ -1,11 +1,12 @@
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
+import { pluginAsyncCss } from "./rsbuild-plugin-async-css";
 // Import postcss plugins if needed, though Rsbuild often includes defaults
 // const tailwindcss = require('tailwindcss');
 // const autoprefixer = require('autoprefixer');
 
 export default defineConfig({
-  plugins: [pluginReact()],
+  plugins: [pluginReact(), pluginAsyncCss()],
   source: {
     entry: {
       index: "./src/index.tsx",

@@ -1,3 +1,12 @@
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/avatar.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
   Cache-Control: public, max-age=3600

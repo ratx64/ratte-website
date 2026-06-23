@@ -6,6 +6,11 @@ const root = path.join(__dirname, "..");
 const publicAssets = path.join(root, "public", "assets");
 const iconsDir = path.join(publicAssets, "icons");
 
+const FONT_FILES = [
+  { src: "inter-latin-400-normal.woff2", dest: "inter-400.woff2" },
+  { src: "inter-latin-700-normal.woff2", dest: "inter-700.woff2" },
+] as const;
+
 const PARTNER_ICONS = [
   "wallhack.webp",
   "wlmouse.webp",
@@ -37,11 +42,22 @@ async function optimizePartnerIcons() {
   }
 }
 
+function copyFonts() {
+  const fontsDir = path.join(root, "public", "fonts");
+  const fontSourceDir = path.join(root, "node_modules", "@fontsource", "inter", "files");
+  fs.mkdirSync(fontsDir, { recursive: true });
+
+  for (const { src, dest } of FONT_FILES) {
+    fs.copyFileSync(path.join(fontSourceDir, src), path.join(fontsDir, dest));
+  }
+}
+
 async function main() {
   fs.mkdirSync(iconsDir, { recursive: true });
+  copyFonts();
   await optimizeAvatar();
   await optimizePartnerIcons();
-  console.log("Optimized static images (avatar + partner icons)");
+  console.log("Optimized static assets (fonts, avatar, partner icons)");
 }
 
 main().catch((error) => {

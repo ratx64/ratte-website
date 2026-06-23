@@ -44,6 +44,14 @@ function patchIndexHtml(dateModified: string) {
   const templatePath = path.join(publicDir, "index.template.html");
   const indexPath = path.join(publicDir, "index.html");
   let html = fs.readFileSync(templatePath, "utf8");
+  const criticalCss = fs.readFileSync(path.join(publicDir, "critical.css"), "utf8").trim();
+
+  html = replaceMarker(
+    html,
+    "<!-- @critical-css-start -->",
+    "<!-- @critical-css-end -->",
+    `<style id="critical-css">${criticalCss}</style>`,
+  );
 
   html = replaceMarker(
     html,

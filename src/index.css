@@ -1,8 +1,3 @@
-@import "@fontsource/inter/latin-400.css";
-@import "@fontsource/inter/latin-500.css";
-@import "@fontsource/inter/latin-600.css";
-@import "@fontsource/inter/latin-700.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -497,7 +492,7 @@ body:has(.simplink-hub) ::selection {
 
   .simplink-name {
     font-size: var(--sl-name-size);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--sl-text);
@@ -582,7 +577,7 @@ body:has(.simplink-hub) ::selection {
   .simplink-section-label {
     margin-bottom: 0.5rem;
     font-size: var(--sl-label-size);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--sl-muted);
   }
 
