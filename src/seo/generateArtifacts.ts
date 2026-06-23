@@ -75,7 +75,7 @@ export function buildPrerenderHtml() {
   <div class="simplink-frame">
     <div class="simplink-panel">
       <header class="simplink-profile">
-        <img src="${SITE.logo}" alt="ratte cs2 streamer profile photo" class="simplink-avatar" width="88" height="88" loading="eager" decoding="async" />
+        <img src="/assets/avatar.webp" alt="ratte cs2 streamer profile photo" class="simplink-avatar" width="88" height="88" loading="eager" decoding="async" fetchpriority="high" />
         <div class="simplink-name-row">
           <h1 class="simplink-name">ratte</h1>
         </div>
@@ -206,6 +206,7 @@ export function buildHeadMeta(dateModified: string, googleVerification = "") {
     <meta name="application-name" content="${escapeHtml(SITE.name)}" />
     <meta property="article:modified_time" content="${dateModified}" />${verificationMeta}
     <link rel="canonical" href="${SITE.url}" />
+    <link rel="preload" as="image" href="/assets/avatar.webp" type="image/webp" fetchpriority="high" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM site context" />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="${SITE.url}" />

@@ -15,7 +15,7 @@ export const SITE = {
   image: "https://ratte.xyz/assets/og-image.jpg",
   imageWebp: "https://ratte.xyz/assets/og-image.webp",
   imageAlt: "ratte — cs2 streamer and content creator",
-  logo: "https://ratte.xyz/assets/pfp.webp",
+  logo: "https://ratte.xyz/assets/avatar.webp",
   datePublished: "2024-01-01",
   dateModified: SEO_DATE_MODIFIED,
   googleSiteVerification: SEO_GOOGLE_VERIFICATION,

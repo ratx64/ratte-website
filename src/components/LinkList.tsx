@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { LinkData } from "../types";
-import pfpImage from "../assets/pfp2.webp";
 import {
   DiscordIcon,
   KickIcon,
@@ -11,12 +10,6 @@ import {
   YouTubeIcon,
 } from "./icons";
 
-import skinportIcon from "../assets/skinport.webp";
-import csfloatIcon from "../assets/csfloat.webp";
-import wallhackIcon from "../assets/wallhack.webp";
-import protonvpnIcon from "../assets/protonvpn.webp";
-import wlmouseIcon from "../assets/wlmouse.webp";
-
 import { SITE } from "../data/site";
 import { groupLinks } from "../seo/groupLinks";
 import EmailLink from "./EmailLink";
@@ -25,12 +18,14 @@ import FaqSection from "./FaqSection";
 const email = SITE.email;
 
 const iconMap: Record<string, string> = {
-  skinport: skinportIcon,
-  csfloat: csfloatIcon,
-  wallhack: wallhackIcon,
-  protonvpn: protonvpnIcon,
-  wlmouse: wlmouseIcon,
+  skinport: "/assets/icons/skinport.webp",
+  csfloat: "/assets/icons/csfloat.webp",
+  wallhack: "/assets/icons/wallhack.webp",
+  protonvpn: "/assets/icons/protonvpn.webp",
+  wlmouse: "/assets/icons/wlmouse.webp",
 };
+
+const AVATAR_SRC = "/assets/avatar.webp";
 
 type CopyState = "idle" | "copied" | "manual";
 
@@ -117,7 +112,6 @@ function SimplinkRow({ link }: { link: LinkData }) {
       rel={`noopener noreferrer${isPartner ? " sponsored" : ""}`}
       className="simplink-row"
       data-analytics-id={link.analyticsId}
-      aria-label={`Open ${link.title}${link.description ? `: ${link.description}` : ""}`}
     >
       <div className="simplink-row-icon">
         <LinkIcon link={link} />
@@ -160,7 +154,7 @@ function ProfileHeader({ socialLinks }: { socialLinks: LinkData[] }) {
   return (
     <header className="simplink-profile">
       <img
-        src={pfpImage}
+        src={AVATAR_SRC}
         alt="ratte cs2 streamer profile photo"
         className="simplink-avatar"
         width={88}
