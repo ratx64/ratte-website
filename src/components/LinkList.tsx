@@ -19,6 +19,7 @@ import wlmouseIcon from "../assets/wlmouse.webp";
 
 import { SITE } from "../data/site";
 import { groupLinks } from "../seo/groupLinks";
+import EmailLink from "./EmailLink";
 import FaqSection from "./FaqSection";
 
 const email = SITE.email;
@@ -239,9 +240,7 @@ const LinkList: React.FC = () => {
           <FaqSection />
 
           <p className="simplink-disclosure">
-            <a href={`mailto:${email}`} className="simplink-inline-link">
-              {email}
-            </a>
+            <EmailLink email={email} className="simplink-inline-link" />
           </p>
 
           <footer className="simplink-footer">

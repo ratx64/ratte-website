@@ -21,7 +21,7 @@ function replaceMarker(source: string, start: string, end: string, content: stri
   if (!pattern.test(source)) {
     throw new Error(`Missing markers ${start} ... ${end}`);
   }
-  return source.replace(pattern, `${start}\n${content}\n    ${end}`);
+  return source.replace(pattern, content);
 }
 
 function updateSitemap(dateModified: string) {
@@ -41,8 +41,9 @@ export const SEO_GOOGLE_VERIFICATION = ${JSON.stringify(process.env.GOOGLE_SITE_
 }
 
 function patchIndexHtml(dateModified: string) {
+  const templatePath = path.join(publicDir, "index.template.html");
   const indexPath = path.join(publicDir, "index.html");
-  let html = fs.readFileSync(indexPath, "utf8");
+  let html = fs.readFileSync(templatePath, "utf8");
 
   html = replaceMarker(
     html,

@@ -1,5 +1,6 @@
 import { SITE } from "../data/site";
 import { SITE_FAQS, VISIBLE_FAQS } from "./faqs";
+import { staticMailtoAnchor } from "./emailLink";
 import { linkifyFaqAnswerHtml } from "./linkifyFaqAnswer";
 import { getLinkSections, groupLinks } from "./groupLinks";
 import { LinkData } from "../types";
@@ -83,7 +84,7 @@ export function buildPrerenderHtml() {
       </header>
       ${sections.map(renderSection).join("\n      ")}
       ${renderFaq()}
-      <p class="simplink-disclosure"><a href="mailto:${SITE.email}" class="simplink-inline-link">${SITE.email}</a></p>
+      <p class="simplink-disclosure">${staticMailtoAnchor(SITE.email, "simplink-inline-link")}</p>
       <footer class="simplink-footer">
         <a href="https://ratte.xyz/" class="simplink-footer-link">ratte.xyz</a>
         <span class="simplink-footer-dot" aria-hidden="true">·</span>
@@ -114,13 +115,13 @@ function renderNoscriptSections() {
 export function buildNoscriptHtml() {
   return `<main>
         <h1>${escapeHtml(SITE.title)}</h1>
-        <p>${escapeHtml(SITE.description)} Contact: <a href="mailto:${SITE.email}">${SITE.email}</a></p>
+        <p>${escapeHtml(SITE.description)} Contact: ${staticMailtoAnchor(SITE.email, "simplink-inline-link")}</p>
         ${renderNoscriptSections()}
         <h2>faq</h2>
         <dl>
           ${VISIBLE_FAQS
             .map(
-              (faq) => `<dt>${escapeHtml(faq.question)}</dt><dd>${escapeHtml(faq.answer)}</dd>`,
+              (faq) => `<dt>${escapeHtml(faq.question)}</dt><dd>${linkifyFaqAnswerHtml(faq.answer)}</dd>`,
             )
             .join("\n          ")}
         </dl>

@@ -1,4 +1,5 @@
 import React from "react";
+import { encodeEmailEntities } from "../seo/emailLink";
 
 const FAQ_LINK_PATTERN =
   /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s—,.;]*)?|[\w.+-]+@[\w.-]+\.[a-z]{2,}/gi;
@@ -25,15 +26,19 @@ const FaqAnswer: React.FC<{ text: string }> = ({ text }) => {
       nodes.push(text.slice(lastIndex, index));
     }
 
-    const isExternal = !token.includes("@");
+    const isEmail = token.includes("@");
     nodes.push(
       <a
         key={`${index}-${token}`}
         href={toHref(token)}
         className="simplink-faq-link"
-        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(isEmail ? {} : { target: "_blank", rel: "noopener noreferrer" })}
       >
-        {token}
+        {isEmail ? (
+          <span dangerouslySetInnerHTML={{ __html: encodeEmailEntities(token) }} />
+        ) : (
+          token
+        )}
       </a>,
     );
 

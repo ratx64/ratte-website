@@ -1,3 +1,5 @@
+import { encodeEmailEntities } from "./emailLink";
+
 const FAQ_LINK_PATTERN =
   /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s—,.;]*)?|[\w.+-]+@[\w.-]+\.[a-z]{2,}/gi;
 
@@ -29,12 +31,15 @@ export function linkifyFaqAnswerHtml(text: string) {
 
     result += escapeHtml(text.slice(lastIndex, index));
 
-    const href = toHref(token);
-    const isExternal = !token.includes("@");
-    const target = isExternal ? ' target="_blank"' : "";
-    const rel = isExternal ? ' rel="noopener noreferrer"' : "";
+    const isEmail = token.includes("@");
+    const href = isEmail ? `mailto:${encodeEmailEntities(token)}` : escapeHtml(toHref(token));
+    const label = isEmail ? encodeEmailEntities(token) : escapeHtml(token);
+    const target = isEmail ? "" : ' target="_blank"';
+    const rel = isEmail ? "" : ' rel="noopener noreferrer"';
+    const wrap = isEmail ? "<!--email_off-->" : "";
+    const wrapEnd = isEmail ? "<!--/email_off-->" : "";
 
-    result += `<a href="${escapeHtml(href)}" class="simplink-faq-link"${target}${rel}>${escapeHtml(token)}</a>`;
+    result += `${wrap}<a href="${href}" class="simplink-faq-link"${target}${rel}>${label}</a>${wrapEnd}`;
     lastIndex = index + token.length;
   }
 
